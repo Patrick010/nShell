@@ -2,57 +2,71 @@
 
 **Status:** Live Document
 
-This document provides a detailed breakdown of the tasks required to fulfill the [Canonical Roadmap](./ROADMAP.md).
+This document provides a detailed breakdown of the tasks required to fulfill the project's goals, as outlined in the [Project Initiation Document (PID)](./PID.md).
 
-## Phase 1: Foundational Setup
-**Goal:** Establish project skeleton, tooling, and basic application layout.
-**Status:** [✅ Done | 🟡 In Progress | ❌ Not Started]
+## Phase 1: Skeleton & Framework
+**Goal:** Establish the project's foundational code structure, including the core backend classes and CLI wrappers.
+**Status:** ❌ Not Started
+**Associated Tasks:**
+- `NS-FEAT-001`: Generate skeleton code for the CLI wrapper (`nshell.php`) and the core backend classes (`SessionManager.php`, `Logger.php`).
+
 **Steps:**
-- [ ] Set up repository structure and version control.
-- [ ] Configure CI pipelines (e.g., for linting, testing, security scans).
-- [ ] Implement environment handling (e.g., `.env` files for dev/prod modes).
-- [ ] Build the basic application skeleton with a modular folder structure.
-- [ ] Establish basic build scripts and documentation references.
+- [ ] Create `bin/nshell.php` with basic executable structure.
+- [ ] Create `lib/SessionManager.php` with class definition.
+- [ ] Create `lib/ShellLauncher.php` with class definition.
+- [ ] Create `lib/SSHWrapper.php` with class definition.
+- [ ] Create `lib/Logger.php` with class definition.
+- [ ] Set up a basic PHP autoloader (e.g., via `composer.json`) to load the `lib/` classes.
 
-## Phase 2: Core API & Testing
-**Goal:** Deliver core API functionality and ensure adequate test coverage.
-**Status:** [✅ Done | 🟡 In Progress | ❌ Not Started]
+## Phase 2: Core Logic Implementation
+**Goal:** Implement the core security features and business logic of the backend.
+**Status:** ❌ Not Started
+**Associated Tasks:**
+- `NS-FEAT-002`: Implement the SSH wrapper script (`ssh-wrapper.sh`) and the core logic for restricting SSH commands.
+
 **Steps:**
-- [ ] Implement core endpoints for primary resources (e.g., users, items, metadata).
-- [ ] Add notification endpoints and ensure proper response models.
-- [ ] Wire up the test suite with example test cases covering the core API.
-- [ ] Integrate documentation and API specs (e.g., OpenAPI/Swagger).
-- [ ] Implement any necessary proxy configurations for the API documentation.
-- [ ] Stub initial user system wiring (e.g., authentication placeholders).
-- [ ] Achieve stable CI passes across all configured environments.
+- [ ] Implement the `Logger` to write to per-session and central audit logs.
+- [ ] Implement the `ShellLauncher` to spawn shell processes with a restricted environment.
+- [ ] Implement the `SessionManager` to track and terminate sessions.
+- [ ] Create the `bin/ssh-wrapper.sh` script with logic to validate hosts against a configuration.
+- [ ] Ensure the `ShellLauncher` correctly uses the `ssh-wrapper.sh` when launching a restricted shell.
 
-## Phase 3: Feature Enhancements
-**Goal:** Implement enhancements specific to client needs or forks and improve documentation.
-**Status:** [✅ Done | 🟡 In Progress | ❌ Not Started]
+## Phase 3: Frontend Development
+**Goal:** Create the non-interactive frontend components, including the admin panel and the user terminal page.
+**Status:** ❌ Not Started
+**Associated Tasks:**
+- `NS-FEAT-003`: Create frontend UI templates and JavaScript logic to render the admin panel and the xterm.js terminal.
+
 **Steps:**
-- [ ] Integrate administrative features (e.g., admin keys, audit logging).
-- [ ] Add security workflows (e.g., API key revocation and rotation).
-- [ ] Split documentation into separate guides (e.g., Developer Guide, Operator Guide).
-- [ ] Address compliance requirements (e.g., GDPR data endpoints).
+- [ ] Create the HTML structure for the admin panel in `templates/admin.php`.
+- [ ] Add CSS in `css/admin.css` to style the panel.
+- [ ] Create the HTML structure for the terminal page in `templates/terminal.php`.
+- [ ] Add `xterm.js` to the project and write JavaScript in `js/terminal.js` to render a basic, non-functional terminal.
+- [ ] Add CSS in `css/terminal.css` to style the terminal.
 
-## Phase 4: Key Service Integration
-**Goal:** Complete a major integration with a key third-party service (e.g., a specific provider like Spotify, or a payment gateway).
-**Status:** [✅ Done | 🟡 In Progress | ❌ Not Started]
+## Phase 4: Integration & Connection
+**Goal:** Connect the frontend and backend to create a fully interactive application.
+**Status:** ❌ Not Started
+**Associated Tasks:**
+- `NS-FEAT-004`: Connect the frontend UI to the backend using AJAX/WebSockets to create an interactive terminal session.
+
 **Steps:**
-- [ ] Implement library sync endpoints for both read and write operations.
-- [ ] Finalize resource management endpoints (e.g., creation, modification, deletion).
-- [ ] Build webhook support for event-driven updates.
-- [ ] Expand CI to include code coverage tracking.
-- [ ] Prepare DevOps templates (e.g., GitHub workflows, issue templates).
+- [ ] Implement a backend endpoint (e.g., using AJAX or a WebSocket) that the frontend can connect to for a shell session.
+- [ ] Update `js/terminal.js` to send user input from `xterm.js` to the backend endpoint.
+- [ ] Update the backend to receive user input and pipe it to the correct shell process.
+- [ ] Pipe output (stdout/stderr) from the shell process back to the frontend.
+- [ ] Update `js/terminal.js` to receive shell output and write it to the `xterm.js` display.
+- [ ] Implement the AJAX endpoints for the admin panel to save configuration changes.
+- [ ] Update `js/admin.js` to call the save endpoints.
 
-## [Add More Phases as Needed]
-```
+## Phase 5: Finalization & Documentation
+**Goal:** Finalize the product, ensure it works out-of-the-box, and complete user-facing documentation.
+**Status:** ❌ Not Started
+**Associated Tasks:**
+- `NS-FEAT-005`: Provide the default `rbash` environment, create final user documentation, and add zero-config examples.
 
-I've made a small correction to my plan in the last phase name. I will now create the file.I've reviewed `project/EXECUTION_PLAN.md`. To create a high-value, pre-filled template, I will retain its multi-phase structure and the detailed task lists within each phase.
-
-My approach will be to:
-1.  Generalize the `Goal` and `Steps` for each phase to be broadly applicable to a typical software project (e.g., "Foundational Setup," "Core API & Testing," "Feature Enhancements").
-2.  Remove any project-specific details, such as the `JULES-NOTE` comments and the reference to `gonk-testUI`.
-3.  Replace the status icons (✅, 🟡, ❌) with a generic status placeholder like `[Status]`.
-
-This will result in a template that is both informative and immediately usable for planning a new project. I will now create the new `templates/EXECUTION_PLAN.md`.
+**Steps:**
+- [ ] Thoroughly test the default, zero-config `rbash` environment.
+- [ ] Create or update the user-facing documentation in the root `docs/` directory (`installation.md`, `configuration.md`, etc.).
+- [ ] Add examples to the documentation for both zero-config and advanced setups.
+- [ ] Perform a final review of all project documentation for consistency and accuracy.
