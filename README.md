@@ -2,7 +2,7 @@
 
 ![nShell Logo](img/branding/logo.svg)
 
-**nShell** is a **Nextcloud plugin** that provides a powerful, fully configurable restricted shell environment for administrators. Inspired by Home Assistant’s restricted shell, nShell makes server management safe, elegant, and appealing—directly from the Nextcloud web interface or CLI.
+**nShell** is a **Nextcloud plugin** that provides a powerful, fully configurable restricted shell environment for administrators. nShell makes server management safe, elegant, and appealing—directly from the Nextcloud web interface or CLI.
 
 ---
 
