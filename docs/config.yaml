@@ -1,0 +1,53 @@
+# nShell Configuration File
+
+# General
+shell:
+  default: /bin/rbash       # Default restricted shell
+  allowed:                  # Optional allowed shells
+    - /bin/rbash
+    - /bin/bash
+    - /usr/bin/zsh
+    - /usr/bin/fish
+  warn_on_unrestricted: true
+
+# Session Management
+session:
+  idle_timeout: 300         # Seconds before auto-logout
+  max_duration: 3600        # Max session length in seconds
+  log_commands: true
+  log_path: /var/log/nshell
+  banner: "Welcome to nShell. Restricted environment."
+
+# SSH Restrictions
+ssh:
+  enforce_user_restrictions: true
+  allow_admin_override: true
+  allowed_hosts:            # Default empty for zero-config
+    - host: localhost
+      port: 22
+      username: admin
+      auth_method: password
+
+# Environment
+environment:
+  safe_path:
+    - /usr/bin
+    - /bin
+  aliases:
+    ll: "ls -la"
+    gs: "git status"
+  prompt: "\u@\h:\w\$ "
+  theme: light
+
+# Logging & Auditing
+logging:
+  enabled: true
+  audit_log: /var/log/nshell/audit.log
+  retention_days: 30
+
+# Advanced
+advanced:
+  enable_ssh_wrapper: true
+  enable_chroot: false
+  enable_container: false
+  config_override_file: /opt/nshell/config/config.yaml
