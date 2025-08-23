@@ -2,6 +2,25 @@
 
 ---
 
+## ACT-003: Align with Task Checklist
+
+**Date:** 2025-08-23
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To ensure the 'Phase 1' commit fully complies with the project's `TASK_CHECKLIST.md`.
+
+### Outcome
+- **Traceability Matrix:** Updated the status of partially completed requirements to '🟡 Partial'.
+- **Code Quality:** Added placeholder docblocks to all new skeleton PHP files.
+
+### Related Documents
+- `../TASK_CHECKLIST.md`
+- `../TRACEABILITY_MATRIX.md`
+
+---
+
 ## ACT-002: Phase 1 - Skeleton & Framework
 
 **Date:** 2025-08-23
