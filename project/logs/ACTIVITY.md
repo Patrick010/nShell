@@ -2,6 +2,28 @@
 
 ---
 
+## ACT-002: Phase 1 - Skeleton & Framework
+
+**Date:** 2025-08-23
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To establish the project's foundational code structure, including the core backend classes, CLI wrappers, and a functional autoloader.
+
+### Outcome
+- **Directories:** Created `bin/` and `lib/` directories.
+- **Skeleton Files:** Created empty classes for `SessionManager`, `ShellLauncher`, `SSHWrapper`, and `Logger`, and an entrypoint script `nshell.php`.
+- **Configuration:** Updated `composer.json` with project metadata and dependencies for Nextcloud 31.
+- **Autoloader:** Created a manual PSR-4 autoloader (`lib/autoload.php`) and integrated it into the entrypoint script as a workaround for environment constraints.
+
+### Related Documents
+- `../EXECUTION_PLAN.md`
+- `../composer.json`
+- `../lib/autoload.php`
+
+---
+
 ## ACT-001: Project Initiation and Documentation Setup
 
 **Date:** 2025-08-23

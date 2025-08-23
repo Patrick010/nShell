@@ -6,17 +6,18 @@ This document provides a detailed breakdown of the tasks required to fulfill the
 
 ## Phase 1: Skeleton & Framework
 **Goal:** Establish the project's foundational code structure, including the core backend classes and CLI wrappers.
-**Status:** ❌ Not Started
+**Status:** ✅ Done
 **Associated Tasks:**
 - `NS-FEAT-001`: Generate skeleton code for the CLI wrapper (`nshell.php`) and the core backend classes (`SessionManager.php`, `Logger.php`).
 
 **Steps:**
-- [ ] Create `bin/nshell.php` with basic executable structure.
-- [ ] Create `lib/SessionManager.php` with class definition.
-- [ ] Create `lib/ShellLauncher.php` with class definition.
-- [ ] Create `lib/SSHWrapper.php` with class definition.
-- [ ] Create `lib/Logger.php` with class definition.
-- [ ] Set up a basic PHP autoloader (e.g., via `composer.json`) to load the `lib/` classes.
+- [x] Create `bin/nshell.php` with basic executable structure.
+- [x] Create `lib/SessionManager.php` with class definition.
+- [x] Create `lib/ShellLauncher.php` with class definition.
+- [x] Create `lib/SSHWrapper.php` with class definition.
+- [x] Create `lib/Logger.php` with class definition.
+- [x] Create a `composer.json` with project metadata and dependencies for Nextcloud 31.
+- [x] Create and integrate a manual PSR-4 autoloader (`lib/autoload.php`) due to environment constraints.
 
 ## Phase 2: Core Logic Implementation
 **Goal:** Implement the core security features and business logic of the backend.
