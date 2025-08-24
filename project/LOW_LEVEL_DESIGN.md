@@ -5,7 +5,24 @@ This LLD describes the specific implementation details of the nShell components,
 
 ---
 
-## 2. Core Backend Components (`lib/`)
+## 2. App Registration (`appinfo/`)
+
+This directory contains the files required for Nextcloud to recognize and load the application.
+
+*   **`info.xml`**
+    *   **Purpose:** The application manifest.
+    *   **Content:** An XML file containing essential metadata about the app, including its unique ID (`nshell`), public name, version, author, and dependencies on the Nextcloud server and PHP versions.
+
+*   **`app.php`**
+    *   **Purpose:** The main application entrypoint and bootstrap class.
+    *   **Responsibilities:**
+        *   Contains the `Application` class which extends Nextcloud's base app class.
+        *   The `register()` method will be used in future phases to register navigation links, API routes, and other services with the Nextcloud framework.
+        *   The `boot()` method can be used for any logic that needs to run when the app is enabled.
+
+---
+
+## 3. Core Backend Components (`lib/`)
 
 This directory contains the core PHP classes that drive the nShell backend.
 
@@ -44,7 +61,7 @@ This directory contains the core PHP classes that drive the nShell backend.
 
 ---
 
-## 3. Executable Scripts (`bin/`)
+## 4. Executable Scripts (`bin/`)
 
 These are the executable scripts that are either called by the backend or used directly.
 
@@ -70,7 +87,7 @@ These are the executable scripts that are either called by the backend or used d
 
 ---
 
-## 4. Configuration (`config/`)
+## 5. Configuration (`config/`)
 
 *   **`config.yaml`**
     *   **Purpose:** The central, optional file for advanced configuration.
@@ -87,7 +104,7 @@ These are the executable scripts that are either called by the backend or used d
 
 ---
 
-## 5. Frontend Components (`templates/`, `js/`, `css/`)
+## 6. Frontend Components (`templates/`, `js/`, `css/`)
 
 *   **`templates/admin.php` & `templates/terminal.php`**
     *   **Purpose:** Server-side PHP templates for rendering the HTML structure of the admin panel and the user terminal page.
@@ -106,5 +123,5 @@ These are the executable scripts that are either called by the backend or used d
 
 ---
 
-## 6. Ongoing Maintenance
+## 7. Ongoing Maintenance
 All development tasks must follow the [Task Execution Checklist](./TASK_CHECKLIST.md)

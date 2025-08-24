@@ -4,6 +4,25 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-007: Corrective Action - Update Design Docs
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To update the HLD and LLD design documents to include the `appinfo` components, ensuring they remain in sync with the codebase.
+
+### Outcome
+- The HLD's file structure diagram and the LLD's component description were both updated to include the new `appinfo` files.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-007)
+- `../HIGH_LEVEL_DESIGN.md`
+- `../LOW_LEVEL_DESIGN.md`
+
+---
+
 ## SESS-006: Phase 3.5 - App Registration
 
 **Date:** 2025-08-24

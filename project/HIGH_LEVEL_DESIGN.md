@@ -66,6 +66,9 @@ The nShell system is composed of three primary layers: a web-based frontend, a b
 
 ```
 nShell/
+├── appinfo/
+│ ├── app.php # App registration and entrypoint
+│ └── info.xml # App metadata
 ├── bin/
 │ ├── nshell.php # CLI wrapper to launch shell sessions
 │ ├── ssh-wrapper.sh # Optional SSH restriction wrapper

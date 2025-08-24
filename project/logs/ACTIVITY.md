@@ -2,6 +2,25 @@
 
 ---
 
+## ACT-007: Corrective Action - Update Design Docs
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To correct an oversight by updating the HLD and LLD to include the `appinfo` components, ensuring design documents remain in sync with the codebase.
+
+### Outcome
+- Updated the file structure diagram in `HIGH_LEVEL_DESIGN.md`.
+- Added a new section to `LOW_LEVEL_DESIGN.md` describing the `appinfo` directory and its files.
+
+### Related Documents
+- `../HIGH_LEVEL_DESIGN.md`
+- `../LOW_LEVEL_DESIGN.md`
+
+---
+
 ## ACT-006: Phase 3.5 - App Registration
 
 **Date:** 2025-08-24
