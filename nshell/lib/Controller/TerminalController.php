@@ -5,9 +5,18 @@ namespace OCA\nShell\Controller;
 use OCA\nShell\SessionManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
+use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IRequest;
 
 class TerminalController extends Controller {
+
+    /**
+     * @NoAdminRequired
+     * @NoCSRFRequired
+     */
+    public function index(): TemplateResponse {
+        return new TemplateResponse('nshell', 'terminal');
+    }
 
     private SessionManager $sessionManager;
 

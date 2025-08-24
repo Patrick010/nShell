@@ -2,6 +2,29 @@
 
 ---
 
+## ACT-016: Implement Frontend Routing
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To make the application visible and usable by implementing the necessary frontend routes and UI integration points.
+
+### Outcome
+- Added `index()` methods to `TerminalController` and `AdminController` to render the frontend pages.
+- Added new `GET` routes to `routes.php` to expose the new controller methods.
+- Added a `<navigation>` entry to `info.xml` to add the application to the Nextcloud top navigation bar.
+- Updated `LOW_LEVEL_DESIGN.md` to reflect the new frontend routing implementation.
+
+### Related Documents
+- `../nshell/appinfo/info.xml`
+- `../nshell/appinfo/routes.php`
+- `../nshell/lib/Controller/`
+- `../project/LOW_LEVEL_DESIGN.md`
+
+---
+
 ## ACT-015: Correct Autoloader Include Syntax
 
 **Date:** 2025-08-24

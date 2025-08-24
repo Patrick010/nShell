@@ -11,7 +11,8 @@ This directory contains the files required for Nextcloud to recognize and load t
 
 *   **`info.xml`**
     *   **Purpose:** The application manifest.
-    *   **Content:** An XML file containing essential metadata about the app, including its unique ID (`nshell`), public name, version, author, and dependencies on the Nextcloud server and PHP versions.
+    *   **Content:** An XML file containing essential metadata about the app, including its unique ID (`nshell`), public name, version, author, dependencies, and UI integration points.
+    *   A `<navigation>` element is used to create an entry in the main Nextcloud app bar.
 
 *   **`app.php`**
     *   **Purpose:** The main application entrypoint and bootstrap class.
@@ -19,6 +20,10 @@ This directory contains the files required for Nextcloud to recognize and load t
         *   Contains the `Application` class which extends `OCP\AppFramework\App` and implements the `OCP\AppFramework\Bootstrap\IBootstrap` interface. This is the modern standard for bootstrapping in Nextcloud 20+.
         *   The `register()` method is used to register all of the application's core services (controllers, session management, etc.) into the dependency injection container.
         *   The `boot()` method is called after all apps have been registered and can be used for logic that needs to run on every page load.
+
+*   **`routes.php`**
+    *   **Purpose:** To define the application's URL routes.
+    *   **Content:** Returns an array of route definitions, mapping URLs and HTTP verbs to controller methods. This includes both frontend page routes (`GET`) and backend API routes (`POST`).
 
 ---
 
@@ -66,20 +71,21 @@ This directory contains the core PHP classes that drive the nShell backend.
 This layer is responsible for handling incoming HTTP requests from the frontend, delegating to the backend services, and returning JSON responses.
 
 *   **`TerminalController.php`**
-    *   **Purpose:** To expose the session management functionality via a RESTful API.
+    *   **Purpose:** To expose the session management functionality via a RESTful API and render the main terminal page.
     *   **Responsibilities:**
-        *   Receives requests to create new sessions.
-        *   Receives requests to send input to a session and read output from it.
+        *   Renders the main terminal page UI.
+        *   Receives API requests to create new sessions.
+        *   Receives API requests to send input to a session and read output from it.
         *   Uses the `SessionManager` to perform these actions.
-        *   Returns JSON responses to the client.
+        *   Returns `TemplateResponse` for the page and `JSONResponse` for the API.
 
 *   **`AdminController.php`**
-    *   **Purpose:** To handle API requests from the admin settings page.
+    *   **Purpose:** To render the admin settings page and handle API requests for saving settings.
     *   **Responsibilities:**
+        *   Renders the admin settings page UI.
         *   Receives POST requests containing new application settings.
-        *   For now, logs the received settings for verification.
-        *   In the future, will be responsible for validating and persisting these settings.
-        *   Returns a JSON response indicating success or failure.
+        *   Validates and persists settings.
+        *   Returns `TemplateResponse` for the page and `JSONResponse` for the API.
 
 ---
 

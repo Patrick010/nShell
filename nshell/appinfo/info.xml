@@ -12,4 +12,8 @@
         <nextcloud min-version="31" max-version="31"/>
         <php min-version="8.1" max-version="8.4"/>
     </dependencies>
+    <navigation>
+        <route>nshell.terminal#index</route>
+        <name>nShell</name>
+    </navigation>
 </info>

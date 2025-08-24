@@ -5,9 +5,17 @@ namespace OCA\nShell\Controller;
 use OCA\nShell\Logger;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
+use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IRequest;
 
 class AdminController extends Controller {
+
+    /**
+     * @AdminRequired
+     */
+    public function index(): TemplateResponse {
+        return new TemplateResponse('nshell', 'admin');
+    }
 
     private Logger $logger;
 

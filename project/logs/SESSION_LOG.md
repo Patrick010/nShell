@@ -4,6 +4,28 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-016: Implement Frontend Routing
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To implement the missing frontend routes and UI integration points to make the application accessible.
+
+### Outcome
+- Identified that the application was not visible because no frontend routes were defined.
+- Added `index()` methods to the `TerminalController` and `AdminController` to render the UI templates.
+- Added corresponding `GET` routes to `routes.php`.
+- Added a `<navigation>` entry to `info.xml` to link the application in the main UI.
+- Updated the `LOW_LEVEL_DESIGN.md` to document these new responsibilities.
+- Added a new entry to `ACTIVITY.md` to log this work.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-016)
+
+---
+
 ## SESS-015: Correct Autoloader Include Syntax
 
 **Date:** 2025-08-24
