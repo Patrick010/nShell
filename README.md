@@ -61,22 +61,16 @@
 
 ## Installation
 
-1. Download the latest nShell Nextcloud plugin package:
+We provide an automated installation script for ease of use. For detailed instructions on using the script, as well as manual installation steps, please see the full **[Installation Guide](./docs/installation.md)**.
 
-```bash
-wget https://example.com/nshell-latest.zip
-```
+### Quick Start with `install.sh`
 
-2. Install via Nextcloud UI:
-   - Go to **Apps → Install from file**
-   - Upload `nshell-latest.zip`
-   - Enable the app
-
-3. Access nShell from the main navigation:
-   - Open the **Terminal** page
-   - Admins can configure settings from the **Admin Panel**
-
-> nShell works immediately with **zero configuration**. The default shell is `rbash`, sessions are secure, and SSH restrictions are enabled for users.
+1. Download the script: `wget https://<your_repo_url>/install.sh`
+2. Make it executable: `chmod +x install.sh`
+3. Run it as root, setting your Nextcloud path if needed:
+   ```bash
+   sudo NC_PATH="/var/www/nextcloud" ./install.sh
+   ```
 
 ---
 

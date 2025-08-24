@@ -2,6 +2,28 @@
 
 ---
 
+## ACT-010: Create Installation Script and Documentation
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To correct the incorrect installation documentation and provide an automated installation script for users.
+
+### Outcome
+- Researched the correct manual installation procedure for Nextcloud apps.
+- Created a new `install.sh` script to automate the process.
+- Completely rewrote `docs/installation.md` to be a comprehensive guide for both automated and manual installation.
+- Updated the main `README.md` to link to the new guide.
+
+### Related Documents
+- `install.sh`
+- `docs/installation.md`
+- `README.md`
+
+---
+
 ## ACT-009: Phase 5 - Finalization
 
 **Date:** 2025-08-24

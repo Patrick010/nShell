@@ -4,6 +4,27 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-010: Create Installation Script and Documentation
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To create a user-friendly installation method and accurately document it.
+
+### Outcome
+- Created a new `install.sh` script to automate the installation process.
+- Rewrote the `docs/installation.md` guide to be comprehensive and accurate.
+- Updated the main `README.md` to point to the new installation guide.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-010)
+- `install.sh`
+- `docs/installation.md`
+
+---
+
 ## SESS-009: Phase 5 - Finalization
 
 **Date:** 2025-08-24
