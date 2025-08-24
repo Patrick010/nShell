@@ -58,7 +58,7 @@ This document provides a detailed breakdown of the tasks required to fulfill the
 
 ## Phase 4: Integration & Connection
 **Goal:** Connect the frontend and backend to create a fully interactive application.
-**Status:** ✅ Done
+**Status:** 🟡 In Progress
 **Associated Tasks:**
 - `NS-FEAT-004`: Connect the frontend UI to the backend using AJAX/WebSockets to create an interactive terminal session.
 
