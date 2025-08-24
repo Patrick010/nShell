@@ -12,14 +12,14 @@
 To fix a fatal error preventing the app from loading on Nextcloud 20+ due to a deprecated bootstrap interface.
 
 ### Outcome
-- Corrected `nShell/appinfo/app.php` to use the modern `IBootstrap` interface and `IBootContext`.
+- Corrected `nshell/appinfo/app.php` to use the modern `IBootstrap` interface and `IBootContext`.
 - Removed the legacy `IBootable` interface, resolving the crash.
 - Updated `LLD.md` and `TRACEABILITY_MATRIX.md` to reflect the fix.
 
 ### Related Documents
 - `../project/TRACEABILITY_MATRIX.md` (ref: BUG-01)
 - `../project/LOW_LEVEL_DESIGN.md`
-- `../nShell/appinfo/app.php`
+- `../nshell/appinfo/app.php`
 
 ---
 
@@ -49,14 +49,14 @@ To conclude the project by documenting key lessons learned and providing a hando
 **Assignee:** Jules
 
 ### Objective
-To refactor the repository by moving all application code into a self-contained `nShell/` directory.
+To refactor the repository by moving all application code into a self-contained `nshell/` directory.
 
 ### Outcome
-- Moved all application code into a new `nShell/` directory.
+- Moved all application code into a new `nshell/` directory.
 - Updated all internal code paths and documentation to reflect the new structure.
 
 ### Related Documents
-- `../nShell/`
+- `../nshell/`
 
 ---
 

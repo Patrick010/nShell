@@ -70,11 +70,11 @@ The nShell system is composed of four primary layers: a web-based frontend, a co
 
 ### 3.1 Proposed File Structure
 
-The repository root contains project-level documentation (`project/`, `templates/`) and the application source code, which is self-contained in the `nShell/` directory.
+The repository root contains project-level documentation (`project/`, `templates/`) and the application source code, which is self-contained in the `nshell/` directory.
 
 ```
 .
-├── nShell/
+├── nshell/
 │   ├── appinfo/
 │   │   ├── app.php
 │   │   └── info.xml

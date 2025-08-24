@@ -67,7 +67,7 @@ We provide an automated installation script for ease of use. For detailed instru
 
 1. Download the installation script from the project repository:
    ```bash
-   wget https://<your_repo_url>/raw/branch/main/nShell/install.sh
+   wget https://<your_repo_url>/raw/branch/main/nshell/install.sh
    ```
 2. Make it executable:
    ```bash

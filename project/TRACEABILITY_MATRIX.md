@@ -34,4 +34,4 @@ This matrix provides traceability between project requirements, design artifacts
 | **Infrastructure** | | | | | |
 | REQ-12 | App Registrability | `EXECUTION_PLAN.md` | `appinfo/` | `NS-INFRA-001` | ✅ Implemented |
 | **Bugfixes** | | | | | |
-| BUG-01 | Fix app bootstrap failure on Nextcloud 20+ | `logs/ACTIVITY.md` | `LLD.md` | `nShell/appinfo/app.php` | ✅ Implemented |
+| BUG-01 | Fix app bootstrap failure on Nextcloud 20+ | `logs/ACTIVITY.md` | `LLD.md` | `nshell/appinfo/app.php` | ✅ Implemented |

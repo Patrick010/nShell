@@ -50,10 +50,10 @@ To formally conclude the project by documenting key lessons and creating a hando
 **Assignee:** Jules
 
 ### Objective
-To improve the project's structure by moving all application code into a self-contained `nShell/` directory.
+To improve the project's structure by moving all application code into a self-contained `nshell/` directory.
 
 ### Outcome
-- All application code and assets have been moved into the `nShell/` directory and all documentation was updated.
+- All application code and assets have been moved into the `nshell/` directory and all documentation was updated.
 
 ### Related Documents
 - `ACTIVITY.md` (ref: ACT-009)

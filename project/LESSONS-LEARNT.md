@@ -21,7 +21,7 @@ To capture key takeaways from the nShell project across all phases.
 | Lesson | Impact |
 |---|---|
 | **Clarify framework conventions early.** Misunderstanding the standard location for app files (e.g., the `templates/` directory) led to a necessary refactoring. This should be confirmed at the start. | **Medium** |
-| **Refactor to a clean structure as soon as the need is identified.** Moving all app code into a self-contained `nShell/` directory significantly improved maintainability and simplified the build process. This should have been done earlier. | **High** |
+| **Refactor to a clean structure as soon as the need is identified.** Moving all app code into a self-contained `nshell/` directory significantly improved maintainability and simplified the build process. This should have been done earlier. | **High** |
 | **Assume nothing about the execution environment.** The initial assumption that `composer` would be available was incorrect. The environment had no PHP, and even after installing it, `composer install` failed due to file limits. | **High** |
 | **Develop and test workarounds for environment constraints.** The manual PSR-4 autoloader was a successful workaround for the lack of Composer. The `.gitkeep` file was a necessary workaround for the environment's auto-pruning of empty directories. | **High** |
 | **The `rename` and `mv` commands can be unreliable.** The `run_in_bash_session` tool with `mv` was more reliable for moving directories than the dedicated `rename_file` tool, which failed intermittently. | **Medium** |
