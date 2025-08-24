@@ -4,6 +4,27 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-014: Fix Namespace and Autoloader Issues
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To investigate and resolve a series of fatal errors preventing the application from loading, and to update all relevant project documentation to reflect the fixes and project policies.
+
+### Outcome
+- A `ReflectionException` was traced to a systemic namespace mismatch. The autoloader and all PHP classes were configured to use `nShell` instead of the required `OCA\nShell`.
+- A subsequent `PHP Fatal error` was traced to a misplaced `require_once` statement in `app.php`.
+- All namespaces were corrected to `OCA\nShell`, the manual autoloader was updated, and the `require_once` was moved.
+- The `ONBOARDING.md` and `HANDOVER_BRIEF.md` documents were updated to improve clarity and accuracy.
+- A new entry was added to `ACTIVITY.md` to log these changes.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-014)
+
+---
+
 ## SESS-013: Fix App Bootstrap Error
 
 **Date:** 2025-08-24

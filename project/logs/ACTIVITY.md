@@ -2,6 +2,31 @@
 
 ---
 
+## ACT-014: Fix Namespace and Autoloader Issues
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To fix a fatal error caused by incorrect namespacing and autoloader configuration, and to improve project documentation for clarity.
+
+### Outcome
+- Corrected the PHP namespace in all classes under `nshell/lib/` to use the `OCA\nShell` prefix required by Nextcloud.
+- Updated the manual autoloader (`nshell/lib/autoload.php`) to correctly load the new namespace.
+- Fixed a fatal error in `nshell/appinfo/app.php` by moving the `require_once` for the autoloader to after the `namespace` declaration.
+- Updated the `registerService` calls in `nshell/appinfo/app.php` to use the correct class names.
+- Updated `project/ONBOARDING.md`, `templates/ONBOARDING.md`, and `project/HANDOVER_BRIEF.md` to improve clarity on project policies and history.
+
+### Related Documents
+- `../nshell/appinfo/app.php`
+- `../nshell/lib/`
+- `../project/ONBOARDING.md`
+- `../templates/ONBOARDING.md`
+- `../project/HANDOVER_BRIEF.md`
+
+---
+
 ## ACT-013: Fix App Bootstrap Error
 
 **Date:** 2025-08-24
