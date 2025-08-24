@@ -19,15 +19,16 @@ The entire project was developed from the ground up, following a phased approach
 *   **Tooling:** A user-friendly `install.sh` script was created to automate deployment.
 
 ## 3. Current State of the Project
-The project is stable and feature-complete for v1.0. All development phases outlined in the execution plan are marked as "Done".
+The project was considered feature-complete, but a critical post-development bug was discovered that prevented the application from loading.
 
-*   **Codebase:** The application is fully functional at a v1.0 level. The backend can create and manage shell sessions, and the frontend provides a working interactive terminal and an admin panel that can save settings.
-*   **Documentation:** All project management and user-facing documentation is complete and up-to-date.
-*   **Next Steps:** The project is ready for packaging and deployment to a live test server.
+*   **Codebase:** The application was not functional due to a fatal error in the bootstrapping process. A fix has been implemented to address this.
+*   **Documentation:** All project management and user-facing documentation is complete and up-to-date. The onboarding documents have been updated to provide more clarity on project policies.
+*   **Next Steps:** The project should now be ready for packaging and deployment to a live test server.
 
 ## 4. Known Issues & Environment Constraints
 This section is critical for the next developer.
 
+*   **[FIXED] Autoloading Configuration:** The application was initially released with a critical bug where the PHP classes used a different namespace (`nShell`) than what the Nextcloud framework expected (`OCA\nShell`). This, combined with the manual autoloader not being included correctly in the app's entrypoint, caused a fatal error. This has been corrected, but be aware of the manual autoloading system.
 *   **Composer is not usable in the dev environment.** The `composer install` command fails due to file count limits. This necessitated the creation of a **manual autoloader** (`nshell/lib/autoload.php`). Do not attempt to replace this with a Composer-generated autoloader unless the environment constraints change.
 *   **File system tools can be unreliable.** The `rename_file` tool was found to be less reliable than using `mv` within a `run_in_bash_session` call, especially for directories. The environment also appears to prune empty directories automatically, so the `.gitkeep` workaround is necessary when creating them.
 *   **I/O is basic.** The I/O loop in the `TerminalController` is a simple, non-blocking read. For a more robust, lower-latency experience, this could be upgraded to use WebSockets or a more advanced asynchronous PHP library like ReactPHP or Swoole, but that is a v2 feature.
