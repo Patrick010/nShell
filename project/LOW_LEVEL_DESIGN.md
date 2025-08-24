@@ -89,7 +89,26 @@ This layer is responsible for handling incoming HTTP requests from the frontend,
 
 ---
 
-## 5. Executable Scripts (`bin/`)
+## 5. Settings Layer (`lib/Settings/`)
+
+This layer handles the integration with the Nextcloud settings page.
+
+*   **`AdminSection.php`**
+    *   **Purpose:** To create a new section in the Nextcloud admin settings.
+    *   **Responsibilities:**
+        *   Implements `\OCP\Settings\IIconSection`.
+        *   Defines the ID (`nshell`), name (`nShell`), and priority for the settings section.
+
+*   **`AdminSettings.php`**
+    *   **Purpose:** To render the application's settings panel within the custom section.
+    *   **Responsibilities:**
+        *   Implements `\OCP\Settings\ISettings`.
+        *   The `getSection()` method returns the ID of the `AdminSection`.
+        *   The `getPanel()` method returns a `TemplateResponse` for the `admin` template, which contains the settings form.
+
+---
+
+## 6. Executable Scripts (`bin/`)
 
 These are the executable scripts that are either called by the backend or used directly.
 
@@ -115,7 +134,7 @@ These are the executable scripts that are either called by the backend or used d
 
 ---
 
-## 6. Configuration (`config/`)
+## 7. Configuration (`config/`)
 
 *   **`config.yaml`**
     *   **Purpose:** The central, optional file for advanced configuration.
@@ -132,7 +151,7 @@ These are the executable scripts that are either called by the backend or used d
 
 ---
 
-## 7. Frontend Components (`templates/`, `js/`, `css/`)
+## 8. Frontend Components (`templates/`, `js/`, `css/`)
 
 *   **`templates/admin.php` & `templates/terminal.php`**
     *   **Purpose:** Server-side PHP templates for rendering the HTML structure of the admin panel and the user terminal page.
@@ -151,5 +170,5 @@ These are the executable scripts that are either called by the backend or used d
 
 ---
 
-## 8. Ongoing Maintenance
+## 9. Ongoing Maintenance
 All development tasks must follow the [Task Execution Checklist](../project/TASK_CHECKLIST.md)

@@ -4,6 +4,27 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-017: Implement Settings Page UI Integration
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To implement the admin settings page link in the correct UI location, as per user requirements.
+
+### Outcome
+- Researched the Nextcloud Settings API.
+- Implemented `IIconSection` and `ISettings` interfaces to create a new admin settings section for the app.
+- Registered the new classes and updated `info.xml` to correctly display the settings page.
+- Updated the `LOW_LEVEL_DESIGN.md` to document the new `Settings` layer.
+- Added a new entry to `ACTIVITY.md` to log this work.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-017)
+
+---
+
 ## SESS-016: Implement Frontend Routing
 
 **Date:** 2025-08-24

@@ -2,6 +2,30 @@
 
 ---
 
+## ACT-017: Implement Settings Page UI Integration
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To correctly implement the UI integration for the admin settings page, placing it in the "Administration" section as requested.
+
+### Outcome
+- Created a new `AdminSection` class to define a new settings section.
+- Created a new `AdminSettings` class to render the admin panel within the new section.
+- Registered the new classes as services in `app.php`.
+- Updated `info.xml` to use the new settings classes, creating the link in the admin UI.
+- Updated `LOW_LEVEL_DESIGN.md` to document the new `Settings` layer.
+
+### Related Documents
+- `../nshell/lib/Settings/`
+- `../nshell/appinfo/app.php`
+- `../nshell/appinfo/info.xml`
+- `../project/LOW_LEVEL_DESIGN.md`
+
+---
+
 ## ACT-016: Implement Frontend Routing
 
 **Date:** 2025-08-24

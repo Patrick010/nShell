@@ -51,6 +51,14 @@ class Application extends App implements IBootstrap
                 $c->get('Logger')
             );
         });
+
+        $context->registerService('AdminSection', function ($c) {
+            return new \OCA\nShell\Settings\AdminSection();
+        });
+
+        $context->registerService('AdminSettings', function ($c) {
+            return new \OCA\nShell\Settings\AdminSettings();
+        });
     }
 
     public function boot(IBootContext $context): void
