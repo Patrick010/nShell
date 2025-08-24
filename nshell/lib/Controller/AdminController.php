@@ -1,8 +1,8 @@
 <?php
 
-namespace nShell\Controller;
+namespace OCA\nShell\Controller;
 
-use nShell\Logger;
+use OCA\nShell\Logger;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\IRequest;

@@ -1,8 +1,8 @@
 <?php
 
-namespace nShell\Controller;
+namespace OCA\nShell\Controller;
 
-use nShell\SessionManager;
+use OCA\nShell\SessionManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\IRequest;

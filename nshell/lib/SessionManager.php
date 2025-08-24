@@ -6,7 +6,7 @@
  * @package nShell
  */
 
-namespace nShell;
+namespace OCA\nShell;
 
 /**
  * Manages the lifecycle of user shell sessions.

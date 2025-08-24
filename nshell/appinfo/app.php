@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../lib/autoload.php';
+
 namespace OCA\nShell\AppInfo;
 
 use OCP\AppFramework\App;
@@ -19,17 +21,17 @@ class Application extends App implements IBootstrap
     public function register(IRegistrationContext $context): void
     {
         $context->registerService('ShellLauncher', function ($c) {
-            return new \nShell\ShellLauncher();
+            return new \OCA\nShell\ShellLauncher();
         });
 
         $context->registerService('SessionManager', function ($c) {
-            return new \nShell\SessionManager(
+            return new \OCA\nShell\SessionManager(
                 $c->get('ShellLauncher')
             );
         });
 
         $context->registerService('TerminalController', function ($c) {
-            return new \nShell\Controller\TerminalController(
+            return new \OCA\nShell\Controller\TerminalController(
                 $c->get('AppName'),
                 $c->get('Request'),
                 $c->get('SessionManager')
@@ -39,11 +41,11 @@ class Application extends App implements IBootstrap
         $context->registerService('Logger', function ($c) {
             // In a real app, this path would come from config
             $logFile = sys_get_temp_dir() . '/nshell.log';
-            return new \nShell\Logger($logFile);
+            return new \OCA\nShell\Logger($logFile);
         });
 
         $context->registerService('AdminController', function ($c) {
-            return new \nShell\Controller\AdminController(
+            return new \OCA\nShell\Controller\AdminController(
                 $c->get('AppName'),
                 $c->get('Request'),
                 $c->get('Logger')

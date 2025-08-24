@@ -2,7 +2,7 @@
 
 spl_autoload_register(function ($class) {
     // Project-specific namespace prefix
-    $prefix = 'nShell\\';
+    $prefix = 'OCA\\nShell\\';
 
     // Base directory for the namespace prefix
     $base_dir = __DIR__ . '/';

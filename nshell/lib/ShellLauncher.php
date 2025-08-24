@@ -6,7 +6,7 @@
  * @package nShell
  */
 
-namespace nShell;
+namespace OCA\nShell;
 
 /**
  * Prepares and launches the shell process.
