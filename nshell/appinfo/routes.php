@@ -2,13 +2,12 @@
 
 return [
     'routes' => [
-        // Page routes
-        ['name' => 'terminal#index', 'url' => '/', 'verb' => 'GET'],
-        ['name' => 'admin#index', 'url' => '/settings', 'verb' => 'GET'],
+        // Page route
+        ['name' => 'page#dispatch', 'url' => '/', 'verb' => 'GET'],
 
         // API routes
-        ['name' => 'terminal#createSession', 'url' => '/session', 'verb' => 'POST'],
-        ['name' => 'terminal#handleIO', 'url' => '/session/{sessionId}/io', 'verb' => 'POST'],
-        ['name' => 'admin#saveSettings', 'url' => '/settings', 'verb' => 'POST'],
+        ['name' => 'page#saveSettings', 'url' => '/settings', 'verb' => 'POST'],
+        ['name' => 'page#createSession', 'url' => '/session', 'verb' => 'POST'],
+        ['name' => 'page#handleIO', 'url' => '/session/{sessionId}/io', 'verb' => 'POST'],
     ]
 ];

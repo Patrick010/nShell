@@ -27,37 +27,152 @@ The project objective is to build **nShell**, a user-friendly, fully configurabl
 
 ---
 
-## 2. Detailed Project Scope & Product Breakdown
+## 2. Core Requirements
 
-### 2.1 In Scope
-- [x] **Zero-Config Principle:** Works immediately after installation with `rbash`, session timeouts, and SSH restrictions enabled.
-- [x] **Shell Management:** Default `rbash`, with optional `bash`, `zsh`, `fish` behind clear UI warnings.
-- [x] **Session Management:** Isolated processes with configurable idle/max timeouts and logging.
-- [x] **SSH Restrictions:** Wrapper scripts to enforce allowed SSH targets for non-admin users.
-- [x] **Environment & Appearance:** Customizable prompt (PS1), themes (light/dark), and aliases.
-- [x] **UI Features:** An Admin Panel for configuration and a User Terminal Page with an `xterm.js` terminal.
-- [x] **Logging & Auditing:** Per-session logs and an optional central audit log.
-- [x] **Advanced Configuration:** Optional YAML/JSON files for power users.
-- [x] **Security Principles:** Default to `rbash`, use SSH wrappers, and restrict PATH.
+### 2.1. Zero-Config Principle
+- nShell must run immediately after installation with default settings.
+- Default shell: `/bin/rbash`.
+- Default session settings:
+  - Idle timeout: 300s
+  - Max session duration: 3600s
+  - SSH restrictions enforced for users by default
+  - Logging enabled for auditing
+  - Default safe PATH with only allowed binaries
+- All advanced options (shell overrides, allowed commands, SSH hosts, themes, prompt) are configurable **via UI or optional config files**.
 
-### 2.2 Out of Scope (Current Phase)
-- Advanced session isolation via containers (e.g., Docker). Only process-level and optional chroot isolation is planned.
-- Support for shells beyond `rbash`, `bash`, `zsh`, and `fish`.
-- Automated log analysis or alerting.
+### 2.2. Shell Management
+- Default: `/bin/rbash`.
+- Optional shells: `/bin/bash`, `/usr/bin/zsh`, `/usr/bin/fish`.
+- UI must display **prominent warnings** when an unrestricted shell is chosen.
+- Advanced admins can override defaults via optional configuration files.
 
-### 2.3 Main Products (Deliverables)
-1.  **Backend Application:** Core PHP logic for session management, shell launching, and configuration parsing (`lib/`).
-2.  **Frontend UI:** Admin panel and user terminal pages (`templates/`, `js/`, `css/`).
-3.  **CLI Wrappers & Scripts:** Scripts to launch sessions and enforce SSH restrictions (`bin/`).
-4.  **Configuration Files:** Default and example configuration files (`config/`).
-5.  **Project & User Documentation:** A full set of project management documents and user guides.
+### 2.3. Session Management
+- Each shell session must run in an **isolated process**.
+- Configurable options (UI + optional config):
+  - Idle timeout (auto-kill inactive sessions)
+  - Max session duration (auto-kill after total session time)
+  - Logging of commands and outputs
+  - Optional session banner for security instructions
+- Sessions are user-isolated; no shared session data.
 
-### 2.4 Deferred Features
-Deferred features are tracked in `FUTURE_ENHANCEMENTS.md` until they are promoted to an active roadmap phase.
+### 2.4. SSH Restrictions
+- Admins can configure allowed SSH targets and credentials.
+- **User Mode:**
+  - Mandatory SSH target restrictions by default.
+  - Admins can optionally disable restrictions for users, with clear warnings.
+- SSH commands must pass through **wrapper scripts** if restrictions are enabled.
+
+### 2.5. Environment & Appearance
+- Prompt customization (PS1)
+- Theme support (light/dark, colors)
+- Command aliases and safe environment variables
+- Optional preloaded shell configurations
+
+### 2.6. UI Features
+- Admin Panel:
+  - Shell selection with warnings
+  - Toggle SSH restrictions for users
+  - Allowed commands and SSH hosts
+  - Session timeout sliders
+  - Logging toggle
+  - Theme and prompt editor
+  - Optional YAML/JSON advanced config editor
+- User Terminal Page:
+  - Shows restrictions and warnings
+  - Optional SSH autocomplete for allowed hosts
+  - Safe prompt and session info
+
+### 2.7. Logging & Auditing
+- Per-session logs of all commands and outputs
+- Optional central audit log
+- Configurable retention policy
+
+### 2.8. Security Principles
+- Default `rbash` provides secure baseline.
+- SSH wrapper scripts enforce restrictions if enabled.
+- Users cannot escape allowed commands or the configured PATH.
+- UI warnings for dangerous configurations.
+- Optional session isolation via chroot or containers.
+
+### 2.9. Configuration Options
+- Fully UI-configurable for common admins.
+- Optional advanced configuration via YAML/JSON files.
+- Options include:
+  - Shell selection and warnings
+  - SSH restrictions and allowed hosts
+  - Idle timeout, max session duration
+  - Command whitelists
+  - Logging settings
+  - Environment variables, PATH, prompt
+  - Themes and aliases
 
 ---
 
-## 3. Stage Plans (High-Level)
+## 3. Architecture & File Structure
+
+### 3.1. Architecture Overview
+
+       ┌───────────────────┐
+       │   Web Frontend     │
+       │-------------------│
+       │ - Admin UI         │
+       │ - User Terminal UI │
+       └─────────┬─────────┘
+                 │ WebSocket / AJAX
+                 ▼
+       ┌───────────────────┐
+       │   Backend Daemon   │
+       │-------------------│
+       │ - Session manager  │
+       │ - Shell launcher   │
+       │ - SSH wrapper logic│
+       │ - Timeout & logging│
+       │ - Config parser    │
+       └─────────┬─────────┘
+                 │
+                 ▼
+       ┌───────────────────┐
+       │ Restricted Shell   │
+       │-------------------│
+       │ - rbash (default)  │
+       │ - Optional shells  │
+       │ - Restricted PATH  │
+       │ - Wrapped binaries │
+       └───────────────────┘
+
+### 3.2. File Structure
+
+nShell/
+├── bin/
+│ ├── nshell.php # CLI wrapper to launch shell sessions
+│ ├── ssh-wrapper.sh # Optional SSH restriction wrapper
+│ └── restricted-shell.sh # Script to start rbash with configured PATH
+├── config/
+│ ├── config.yaml # Optional advanced configuration
+│ └── shells/ # Optional shell-specific configs
+├── lib/
+│ ├── SessionManager.php
+│ ├── ShellLauncher.php
+│ ├── SSHWrapper.php
+│ └── Logger.php
+├── templates/
+│ ├── admin.php
+│ ├── terminal.php
+│ └── advanced-config.php
+├── js/
+│ ├── terminal.js
+│ └── admin.js
+├── css/
+│ ├── terminal.css
+│ └── admin.css
+├── img/
+│ └── branding/logo.svg
+├── README.md
+└── LICENSE
+
+---
+
+## 5. Stage Plans (High-Level)
 Based on the "Next Steps" outlined in the project brief:
 - **Stage 1: Skeleton & Framework:** Generate skeleton code for the CLI wrapper, session manager, and logging framework.
 - **Stage 2: Core Logic Implementation:** Implement SSH wrapper scripts and connect the backend logic.
@@ -67,7 +182,7 @@ Based on the "Next Steps" outlined in the project brief:
 
 ---
 
-## 4. Project Controls
+## 6. Project Controls
 (Standard controls as per template)
 - **Reporting:** Progress tracked in `ACTIVITY.md`, `SESSION_LOG.md` and `CURRENT_STATE.md`.
 - **Change Control:** All changes require proposal and approval.
@@ -76,7 +191,7 @@ Based on the "Next Steps" outlined in the project brief:
 
 ---
 
-## 5. Risk, Issue, and Quality Registers
+## 7. Risk, Issue, and Quality Registers
 
 - **Risk Register:**
   - *Risk:* Security vulnerabilities arising from improper shell configuration or escape vulnerabilities.
@@ -96,7 +211,7 @@ Based on the "Next Steps" outlined in the project brief:
 
 ---
 
-## 6. Project Organisation (Roles & Responsibilities)
+## 8. Project Organisation (Roles & Responsibilities)
 
 - **Project Board / Project Executive:** [TBD]
 - **Project Manager:** Project Manager
@@ -104,14 +219,14 @@ Based on the "Next Steps" outlined in the project brief:
 
 ---
 
-## 7. Communication Management Approach
+## 9. Communication Management Approach
 - **Primary Method:** All communication via interactive session with the user.
 - **Reporting:** Progress reported via `CURRENT_STATE.md` and `ACTIVITY.md`.
 - **Direction:** User provides approvals, feedback, and new directives.
 
 ---
 
-## 8. Configuration Management Approach
+## 10. Configuration Management Approach
 
 - **Source Code:** Managed in Git.
 - **Documentation:** Markdown files versioned in Git alongside the code.
@@ -119,12 +234,12 @@ Based on the "Next Steps" outlined in the project brief:
 
 ---
 
-## 9. Tailoring Approach
+## 11. Tailoring Approach
 This project adapts PRINCE2 principles by using a "living documents" approach, where core documents like the PID are continuously updated. It favors a flexible, iterative development process guided by user interaction, while maintaining formal documentation for clarity and control.
 
 ---
 
-## Appendix / References
+## 12. Appendix / References
 - `ROADMAP.md`
 - `EXECUTION_PLAN.md`
 - `TRACEABILITY_MATRIX.md`

@@ -2,10 +2,17 @@
 
 namespace OCA\nShell\AppInfo;
 
+use OCA\nShell\Controller\PageController;
+use OCA\nShell\Service\ConfigService;
+use OCA\nShell\SessionManager;
+use OCA\nShell\ShellLauncher;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
+use OCP\IConfig;
+use OCP\IGroupManager;
+use OCP\IUserSession;
 
 require_once __DIR__ . '/../lib/autoload.php';
 
@@ -20,44 +27,31 @@ class Application extends App implements IBootstrap
 
     public function register(IRegistrationContext $context): void
     {
+        $context->registerService('ConfigService', function ($c) {
+            return new ConfigService(
+                $c->get(IConfig::class)
+            );
+        });
+
         $context->registerService('ShellLauncher', function ($c) {
-            return new \OCA\nShell\ShellLauncher();
+            return new ShellLauncher();
         });
 
         $context->registerService('SessionManager', function ($c) {
-            return new \OCA\nShell\SessionManager(
+            return new SessionManager(
                 $c->get('ShellLauncher')
             );
         });
 
-        $context->registerService('TerminalController', function ($c) {
-            return new \OCA\nShell\Controller\TerminalController(
+        $context->registerService('PageController', function ($c) {
+            return new PageController(
                 $c->get('AppName'),
                 $c->get('Request'),
+                $c->get(IUserSession::class),
+                $c->get(IGroupManager::class),
+                $c->get('ConfigService'),
                 $c->get('SessionManager')
             );
-        });
-
-        $context->registerService('Logger', function ($c) {
-            // In a real app, this path would come from config
-            $logFile = sys_get_temp_dir() . '/nshell.log';
-            return new \OCA\nShell\Logger($logFile);
-        });
-
-        $context->registerService('AdminController', function ($c) {
-            return new \OCA\nShell\Controller\AdminController(
-                $c->get('AppName'),
-                $c->get('Request'),
-                $c->get('Logger')
-            );
-        });
-
-        $context->registerService('AdminSection', function ($c) {
-            return new \OCA\nShell\Settings\AdminSection();
-        });
-
-        $context->registerService('AdminSettings', function ($c) {
-            return new \OCA\nShell\Settings\AdminSettings();
         });
     }
 

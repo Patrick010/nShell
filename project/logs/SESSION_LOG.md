@@ -4,6 +4,29 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-020: Major Architectural Refactoring
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To perform a full architectural refactoring based on a new understanding of the core requirements and to resolve all outstanding bugs.
+
+### Outcome
+- After repeated failures, a full documentation audit was performed, revealing the existing implementation did not match the user's authoritative design.
+- A new plan was approved to refactor the application to a single-entry-point architecture.
+- All old controllers and settings classes were deleted.
+- A new `PageController` was implemented with dispatch logic to serve different UIs to admins and users.
+- The Admin UI was updated to include the required group permission pulldown menu.
+- All documentation (`PID`, `HLD`, `LLD`) was overhauled to match the new, correct design.
+- This represents the final, successful implementation of the application as designed.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-020)
+
+---
+
 ## SESS-019: Fix App Icon Path Issue
 
 **Date:** 2025-08-24

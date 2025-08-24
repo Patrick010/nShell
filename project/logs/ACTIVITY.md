@@ -2,6 +2,35 @@
 
 ---
 
+## ACT-020: Major Architectural Refactoring
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To refactor the entire application to a simpler, single-entry-point architecture to resolve all outstanding bugs and meet the authoritative design requirements.
+
+### Outcome
+- **Documentation Overhaul:** The `PID`, `HLD`, and `LLD` were completely overhauled to match the authoritative design document.
+- **Code Refactoring:**
+    - Removed all obsolete controllers and settings classes.
+    - Implemented a new single `PageController` to handle all UI dispatch logic.
+    - Implemented a `ConfigService` to manage app settings via the standard `IConfig` interface.
+    - Implemented role-based access control (Admin vs. Group Member) in the dispatch controller.
+    - Implemented the Admin UI with a terminal and a group selection pulldown menu.
+    - Updated all configuration (`routes.php`, `app.php`, `info.xml`) to support the new architecture.
+    - Replaced the placeholder app icon with a new terminal icon.
+- This resolves all known fatal errors and UI visibility issues.
+
+### Related Documents
+- `../project/PID.md`
+- `../project/HIGH_LEVEL_DESIGN.md`
+- `../project/LOW_LEVEL_DESIGN.md`
+- `../nshell/`
+
+---
+
 ## ACT-019: Fix App Icon Path Issue
 
 **Date:** 2025-08-24

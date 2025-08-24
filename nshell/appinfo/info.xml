@@ -15,12 +15,8 @@
     <navigations>
         <navigation>
             <name>nShell</name>
-            <route>nshell.terminal#index</route>
+            <route>nshell.page#dispatch</route>
             <icon>img/app.svg</icon>
         </navigation>
     </navigations>
-    <settings>
-        <admin-section>OCA\nShell\Settings\AdminSection</admin-section>
-        <admin>OCA\nShell\Settings\AdminSettings</admin>
-    </settings>
 </info>
