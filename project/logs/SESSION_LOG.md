@@ -4,6 +4,25 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-006: Phase 3.5 - App Registration
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To create the `appinfo` files necessary for Nextcloud to recognize the app for local development and testing.
+
+### Outcome
+- Created `appinfo/info.xml` and `appinfo/app.php`.
+- The app is now technically "discoverable" by a Nextcloud instance, unblocking Phase 4.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-006)
+- `../EXECUTION_PLAN.md`
+
+---
+
 ## SESS-005: Phase 3 - Frontend Skeleton
 
 **Date:** 2025-08-24

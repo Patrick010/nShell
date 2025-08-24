@@ -2,6 +2,27 @@
 
 ---
 
+## ACT-006: Phase 3.5 - App Registration
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To create the necessary files to make the app discoverable by a local Nextcloud instance, as a prerequisite for Phase 4.
+
+### Outcome
+- Created the `appinfo/` directory.
+- Created `appinfo/info.xml` with the app's metadata.
+- Created `appinfo/app.php` with the basic application class structure.
+
+### Related Documents
+- `../EXECUTION_PLAN.md`
+- `../appinfo/info.xml`
+- `../appinfo/app.php`
+
+---
+
 ## ACT-005: Phase 3 - Frontend Skeleton
 
 **Date:** 2025-08-24

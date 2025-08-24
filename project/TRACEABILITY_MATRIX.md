@@ -31,3 +31,5 @@ This matrix provides traceability between project requirements, design artifacts
 | UC-04 | User: Basic Server Management | `USECASES.md` | `LLD.md` | `NS-FEAT-004` | ❌ Not Started |
 | UC-05 | User: Custom Environment | `USECASES.md` | `LLD.md` | `NS-FEAT-001`, `NS-FEAT-004` | 🟡 Partial |
 | UC-06 | Admin: Customize Look and Feel | `USECASES.md` | `LLD.md` | `NS-FEAT-003`, `NS-FEAT-004` | 🟡 Partial |
+| **Infrastructure** | | | | | |
+| REQ-12 | App Registrability | `EXECUTION_PLAN.md` | `appinfo/` | `NS-INFRA-001` | ✅ Implemented |

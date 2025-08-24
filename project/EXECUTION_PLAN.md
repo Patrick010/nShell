@@ -45,6 +45,17 @@ This document provides a detailed breakdown of the tasks required to fulfill the
 - [x] Add a placeholder for xterm.js and create `js/terminal.js`.
 - [x] Add CSS in `css/terminal.css` to style the terminal.
 
+## Phase 3.5: App Registration
+**Goal:** Create the necessary files to make the app discoverable by a local Nextcloud instance for testing.
+**Status:** ✅ Done
+**Associated Tasks:**
+- `NS-INFRA-001`: Create app manifest and entrypoint.
+
+**Steps:**
+- [x] Create the `appinfo/` directory.
+- [x] Create `appinfo/info.xml` with app metadata.
+- [x] Create `appinfo/app.php` with a basic Application class structure.
+
 ## Phase 4: Integration & Connection
 **Goal:** Connect the frontend and backend to create a fully interactive application.
 **Status:** ❌ Not Started
