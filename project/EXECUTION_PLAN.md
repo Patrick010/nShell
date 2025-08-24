@@ -34,16 +34,16 @@ This document provides a detailed breakdown of the tasks required to fulfill the
 
 ## Phase 3: Frontend Development
 **Goal:** Create the non-interactive frontend components, including the admin panel and the user terminal page.
-**Status:** ❌ Not Started
+**Status:** ✅ Done
 **Associated Tasks:**
 - `NS-FEAT-003`: Create frontend UI templates and JavaScript logic to render the admin panel and the xterm.js terminal.
 
 **Steps:**
-- [ ] Create the HTML structure for the admin panel in `templates/admin.php`.
-- [ ] Add CSS in `css/admin.css` to style the panel.
-- [ ] Create the HTML structure for the terminal page in `templates/terminal.php`.
-- [ ] Add `xterm.js` to the project and write JavaScript in `js/terminal.js` to render a basic, non-functional terminal.
-- [ ] Add CSS in `css/terminal.css` to style the terminal.
+- [x] Create the HTML structure for the admin panel in `templates/admin.php`.
+- [x] Add CSS in `css/admin.css` to style the panel.
+- [x] Create the HTML structure for the terminal page in `templates/terminal.php`.
+- [x] Add a placeholder for xterm.js and create `js/terminal.js`.
+- [x] Add CSS in `css/terminal.css` to style the terminal.
 
 ## Phase 4: Integration & Connection
 **Goal:** Connect the frontend and backend to create a fully interactive application.

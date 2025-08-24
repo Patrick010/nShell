@@ -2,6 +2,28 @@
 
 ---
 
+## ACT-005: Phase 3 - Frontend Skeleton
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To create the non-interactive frontend components, including the admin panel and the user terminal page skeletons.
+
+### Outcome
+- Created `templates/`, `js/`, and `css/` directories.
+- Created placeholder `admin.php` and `terminal.php` templates.
+- Created placeholder `admin.css` and `terminal.css` stylesheets.
+- Created placeholder `admin.js` and `terminal.js` script files.
+
+### Related Documents
+- `../EXECUTION_PLAN.md`
+- `../templates/admin.php`
+- `../templates/terminal.php`
+
+---
+
 ## ACT-004: Phase 2 - Core Logic Implementation
 
 **Date:** 2025-08-24

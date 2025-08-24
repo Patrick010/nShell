@@ -4,6 +4,25 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-005: Phase 3 - Frontend Skeleton
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To create the non-interactive frontend file structure as defined in Phase 3 of the execution plan.
+
+### Outcome
+- Created the necessary directories (`templates/`, `js/`, `css/`).
+- Created placeholder files for the admin and terminal pages, including PHP templates, CSS, and JS files.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-005)
+- `../EXECUTION_PLAN.md`
+
+---
+
 ## SESS-004: Phase 2 - Core Logic Implementation
 
 **Date:** 2025-08-24
