@@ -4,6 +4,26 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-019: Fix App Icon Path Issue
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To investigate and resolve a `RuntimeException` related to a missing application icon.
+
+### Outcome
+- The error "image not found: image:default-app-icon" indicated a failure in Nextcloud's UI rendering.
+- The root cause was the absence of an `<icon>` tag in the app's `info.xml` navigation entry, which triggered an error when the system tried to find a default icon.
+- A placeholder SVG icon was created and referenced in `info.xml` to resolve the error.
+- The LLD and activity logs were updated to document the fix.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-019)
+
+---
+
 ## SESS-018: Fix ISettings Interface Implementation
 
 **Date:** 2025-08-24

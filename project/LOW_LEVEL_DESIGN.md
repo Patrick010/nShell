@@ -168,6 +168,9 @@ These are the executable scripts that are either called by the backend or used d
 *   **`css/admin.css` & `css/terminal.css`**
     *   **Purpose:** Stylesheets for the admin panel and terminal, including theme support (light/dark).
 
+*   **`img/app.svg`**
+    *   **Purpose:** A placeholder application icon to ensure correct UI rendering in the navigation bar.
+
 ---
 
 ## 9. Ongoing Maintenance

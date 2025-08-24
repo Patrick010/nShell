@@ -2,6 +2,27 @@
 
 ---
 
+## ACT-019: Fix App Icon Path Issue
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To fix a `RuntimeException` caused by a missing application icon.
+
+### Outcome
+- Created a placeholder SVG icon at `nshell/img/app.svg`.
+- Updated `info.xml` to reference the new icon. This resolves the "image not found" error during UI rendering.
+- Updated `LOW_LEVEL_DESIGN.md` to document the new `img/` directory.
+
+### Related Documents
+- `../nshell/img/app.svg`
+- `../nshell/appinfo/info.xml`
+- `../project/LOW_LEVEL_DESIGN.md`
+
+---
+
 ## ACT-018: Fix ISettings Interface Implementation
 
 **Date:** 2025-08-24

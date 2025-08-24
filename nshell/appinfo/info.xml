@@ -16,6 +16,7 @@
         <navigation>
             <name>nShell</name>
             <route>nshell.terminal#index</route>
+            <icon>img/app.svg</icon>
         </navigation>
     </navigations>
     <settings>
