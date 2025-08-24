@@ -104,7 +104,7 @@ This layer handles the integration with the Nextcloud settings page.
     *   **Responsibilities:**
         *   Implements `\OCP\Settings\ISettings`.
         *   The `getSection()` method returns the ID of the `AdminSection`.
-        *   The `getPanel()` method returns a `TemplateResponse` for the `admin` template, which contains the settings form.
+        *   The `getForm()` method returns a `TemplateResponse` for the `admin` template, which contains the settings form.
 
 ---
 

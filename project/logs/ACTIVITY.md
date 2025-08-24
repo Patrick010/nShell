@@ -2,6 +2,25 @@
 
 ---
 
+## ACT-018: Fix ISettings Interface Implementation
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To fix a fatal PHP error caused by an incorrect implementation of the `ISettings` interface.
+
+### Outcome
+- Renamed the method `getPanel()` to the required `getForm()` in the `AdminSettings` class.
+- Updated `LOW_LEVEL_DESIGN.md` to reflect the correct method name.
+
+### Related Documents
+- `../nshell/lib/Settings/AdminSettings.php`
+- `../project/LOW_LEVEL_DESIGN.md`
+
+---
+
 ## ACT-017: Implement Settings Page UI Integration
 
 **Date:** 2025-08-24

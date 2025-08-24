@@ -10,7 +10,7 @@ class AdminSettings implements ISettings {
     /**
      * @return TemplateResponse
      */
-    public function getPanel(): TemplateResponse {
+    public function getForm(): TemplateResponse {
         // The 'admin' template is the settings page
         return new TemplateResponse('nshell', 'admin');
     }
