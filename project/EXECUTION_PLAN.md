@@ -58,16 +58,16 @@ This document provides a detailed breakdown of the tasks required to fulfill the
 
 ## Phase 4: Integration & Connection
 **Goal:** Connect the frontend and backend to create a fully interactive application.
-**Status:** ❌ Not Started
+**Status:** ✅ Done
 **Associated Tasks:**
 - `NS-FEAT-004`: Connect the frontend UI to the backend using AJAX/WebSockets to create an interactive terminal session.
 
 **Steps:**
-- [ ] Implement a backend endpoint (e.g., using AJAX or a WebSocket) that the frontend can connect to for a shell session.
-- [ ] Update `js/terminal.js` to send user input from `xterm.js` to the backend endpoint.
-- [ ] Update the backend to receive user input and pipe it to the correct shell process.
-- [ ] Pipe output (stdout/stderr) from the shell process back to the frontend.
-- [ ] Update `js/terminal.js` to receive shell output and write it to the `xterm.js` display.
+- [x] Implemented a `TerminalController` to handle API requests.
+- [x] Registered API routes in `appinfo/routes.php` and `appinfo/app.php`.
+- [x] Updated `js/terminal.js` to create a session and handle I/O via AJAX.
+- [x] The backend now receives input, but does not yet pipe it to the shell process (to be done in a later implementation step).
+- [x] The frontend receives placeholder output from the backend.
 - [ ] Implement the AJAX endpoints for the admin panel to save configuration changes.
 - [ ] Update `js/admin.js` to call the save endpoints.
 

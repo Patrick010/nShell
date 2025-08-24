@@ -61,7 +61,21 @@ This directory contains the core PHP classes that drive the nShell backend.
 
 ---
 
-## 4. Executable Scripts (`bin/`)
+## 4. Controller Layer (`lib/Controller/`)
+
+This layer is responsible for handling incoming HTTP requests from the frontend, delegating to the backend services, and returning JSON responses.
+
+*   **`TerminalController.php`**
+    *   **Purpose:** To expose the session management functionality via a RESTful API.
+    *   **Responsibilities:**
+        *   Receives requests to create new sessions.
+        *   Receives requests to send input to a session and read output from it.
+        *   Uses the `SessionManager` to perform these actions.
+        *   Returns JSON responses to the client.
+
+---
+
+## 5. Executable Scripts (`bin/`)
 
 These are the executable scripts that are either called by the backend or used directly.
 
@@ -87,7 +101,7 @@ These are the executable scripts that are either called by the backend or used d
 
 ---
 
-## 5. Configuration (`config/`)
+## 6. Configuration (`config/`)
 
 *   **`config.yaml`**
     *   **Purpose:** The central, optional file for advanced configuration.
@@ -104,7 +118,7 @@ These are the executable scripts that are either called by the backend or used d
 
 ---
 
-## 6. Frontend Components (`templates/`, `js/`, `css/`)
+## 7. Frontend Components (`templates/`, `js/`, `css/`)
 
 *   **`templates/admin.php` & `templates/terminal.php`**
     *   **Purpose:** Server-side PHP templates for rendering the HTML structure of the admin panel and the user terminal page.
@@ -123,5 +137,5 @@ These are the executable scripts that are either called by the backend or used d
 
 ---
 
-## 7. Ongoing Maintenance
+## 8. Ongoing Maintenance
 All development tasks must follow the [Task Execution Checklist](./TASK_CHECKLIST.md)

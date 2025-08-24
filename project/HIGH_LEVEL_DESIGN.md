@@ -14,7 +14,7 @@ The project's scope is to create a secure, configurable, restricted shell enviro
 
 ## 3. Architecture Overview
 
-The nShell system is composed of three primary layers: a web-based frontend, a backend daemon, and the restricted shell environment itself.
+The nShell system is composed of four primary layers: a web-based frontend, a controller layer to handle API requests, a backend service layer for business logic, and the restricted shell environment itself.
 
        ┌───────────────────┐
        │   Web Frontend     │
@@ -22,16 +22,21 @@ The nShell system is composed of three primary layers: a web-based frontend, a b
        │ - Admin UI         │
        │ - User Terminal UI │
        └─────────┬─────────┘
-                 │ WebSocket / AJAX
+                 │ AJAX
                  ▼
        ┌───────────────────┐
-       │   Backend Daemon   │
+       │ Controller Layer   │
        │-------------------│
-       │ - Session manager  │
-       │ - Shell launcher   │
-       │ - SSH wrapper logic│
-       │ - Timeout & logging│
-       │ - Config parser    │
+       │ - TerminalController│
+       └─────────┬─────────┘
+                 │
+                 ▼
+       ┌───────────────────┐
+       │  Backend Services  │
+       │-------------------│
+       │ - SessionManager   │
+       │ - ShellLauncher    │
+       │ - Logger           │
        └─────────┬─────────┘
                  │
                  ▼
@@ -77,6 +82,8 @@ nShell/
 │ ├── config.yaml # Optional advanced configuration
 │ └── shells/ # Optional shell-specific configs
 ├── lib/
+│ ├── Controller/
+│ │ └── TerminalController.php
 │ ├── SessionManager.php
 │ ├── ShellLauncher.php
 │ ├── SSHWrapper.php

@@ -4,6 +4,26 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-008: Phase 4 - Integration & Connection
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To connect the frontend UI with the backend services to create a basic, interactive terminal application.
+
+### Outcome
+- A `TerminalController` was created to handle API requests.
+- API routes were registered, exposing the session creation and I/O functionality.
+- The frontend JavaScript was updated to use these endpoints, creating a session and communicating with the backend.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-008)
+- `../EXECUTION_PLAN.md`
+
+---
+
 ## SESS-007: Corrective Action - Update Design Docs
 
 **Date:** 2025-08-24

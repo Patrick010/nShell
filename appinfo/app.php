@@ -18,7 +18,23 @@ class Application extends App implements IBootstrap, IBootable
 
     public function register(IRegistrationContext $context): void
     {
-        // Register services, navigation, and scripts here in later phases.
+        $context->registerService('ShellLauncher', function ($c) {
+            return new \nShell\ShellLauncher();
+        });
+
+        $context->registerService('SessionManager', function ($c) {
+            return new \nShell\SessionManager(
+                $c->get('ShellLauncher')
+            );
+        });
+
+        $context->registerService('TerminalController', function ($c) {
+            return new \nShell\Controller\TerminalController(
+                $c->get('AppName'),
+                $c->get('Request'),
+                $c->get('SessionManager')
+            );
+        });
     }
 
     public function boot(IBootable $app): void

@@ -28,7 +28,7 @@ This matrix provides traceability between project requirements, design artifacts
 | UC-01 | Admin: Initial Secure Setup | `USECASES.md` | `HLD.md`, `LLD.md` | `NS-FEAT-005` | ❌ Not Started |
 | UC-02 | Admin: Loosen Restrictions | `USECASES.md` | `LLD.md` | `NS-FEAT-002`, `NS-FEAT-004` | 🟡 Partial |
 | UC-03 | Admin: Audit User Activity | `USECASES.md` | `LLD.md` | `NS-FEAT-001` | 🟡 Partial |
-| UC-04 | User: Basic Server Management | `USECASES.md` | `LLD.md` | `NS-FEAT-004` | ❌ Not Started |
+| UC-04 | User: Basic Server Management | `USECASES.md` | `HLD.md`, `LLD.md` | `NS-FEAT-004` | 🟡 Partial |
 | UC-05 | User: Custom Environment | `USECASES.md` | `LLD.md` | `NS-FEAT-001`, `NS-FEAT-004` | 🟡 Partial |
 | UC-06 | Admin: Customize Look and Feel | `USECASES.md` | `LLD.md` | `NS-FEAT-003`, `NS-FEAT-004` | 🟡 Partial |
 | **Infrastructure** | | | | | |

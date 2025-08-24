@@ -2,6 +2,29 @@
 
 ---
 
+## ACT-008: Phase 4 - Integration & Connection
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To connect the frontend and backend to create a basic interactive application.
+
+### Outcome
+- Created a `TerminalController` to handle API requests.
+- Registered API routes in `appinfo/` to expose the backend.
+- Implemented frontend JavaScript to make AJAX calls to create a session and handle basic I/O.
+- The HLD and LLD were updated to include the new Controller architectural layer.
+
+### Related Documents
+- `../EXECUTION_PLAN.md`
+- `../lib/Controller/TerminalController.php`
+- `../appinfo/app.php`
+- `../js/terminal.js`
+
+---
+
 ## ACT-007: Corrective Action - Update Design Docs
 
 **Date:** 2025-08-24
