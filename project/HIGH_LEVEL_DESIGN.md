@@ -70,39 +70,26 @@ The nShell system is composed of four primary layers: a web-based frontend, a co
 
 ### 3.1 Proposed File Structure
 
+The repository root contains project-level documentation (`project/`, `templates/`) and the application source code, which is self-contained in the `nShell/` directory.
+
 ```
-nShell/
-├── appinfo/
-│ ├── app.php # App registration and entrypoint
-│ └── info.xml # App metadata
-├── bin/
-│ ├── nshell.php # CLI wrapper to launch shell sessions
-│ ├── ssh-wrapper.sh # Optional SSH restriction wrapper
-│ └── restricted-shell.sh # Script to start rbash with configured PATH
-├── config/
-│ ├── config.yaml # Optional advanced configuration
-│ └── shells/ # Optional shell-specific configs
-├── lib/
-│ ├── Controller/
-│ │ ├── AdminController.php
-│ │ └── TerminalController.php
-│ ├── SessionManager.php
-│ ├── ShellLauncher.php
-│ ├── SSHWrapper.php
-│ └── Logger.php
-├── templates/
-│ ├── admin.php
-│ └── terminal.php
-├── js/
-│ ├── terminal.js
-│ └── admin.js
-├── css/
-│ ├── terminal.css
-│ └── admin.css
-├── img/
-│ └── branding/logo.svg
-├── README.md
-└── LICENSE
+.
+├── nShell/
+│   ├── appinfo/
+│   │   ├── app.php
+│   │   └── info.xml
+│   ├── bin/
+│   ├── config/
+│   ├── css/
+│   ├── js/
+│   ├── lib/
+│   │   ├── Controller/
+│   │   └── ...
+│   └── templates/
+│       ├── admin.php
+│       └── terminal.php
+├── project/
+└── templates/
 ```
 
 ## 4. Non-Functional Requirements

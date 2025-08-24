@@ -2,6 +2,28 @@
 
 ---
 
+## ACT-011: Refactor File Structure
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To refactor the repository by moving all application code into a self-contained `nShell/` directory, cleaning up the root and simplifying the packaging process.
+
+### Outcome
+- Created a new top-level `nShell/` directory.
+- Moved all app-related directories (`appinfo`, `bin`, `lib`, etc.) and scripts into `nShell/`.
+- Renamed `app_templates` to `nShell/templates` to follow conventions.
+- Updated all internal code paths and documentation to reflect the new structure.
+
+### Related Documents
+- `../nShell/`
+- `../project/HIGH_LEVEL_DESIGN.md`
+- `../docs/installation.md`
+
+---
+
 ## ACT-010: Create Installation Script and Documentation
 
 **Date:** 2025-08-24

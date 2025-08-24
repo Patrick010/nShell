@@ -4,6 +4,26 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-011: Refactor File Structure
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To improve the project's structure by moving all application code into a self-contained `nShell/` directory.
+
+### Outcome
+- All application code and assets have been moved into the `nShell/` directory.
+- Internal code paths and all relevant documentation have been updated to reflect the new structure.
+- The repository root is now cleaner and the packaging process is simplified.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-011)
+- `../project/HIGH_LEVEL_DESIGN.md`
+
+---
+
 ## SESS-010: Create Installation Script and Documentation
 
 **Date:** 2025-08-24

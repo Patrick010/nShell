@@ -45,18 +45,14 @@ First, you need a packaged version of the app (`nshell.tar.gz`). You can either 
 
 To build from source, run this command from the root of the repository:
 ```bash
-tar \
-  --exclude-vcs \
-  --exclude='./project' \
-  -czvf nshell.tar.gz \
-  appinfo/ bin/ css/ img/ js/ lib/ templates/ composer.json LICENSE README.md
+tar -czvf nshell.tar.gz nShell/
 ```
 
 ### 2. Copy to Server
 Transfer the `nshell.tar.gz` archive to your Nextcloud server.
 
 ### 3. Extract into Apps Directory
-Extract the archive into your Nextcloud `apps` directory. This will create a new `nshell` folder.
+Extract the archive into your Nextcloud `apps` directory.
 
 ```bash
 # Example path
@@ -65,7 +61,10 @@ NC_APPS_DIR="/var/www/nextcloud/apps"
 # Extract the archive
 tar -xzf nshell.tar.gz -C "$NC_APPS_DIR"
 ```
-*Note: Depending on how the archive was created, you may need to rename the extracted folder to `nshell`.*
+This will create a directory named `nShell` inside your apps directory. You must then rename it to `nshell` (all lowercase) for Nextcloud to recognize it correctly.
+```bash
+mv "$NC_APPS_DIR/nShell" "$NC_APPS_DIR/nshell"
+```
 
 ### 4. Set Permissions
 Ensure the new `nshell` directory and its contents are owned by your web server user.

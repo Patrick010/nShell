@@ -1,7 +1,7 @@
 // JavaScript for nShell Admin Panel
 
 document.addEventListener('DOMContentLoaded', function () {
-    const adminForm = document.querySelector('#nshell-admin form');
+    const adminForm = document.getElementById('nshell-admin-form');
 
     if (adminForm) {
         adminForm.addEventListener('submit', function (event) {

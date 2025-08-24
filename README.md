@@ -65,10 +65,17 @@ We provide an automated installation script for ease of use. For detailed instru
 
 ### Quick Start with `install.sh`
 
-1. Download the script: `wget https://<your_repo_url>/install.sh`
-2. Make it executable: `chmod +x install.sh`
-3. Run it as root, setting your Nextcloud path if needed:
+1. Download the installation script from the project repository:
    ```bash
+   wget https://<your_repo_url>/raw/branch/main/nShell/install.sh
+   ```
+2. Make it executable:
+   ```bash
+   chmod +x install.sh
+   ```
+3. Run the script (you will likely need `sudo`):
+   ```bash
+   # Example for a standard Ubuntu/Debian server
    sudo NC_PATH="/var/www/nextcloud" ./install.sh
    ```
 

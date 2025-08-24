@@ -146,4 +146,4 @@ These are the executable scripts that are either called by the backend or used d
 ---
 
 ## 8. Ongoing Maintenance
-All development tasks must follow the [Task Execution Checklist](./TASK_CHECKLIST.md)
+All development tasks must follow the [Task Execution Checklist](../project/TASK_CHECKLIST.md)
