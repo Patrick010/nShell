@@ -1,50 +1,29 @@
 # Lessons Learnt Log
 
 **Purpose:**
-Capture key takeaways from the <PROJECT_NAME> across all phases, with direct references to where the lesson was first applied or discussed.
-**Scope:**
-Covers insights from initial planning (Phase 0) through current active development.
+To capture key takeaways from the nShell project across all phases.
 
 ---
 
-## Project Flow Requirement
+## Process & Workflow Lessons
 
-- This file **must be updated** immediately after any lesson with project-wide or phase-relevant implications is identified.
-- Updating this file is a **hard requirement** for phase closure.
-- No phase is considered “complete” until:
-  1. This file is reviewed and updated.
-  2. All relevant entries are linked to code commits or documentation.
-- Reviewers must confirm updates during **phase review gates**.
-
----
-
-## Phase 0 – Inception & Initial Scoping (Example)
-
-| Lesson | Impact | Reference |
-|--------|--------|-----------|
-| Define project boundaries early to avoid scope confusion. | **High** – prevented weeks of wasted effort. | (doc: <link_to_scope_document>) |
-| Start with a minimal viable architecture. | **Medium** – reduced technical debt early. | (doc: <link_to_hld>) |
+| Lesson | Impact |
+|---|---|
+| **A "plan-and-approve" workflow is essential.** Submitting a plan for user approval before starting work prevents wasted effort and ensures alignment. | **High** |
+| **A "report after submit" workflow is crucial for communication.** Providing a high-level summary after each submission keeps the user informed of progress and accomplishments. | **High** |
+| **The `TASK_CHECKLIST.md` is an invaluable quality gate.** Using it for review catches omissions (e.g., missing docblocks, traceability updates) that would otherwise become technical debt. | **High** |
+| **"Living documentation" requires extreme diligence.** Logs, execution plans, and design documents must be updated with every single commit, including minor fixes, to remain a reliable source of truth. | **High** |
 
 ---
 
-## Phase 1 – Architecture & Design Foundations (Example)
+## Technical & Architectural Lessons
 
-| Lesson | Impact | Reference |
-|--------|--------|-----------|
-| Maintain a single source of truth for designs and keep it synced. | **High** – onboarding speed + reduced confusion. | (doc: <link_to_design_docs>) |
-| Use strict phase sequencing to avoid scattered work. | **High** – prevented parallel half-finished tasks. | (doc: <link_to_execution_plan>) |
-
----
-
-## Cross-Phase Lessons (Example)
-
-| Lesson | Impact | Reference |
-|--------|--------|-----------|
-| Track phases and steps explicitly to prevent scope drift. | **High** | (doc: <link_to_execution_plan>) |
-| Keep docs aligned continuously, not in large delayed batches. | **High** | (doc: <link_to_process_doc>) |
-| Audit documents are worth the overhead for clean closure. | **Medium** | (doc: <link_to_audit_docs>) |
-| Test critical mechanisms (e.g., queues, retries) thoroughly. | **High** | (code: <link_to_tests>) |
-| Deliver iteratively, not as a single big launch. | **High** | (doc: <link_to_delivery_model_doc>) |
-| Project state documents must be updated *during* the work session, not after, to prevent confusion. | **High** | (doc: <link_to_activity_log>) |
+| Lesson | Impact |
+|---|---|
+| **Clarify framework conventions early.** Misunderstanding the standard location for app files (e.g., the `templates/` directory) led to a necessary refactoring. This should be confirmed at the start. | **Medium** |
+| **Refactor to a clean structure as soon as the need is identified.** Moving all app code into a self-contained `nShell/` directory significantly improved maintainability and simplified the build process. This should have been done earlier. | **High** |
+| **Assume nothing about the execution environment.** The initial assumption that `composer` would be available was incorrect. The environment had no PHP, and even after installing it, `composer install` failed due to file limits. | **High** |
+| **Develop and test workarounds for environment constraints.** The manual PSR-4 autoloader was a successful workaround for the lack of Composer. The `.gitkeep` file was a necessary workaround for the environment's auto-pruning of empty directories. | **High** |
+| **The `rename` and `mv` commands can be unreliable.** The `run_in_bash_session` tool with `mv` was more reliable for moving directories than the dedicated `rename_file` tool, which failed intermittently. | **Medium** |
 
 ---

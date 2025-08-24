@@ -4,6 +4,26 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-012: Final Documentation - Lessons and Handover
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To formally conclude the project by documenting key lessons and creating a handover brief.
+
+### Outcome
+- The `LESSONS-LEARNT.md` and `HANDOVER_BRIEF.md` documents were created and populated.
+- The project is now fully documented and ready for handover.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-012)
+- `../project/LESSONS-LEARNT.md`
+- `../project/HANDOVER_BRIEF.md`
+
+---
+
 ## SESS-009: Refactor File Structure
 
 **Date:** 2025-08-24

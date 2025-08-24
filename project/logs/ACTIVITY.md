@@ -2,6 +2,25 @@
 
 ---
 
+## ACT-012: Final Documentation - Lessons and Handover
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To conclude the project by documenting key lessons learned and providing a handover brief for future developers.
+
+### Outcome
+- Populated the `LESSONS-LEARNT.md` with insights from the development process.
+- Wrote a comprehensive `HANDOVER_BRIEF.md` to ensure a smooth transition.
+
+### Related Documents
+- `../project/LESSONS-LEARNT.md`
+- `../project/HANDOVER_BRIEF.md`
+
+---
+
 ## ACT-009: Refactor File Structure
 
 **Date:** 2025-08-24
