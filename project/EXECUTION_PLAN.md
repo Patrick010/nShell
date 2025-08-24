@@ -21,16 +21,16 @@ This document provides a detailed breakdown of the tasks required to fulfill the
 
 ## Phase 2: Core Logic Implementation
 **Goal:** Implement the core security features and business logic of the backend.
-**Status:** ❌ Not Started
+**Status:** ✅ Done
 **Associated Tasks:**
 - `NS-FEAT-002`: Implement the SSH wrapper script (`ssh-wrapper.sh`) and the core logic for restricting SSH commands.
 
 **Steps:**
-- [ ] Implement the `Logger` to write to per-session and central audit logs.
-- [ ] Implement the `ShellLauncher` to spawn shell processes with a restricted environment.
-- [ ] Implement the `SessionManager` to track and terminate sessions.
-- [ ] Create the `bin/ssh-wrapper.sh` script with logic to validate hosts against a configuration.
-- [ ] Ensure the `ShellLauncher` correctly uses the `ssh-wrapper.sh` when launching a restricted shell.
+- [x] Implement the `Logger` to write to per-session and central audit logs.
+- [x] Implement the `ShellLauncher` to spawn shell processes with a restricted environment.
+- [x] Implement the `SessionManager` to track and terminate sessions.
+- [x] Create the `bin/ssh-wrapper.sh` script with logic to validate hosts against a configuration.
+- [x] Ensure the `ShellLauncher` correctly uses the `ssh-wrapper.sh` when launching a restricted shell.
 
 ## Phase 3: Frontend Development
 **Goal:** Create the non-interactive frontend components, including the admin panel and the user terminal page.

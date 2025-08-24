@@ -4,6 +4,26 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-004: Phase 2 - Core Logic Implementation
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To implement and verify the core backend logic as defined in Phase 2 of the execution plan.
+
+### Outcome
+- Implemented functional `Logger`, `ShellLauncher`, and `SessionManager` classes.
+- Created and tested a placeholder `ssh-wrapper.sh` script.
+- All new functionality was verified with a dedicated test script (`test_phase2.php`).
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-004)
+- `../EXECUTION_PLAN.md`
+
+---
+
 ## SESS-003: Checklist Alignment
 
 **Date:** 2025-08-23

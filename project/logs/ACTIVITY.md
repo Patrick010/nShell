@@ -2,6 +2,30 @@
 
 ---
 
+## ACT-004: Phase 2 - Core Logic Implementation
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To implement the core business logic of the backend, including session management, shell launching, and logging.
+
+### Outcome
+- Implemented the `Logger` class with file-based logging.
+- Implemented the `ShellLauncher` class using `proc_open`.
+- Implemented the `SessionManager` to create and kill shell sessions.
+- Created a placeholder `ssh-wrapper.sh` script.
+- Verified all new components with a test script.
+
+### Related Documents
+- `../EXECUTION_PLAN.md`
+- `../lib/Logger.php`
+- `../lib/ShellLauncher.php`
+- `../lib/SessionManager.php`
+
+---
+
 ## ACT-003: Align with Task Checklist
 
 **Date:** 2025-08-23
