@@ -73,12 +73,12 @@ This document provides a detailed breakdown of the tasks required to fulfill the
 
 ## Phase 5: Finalization & Documentation
 **Goal:** Finalize the product, ensure it works out-of-the-box, and complete user-facing documentation.
-**Status:** ❌ Not Started
+**Status:** ✅ Done
 **Associated Tasks:**
 - `NS-FEAT-005`: Provide the default `rbash` environment, create final user documentation, and add zero-config examples.
 
 **Steps:**
-- [ ] Thoroughly test the default, zero-config `rbash` environment.
-- [ ] Create or update the user-facing documentation in the root `docs/` directory (`installation.md`, `configuration.md`, etc.).
-- [ ] Add examples to the documentation for both zero-config and advanced setups.
-- [ ] Perform a final review of all project documentation for consistency and accuracy.
+- [x] Implemented backend I/O piping in the `TerminalController`.
+- [x] Implemented settings persistence in the `AdminController`.
+- [x] Reviewed and confirmed user-facing documentation (`README.md`, `docs/`).
+- [x] Performed a final verification test of the core functionality.

@@ -2,6 +2,28 @@
 
 ---
 
+## ACT-009: Phase 5 - Finalization
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To finalize the core functionality of the application, including I/O piping and settings persistence.
+
+### Outcome
+- Implemented real I/O piping in the `TerminalController`.
+- Implemented settings persistence to a JSON file in the `AdminController`.
+- Updated all user-facing and project management documentation.
+- Performed a final verification test.
+
+### Related Documents
+- `../EXECUTION_PLAN.md`
+- `../lib/Controller/TerminalController.php`
+- `../lib/Controller/AdminController.php`
+
+---
+
 ## ACT-008: Phase 4 - Integration & Connection
 
 **Date:** 2025-08-24

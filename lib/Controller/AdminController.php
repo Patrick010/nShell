@@ -24,14 +24,24 @@ class AdminController extends Controller {
      * @NoAdminRequired
      * @NoCSRFRequired
      */
-    public function saveSettings(string $sessionTimeout = null, string $shell = null): JSONResponse {
-        $message = "Admin settings received. Session Timeout: $sessionTimeout, Shell: $shell";
-        $this->logger->log($message);
+    public function saveSettings(): JSONResponse {
+        $settings = $this->request->getParams();
+        $this->logger->log("Saving settings: " . json_encode($settings));
 
-        return new JSONResponse([
-            'status' => 'success',
-            'message' => 'Settings received',
-            'data' => $this->request->getParams()
-        ]);
+        try {
+            $configPath = __DIR__ . '/../../config/nshell_settings.json';
+            file_put_contents($configPath, json_encode($settings, JSON_PRETTY_PRINT));
+
+            return new JSONResponse([
+                'status' => 'success',
+                'message' => 'Settings saved successfully.'
+            ]);
+        } catch (\Exception $e) {
+            $this->logger->log("Error saving settings: " . $e->getMessage());
+            return new JSONResponse([
+                'status' => 'error',
+                'message' => 'Could not save settings: ' . $e->getMessage()
+            ], 500);
+        }
     }
 }

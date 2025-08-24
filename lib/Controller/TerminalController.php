@@ -25,16 +25,40 @@ class TerminalController extends Controller {
      * @NoCSRFRequired
      */
     public function createSession(): JSONResponse {
-        // Logic to create a session will go here.
-        return new JSONResponse(['status' => 'success', 'message' => 'Session creation placeholder']);
+        $sessionId = $this->sessionManager->createSession();
+        if ($sessionId) {
+            return new JSONResponse(['status' => 'success', 'sessionId' => $sessionId]);
+        }
+        return new JSONResponse(['status' => 'error', 'message' => 'Failed to create session'], 500);
     }
 
     /**
      * @NoAdminRequired
      * @NoCSRFRequired
      */
-    public function handleIO(string $sessionId, string $input): JSONResponse {
-        // Logic to handle input/output will go here.
-        return new JSONResponse(['status' => 'success', 'output' => 'IO placeholder for ' . $sessionId]);
+    public function handleIO(string $sessionId, string $input = ''): JSONResponse {
+        $session = $this->sessionManager->getSession($sessionId);
+        if ($session === null) {
+            return new JSONResponse(['status' => 'error', 'message' => 'Session not found'], 404);
+        }
+
+        $stdin = $session['pipes'][0];
+        $stdout = $session['pipes'][1];
+
+        // Write user input to the shell's stdin
+        if (!empty($input)) {
+            fwrite($stdin, $input);
+        }
+
+        // Set the stdout stream to be non-blocking
+        stream_set_blocking($stdout, false);
+
+        // Read any output from the shell
+        $output = '';
+        while ($line = fgets($stdout)) {
+            $output .= $line;
+        }
+
+        return new JSONResponse(['status' => 'success', 'output' => $output]);
     }
 }
