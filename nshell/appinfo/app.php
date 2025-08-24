@@ -2,12 +2,12 @@
 
 namespace OCA\nShell\AppInfo;
 
-require_once __DIR__ . '/../lib/autoload.php';
-
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
+
+require_once __DIR__ . '/../lib/autoload.php';
 
 class Application extends App implements IBootstrap
 {

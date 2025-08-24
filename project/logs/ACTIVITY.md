@@ -2,6 +2,23 @@
 
 ---
 
+## ACT-015: Correct Autoloader Include Syntax
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To fix a fatal PHP error caused by an incorrect placement of a `require_once` statement in the application's bootstrap file.
+
+### Outcome
+- Moved the `require_once __DIR__ . '/../lib/autoload.php';` statement in `nshell/appinfo/app.php` to after the `use` statements. This resolves the "Namespace declaration statement has to be the very first statement" error.
+
+### Related Documents
+- `../nshell/appinfo/app.php`
+
+---
+
 ## ACT-014: Fix Namespace and Autoloader Issues
 
 **Date:** 2025-08-24

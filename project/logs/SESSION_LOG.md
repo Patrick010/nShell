@@ -4,6 +4,25 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-015: Correct Autoloader Include Syntax
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To investigate and resolve a fatal PHP error related to incorrect file structure.
+
+### Outcome
+- The error "Namespace declaration statement has to be the very first statement" was traced to a `require_once` call being placed before the `use` statements in `nshell/appinfo/app.php`.
+- The statement was moved to the correct location, resolving the fatal error.
+- A new entry was added to `ACTIVITY.md` to log this corrective action.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-015)
+
+---
+
 ## SESS-014: Fix Namespace and Autoloader Issues
 
 **Date:** 2025-08-24
