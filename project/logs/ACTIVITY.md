@@ -2,6 +2,27 @@
 
 ---
 
+## ACT-013: Fix App Bootstrap Error
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To fix a fatal error preventing the app from loading on Nextcloud 20+ due to a deprecated bootstrap interface.
+
+### Outcome
+- Corrected `nShell/appinfo/app.php` to use the modern `IBootstrap` interface and `IBootContext`.
+- Removed the legacy `IBootable` interface, resolving the crash.
+- Updated `LLD.md` and `TRACEABILITY_MATRIX.md` to reflect the fix.
+
+### Related Documents
+- `../project/TRACEABILITY_MATRIX.md` (ref: BUG-01)
+- `../project/LOW_LEVEL_DESIGN.md`
+- `../nShell/appinfo/app.php`
+
+---
+
 ## ACT-012: Final Documentation - Lessons and Handover
 
 **Date:** 2025-08-24

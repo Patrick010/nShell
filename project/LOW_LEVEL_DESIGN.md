@@ -16,9 +16,9 @@ This directory contains the files required for Nextcloud to recognize and load t
 *   **`app.php`**
     *   **Purpose:** The main application entrypoint and bootstrap class.
     *   **Responsibilities:**
-        *   Contains the `Application` class which extends Nextcloud's base app class.
-        *   The `register()` method will be used in future phases to register navigation links, API routes, and other services with the Nextcloud framework.
-        *   The `boot()` method can be used for any logic that needs to run when the app is enabled.
+        *   Contains the `Application` class which extends `OCP\AppFramework\App` and implements the `OCP\AppFramework\Bootstrap\IBootstrap` interface. This is the modern standard for bootstrapping in Nextcloud 20+.
+        *   The `register()` method is used to register all of the application's core services (controllers, session management, etc.) into the dependency injection container.
+        *   The `boot()` method is called after all apps have been registered and can be used for logic that needs to run on every page load.
 
 ---
 

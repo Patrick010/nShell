@@ -33,3 +33,5 @@ This matrix provides traceability between project requirements, design artifacts
 | UC-06 | Admin: Customize Look and Feel | `USECASES.md` | `LLD.md` | `NS-FEAT-003`, `NS-FEAT-004` | ✅ Implemented |
 | **Infrastructure** | | | | | |
 | REQ-12 | App Registrability | `EXECUTION_PLAN.md` | `appinfo/` | `NS-INFRA-001` | ✅ Implemented |
+| **Bugfixes** | | | | | |
+| BUG-01 | Fix app bootstrap failure on Nextcloud 20+ | `logs/ACTIVITY.md` | `LLD.md` | `nShell/appinfo/app.php` | ✅ Implemented |

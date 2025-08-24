@@ -4,6 +4,25 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-013: Fix App Bootstrap Error
+
+**Date:** 2025-08-24
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To investigate and resolve a fatal bootstrap error reported by the user, and to update all relevant project documentation to reflect the fix.
+
+### Outcome
+- The root cause was identified as a deprecated `IBootable` interface in `appinfo/app.php`.
+- The code was corrected to use the modern Nextcloud bootstrap process.
+- The `LLD`, `Traceability Matrix`, and `Activity Log` were all updated to document the change.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-013)
+
+---
+
 ## SESS-012: Final Documentation - Lessons and Handover
 
 **Date:** 2025-08-24

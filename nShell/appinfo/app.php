@@ -3,11 +3,11 @@
 namespace OCA\nShell\AppInfo;
 
 use OCP\AppFramework\App;
-use OCP\AppFramework\Bootstrap\IBootable;
+use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 
-class Application extends App implements IBootstrap, IBootable
+class Application extends App implements IBootstrap
 {
     public const APP_ID = 'nshell';
 
@@ -51,7 +51,7 @@ class Application extends App implements IBootstrap, IBootable
         });
     }
 
-    public function boot(IBootable $app): void
+    public function boot(IBootContext $context): void
     {
         // Run any boot-time logic here.
     }
