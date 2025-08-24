@@ -4,12 +4,12 @@
 
 ## 1. Session Summary & Accomplishments
 
-The project is now complete. All phases of the execution plan have been finished, and the core functionality for nShell has been implemented.
+The project is now complete. All core functionality has been implemented and the repository structure has been refactored for cleanliness and maintainability.
 
 *   **Accomplishment 1:** A fully interactive terminal is now working, with real I/O being piped between the frontend and the backend shell process.
 *   **Accomplishment 2:** Admin settings are now persisted to a JSON file.
-*   **Accomplishment 3:** All user-facing and project management documentation has been reviewed and updated.
-*   **Accomplishment 4:** The final end-to-end functionality has been verified.
+*   **Accomplishment 3:** A comprehensive, automated installation script and manual guide have been created.
+*   **Accomplishment 4:** The entire application's source code has been moved into a self-contained `nShell/` directory.
 
 ## 2. Known Issues & Blockers
 

@@ -4,7 +4,7 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
-## SESS-011: Refactor File Structure
+## SESS-009: Refactor File Structure
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
@@ -14,17 +14,14 @@ This log serves as a detailed record of activities and findings from specific wo
 To improve the project's structure by moving all application code into a self-contained `nShell/` directory.
 
 ### Outcome
-- All application code and assets have been moved into the `nShell/` directory.
-- Internal code paths and all relevant documentation have been updated to reflect the new structure.
-- The repository root is now cleaner and the packaging process is simplified.
+- All application code and assets have been moved into the `nShell/` directory and all documentation was updated.
 
 ### Related Documents
-- `ACTIVITY.md` (ref: ACT-011)
-- `../project/HIGH_LEVEL_DESIGN.md`
+- `ACTIVITY.md` (ref: ACT-009)
 
 ---
 
-## SESS-010: Create Installation Script and Documentation
+## SESS-008: Create Installation Script and Documentation
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
@@ -34,151 +31,97 @@ To improve the project's structure by moving all application code into a self-co
 To create a user-friendly installation method and accurately document it.
 
 ### Outcome
-- Created a new `install.sh` script to automate the installation process.
-- Rewrote the `docs/installation.md` guide to be comprehensive and accurate.
-- Updated the main `README.md` to point to the new installation guide.
-
-### Related Documents
-- `ACTIVITY.md` (ref: ACT-010)
-- `install.sh`
-- `docs/installation.md`
-
----
-
-## SESS-009: Phase 5 - Finalization
-
-**Date:** 2025-08-24
-**Status:** ✅ Done
-**Assignee:** Jules
-
-### Objective
-To implement the final core features and perform final verification and documentation updates.
-
-### Outcome
-- Implemented the I/O piping in the backend to create a fully interactive terminal.
-- Implemented settings persistence for the admin panel.
-- Verified the final functionality with a test script.
-- Updated all project documentation to reflect the final state.
-
-### Related Documents
-- `ACTIVITY.md` (ref: ACT-009)
-- `../EXECUTION_PLAN.md`
-
----
-
-## SESS-008: Phase 4 - Integration & Connection
-
-**Date:** 2025-08-24
-**Status:** ✅ Done
-**Assignee:** Jules
-
-### Objective
-To connect the frontend UI with the backend services to create a basic, interactive terminal application, including the admin panel.
-
-### Outcome
-- A `TerminalController` and `AdminController` were created to handle API requests.
-- API routes were registered, exposing the session and settings functionality.
-- The frontend JavaScript was updated to use these endpoints.
+- Created a new `install.sh` script and rewrote the installation guides.
 
 ### Related Documents
 - `ACTIVITY.md` (ref: ACT-008)
-- `../EXECUTION_PLAN.md`
 
 ---
 
-## SESS-007: Corrective Action - Update Design Docs
+## SESS-007: Phase 5 - Finalization
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
 **Assignee:** Jules
 
 ### Objective
-To update the HLD and LLD design documents to include the `appinfo` components, ensuring they remain in sync with the codebase.
+To implement the final core features and perform final verification.
 
 ### Outcome
-- The HLD's file structure diagram and the LLD's component description were both updated to include the new `appinfo` files.
+- Implemented I/O piping and settings persistence.
 
 ### Related Documents
 - `ACTIVITY.md` (ref: ACT-007)
-- `../HIGH_LEVEL_DESIGN.md`
-- `../LOW_LEVEL_DESIGN.md`
 
 ---
 
-## SESS-006: Phase 3.5 - App Registration
+## SESS-006: Phase 4 - Integration & Connection
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
 **Assignee:** Jules
 
 ### Objective
-To create the `appinfo` files necessary for Nextcloud to recognize the app for local development and testing.
+To connect the frontend UI with the backend services.
 
 ### Outcome
-- Created `appinfo/info.xml` and `appinfo/app.php`.
-- The app is now technically "discoverable" by a Nextcloud instance, unblocking Phase 4.
+- Created `TerminalController` and `AdminController`.
+- Implemented frontend JavaScript to communicate with the backend.
 
 ### Related Documents
 - `ACTIVITY.md` (ref: ACT-006)
-- `../EXECUTION_PLAN.md`
 
 ---
 
-## SESS-005: Phase 3 - Frontend Skeleton
+## SESS-005: App Registration & Design Doc Fix
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
 **Assignee:** Jules
 
 ### Objective
-To create the non-interactive frontend file structure as defined in Phase 3 of the execution plan.
+To create the `appinfo` files and correct the HLD/LLD documentation.
 
 ### Outcome
-- Created the necessary directories (`templates/`, `js/`, `css/`).
-- Created placeholder files for the admin and terminal pages, including PHP templates, CSS, and JS files.
+- Created `appinfo/info.xml` and `appinfo/app.php`.
+- Updated design documents to include `appinfo` and `Controller` components.
 
 ### Related Documents
 - `ACTIVITY.md` (ref: ACT-005)
-- `../EXECUTION_PLAN.md`
 
 ---
 
-## SESS-004: Phase 2 - Core Logic Implementation
+## SESS-004: Phase 3 - Frontend Skeleton
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
 **Assignee:** Jules
 
 ### Objective
-To implement and verify the core backend logic as defined in Phase 2 of the execution plan.
+To create the non-interactive frontend file structure.
 
 ### Outcome
-- Implemented functional `Logger`, `ShellLauncher`, and `SessionManager` classes.
-- Created and tested a placeholder `ssh-wrapper.sh` script.
-- All new functionality was verified with a dedicated test script (`test_phase2.php`).
+- Created `templates/`, `js/`, and `css/` directories and placeholder files.
 
 ### Related Documents
 - `ACTIVITY.md` (ref: ACT-004)
-- `../EXECUTION_PLAN.md`
 
 ---
 
-## SESS-003: Checklist Alignment
+## SESS-003: Phase 2 - Core Logic Implementation
 
-**Date:** 2025-08-23
+**Date:** 2025-08-24
 **Status:** ✅ Done
 **Assignee:** Jules
 
 ### Objective
-To perform a corrective action to align the Phase 1 commit with the `TASK_CHECKLIST.md`.
+To implement the core business logic of the backend.
 
 ### Outcome
-- Updated `TRACEABILITY_MATRIX.md` with partial completion status for skeleton-related requirements.
-- Added placeholder docblocks to all new PHP files to improve code quality standards.
+- Implemented `Logger`, `ShellLauncher`, and `SessionManager` classes.
 
 ### Related Documents
 - `ACTIVITY.md` (ref: ACT-003)
-- `../TASK_CHECKLIST.md`
 
 ---
 
@@ -189,17 +132,14 @@ To perform a corrective action to align the Phase 1 commit with the `TASK_CHECKL
 **Assignee:** Jules
 
 ### Objective
-To complete the 'Phase 1' task from the execution plan, establishing the project's foundational code structure.
+To establish the project's foundational code structure and align it with the task checklist.
 
 ### Outcome
-- Created the `bin/` and `lib/` directories.
-- Created skeleton PHP classes for the core application logic.
-- Implemented a manual PSR-4 autoloader as a workaround for environment constraints.
-- Updated `composer.json` with Nextcloud 31 dependency information.
+- Created `bin/` and `lib/` directories and skeleton files with docblocks.
+- Created manual autoloader and updated traceability matrix.
 
 ### Related Documents
 - `ACTIVITY.md` (ref: ACT-002)
-- `../EXECUTION_PLAN.md`
 
 ---
 
@@ -210,17 +150,10 @@ To complete the 'Phase 1' task from the execution plan, establishing the project
 **Assignee:** Jules
 
 ### Objective
-To conduct the initial project setup, including the creation and population of all core project management and design documents.
+To conduct the initial project setup and documentation.
 
 ### Outcome
-- A full suite of project documentation was created in the `/project` directory.
-- Key documents like the PID, HLD, and LLD were populated with initial requirements and design for the "nShell" project.
-- The project backlog was populated with the initial set of high-level tasks.
-- All project logs were initialized to reflect the project's starting state.
+- Created and populated the `project/` directory with all necessary documentation.
 
 ### Related Documents
-- `ACTIVITY.md`
-- `CURRENT_STATE.md`
-- `../PID.md`
-
----
+- `ACTIVITY.md` (ref: ACT-001)

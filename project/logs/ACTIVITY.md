@@ -2,29 +2,25 @@
 
 ---
 
-## ACT-011: Refactor File Structure
+## ACT-009: Refactor File Structure
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
 **Assignee:** Jules
 
 ### Objective
-To refactor the repository by moving all application code into a self-contained `nShell/` directory, cleaning up the root and simplifying the packaging process.
+To refactor the repository by moving all application code into a self-contained `nShell/` directory.
 
 ### Outcome
-- Created a new top-level `nShell/` directory.
-- Moved all app-related directories (`appinfo`, `bin`, `lib`, etc.) and scripts into `nShell/`.
-- Renamed `app_templates` to `nShell/templates` to follow conventions.
+- Moved all application code into a new `nShell/` directory.
 - Updated all internal code paths and documentation to reflect the new structure.
 
 ### Related Documents
 - `../nShell/`
-- `../project/HIGH_LEVEL_DESIGN.md`
-- `../docs/installation.md`
 
 ---
 
-## ACT-010: Create Installation Script and Documentation
+## ACT-008: Create Installation Script and Documentation
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
@@ -34,19 +30,17 @@ To refactor the repository by moving all application code into a self-contained 
 To correct the incorrect installation documentation and provide an automated installation script for users.
 
 ### Outcome
-- Researched the correct manual installation procedure for Nextcloud apps.
 - Created a new `install.sh` script to automate the process.
-- Completely rewrote `docs/installation.md` to be a comprehensive guide for both automated and manual installation.
+- Rewrote `docs/installation.md` to be a comprehensive guide.
 - Updated the main `README.md` to link to the new guide.
 
 ### Related Documents
 - `install.sh`
 - `docs/installation.md`
-- `README.md`
 
 ---
 
-## ACT-009: Phase 5 - Finalization
+## ACT-007: Phase 5 - Finalization
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
@@ -58,142 +52,82 @@ To finalize the core functionality of the application, including I/O piping and 
 ### Outcome
 - Implemented real I/O piping in the `TerminalController`.
 - Implemented settings persistence to a JSON file in the `AdminController`.
-- Updated all user-facing and project management documentation.
-- Performed a final verification test.
 
 ### Related Documents
-- `../EXECUTION_PLAN.md`
-- `../lib/Controller/TerminalController.php`
-- `../lib/Controller/AdminController.php`
+- `../lib/Controller/`
 
 ---
 
-## ACT-008: Phase 4 - Integration & Connection
+## ACT-006: Phase 4 - Integration & Connection
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
 **Assignee:** Jules
 
 ### Objective
-To connect the frontend and backend to create a basic interactive application, including both the terminal and admin panel functionality.
+To connect the frontend and backend to create a basic interactive application.
 
 ### Outcome
-- Created a `TerminalController` and `AdminController` to handle API requests.
-- Registered API routes in `appinfo/` to expose the backend functionality.
-- Implemented frontend JavaScript (`js/terminal.js`) to create a session and handle basic I/O.
-- Implemented frontend JavaScript (`js/admin.js`) to send settings data from the admin panel.
-- The HLD and LLD were updated to include the new Controller architectural layer.
+- Created `TerminalController` and `AdminController`.
+- Registered API routes in `appinfo/`.
+- Implemented frontend JavaScript for terminal and admin panel.
 
 ### Related Documents
-- `../EXECUTION_PLAN.md`
 - `../lib/Controller/`
-- `../appinfo/app.php`
 - `../js/`
 
 ---
 
-## ACT-007: Corrective Action - Update Design Docs
+## ACT-005: Phase 3.5 - App Registration
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
 **Assignee:** Jules
 
 ### Objective
-To correct an oversight by updating the HLD and LLD to include the `appinfo` components, ensuring design documents remain in sync with the codebase.
+To create the necessary files to make the app discoverable by a local Nextcloud instance.
 
 ### Outcome
-- Updated the file structure diagram in `HIGH_LEVEL_DESIGN.md`.
-- Added a new section to `LOW_LEVEL_DESIGN.md` describing the `appinfo` directory and its files.
+- Created `appinfo/info.xml` and `appinfo/app.php`.
 
 ### Related Documents
-- `../HIGH_LEVEL_DESIGN.md`
-- `../LOW_LEVEL_DESIGN.md`
+- `../appinfo/`
 
 ---
 
-## ACT-006: Phase 3.5 - App Registration
+## ACT-004: Phase 3 - Frontend Skeleton
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
 **Assignee:** Jules
 
 ### Objective
-To create the necessary files to make the app discoverable by a local Nextcloud instance, as a prerequisite for Phase 4.
+To create the non-interactive frontend components.
 
 ### Outcome
-- Created the `appinfo/` directory.
-- Created `appinfo/info.xml` with the app's metadata.
-- Created `appinfo/app.php` with the basic application class structure.
+- Created `templates/`, `js/`, and `css/` directories and placeholder files.
 
 ### Related Documents
-- `../EXECUTION_PLAN.md`
-- `../appinfo/info.xml`
-- `../appinfo/app.php`
+- `../templates/`
+- `../js/`
+- `../css/`
 
 ---
 
-## ACT-005: Phase 3 - Frontend Skeleton
+## ACT-003: Phase 2 - Core Logic Implementation
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
 **Assignee:** Jules
 
 ### Objective
-To create the non-interactive frontend components, including the admin panel and the user terminal page skeletons.
+To implement the core business logic of the backend.
 
 ### Outcome
-- Created `templates/`, `js/`, and `css/` directories.
-- Created placeholder `admin.php` and `terminal.php` templates.
-- Created placeholder `admin.css` and `terminal.css` stylesheets.
-- Created placeholder `admin.js` and `terminal.js` script files.
+- Implemented `Logger`, `ShellLauncher`, and `SessionManager` classes.
 
 ### Related Documents
-- `../EXECUTION_PLAN.md`
-- `../templates/admin.php`
-- `../templates/terminal.php`
-
----
-
-## ACT-004: Phase 2 - Core Logic Implementation
-
-**Date:** 2025-08-24
-**Status:** ✅ Done
-**Assignee:** Jules
-
-### Objective
-To implement the core business logic of the backend, including session management, shell launching, and logging.
-
-### Outcome
-- Implemented the `Logger` class with file-based logging.
-- Implemented the `ShellLauncher` class using `proc_open`.
-- Implemented the `SessionManager` to create and kill shell sessions.
-- Created a placeholder `ssh-wrapper.sh` script.
-- Verified all new components with a test script.
-
-### Related Documents
-- `../EXECUTION_PLAN.md`
-- `../lib/Logger.php`
-- `../lib/ShellLauncher.php`
-- `../lib/SessionManager.php`
-
----
-
-## ACT-003: Align with Task Checklist
-
-**Date:** 2025-08-23
-**Status:** ✅ Done
-**Assignee:** Jules
-
-### Objective
-To ensure the 'Phase 1' commit fully complies with the project's `TASK_CHECKLIST.md`.
-
-### Outcome
-- **Traceability Matrix:** Updated the status of partially completed requirements to '🟡 Partial'.
-- **Code Quality:** Added placeholder docblocks to all new skeleton PHP files.
-
-### Related Documents
-- `../TASK_CHECKLIST.md`
-- `../TRACEABILITY_MATRIX.md`
+- `../lib/`
 
 ---
 
@@ -204,17 +138,13 @@ To ensure the 'Phase 1' commit fully complies with the project's `TASK_CHECKLIST
 **Assignee:** Jules
 
 ### Objective
-To establish the project's foundational code structure, including the core backend classes, CLI wrappers, and a functional autoloader.
+To establish the project's foundational code structure.
 
 ### Outcome
-- **Directories:** Created `bin/` and `lib/` directories.
-- **Skeleton Files:** Created empty classes for `SessionManager`, `ShellLauncher`, `SSHWrapper`, and `Logger`, and an entrypoint script `nshell.php`.
-- **Configuration:** Updated `composer.json` with project metadata and dependencies for Nextcloud 31.
-- **Autoloader:** Created a manual PSR-4 autoloader (`lib/autoload.php`) and integrated it into the entrypoint script as a workaround for environment constraints.
+- Created `bin/` and `lib/` directories and skeleton files.
+- Created manual autoloader.
 
 ### Related Documents
-- `../EXECUTION_PLAN.md`
-- `../composer.json`
 - `../lib/autoload.php`
 
 ---
@@ -226,18 +156,10 @@ To establish the project's foundational code structure, including the core backe
 **Assignee:** Jules
 
 ### Objective
-To establish the complete project documentation directory based on the template set from the `templates/` directory, following PRINCE2 principles.
+To establish the complete project documentation directory.
 
 ### Outcome
-- **Directory Structure:** Created the `project/` and `project/logs/` directories.
-- **Templates Copied:** All core documentation templates were copied from `templates/` to `project/`.
-- **Documents Populated:** Key documents (`PID`, `HLD`, `LLD`, `SECURITY`, `USECASES`, `BACKLOG`, etc.) were populated with project-specific data for "nShell".
-- **Logs Initialized:** Initial entries were added to `CURRENT_STATE.md`, `ACTIVITY.md`, and `SESSION_LOG.md`.
+- Created and populated the `project/` directory with all necessary documentation.
 
 ### Related Documents
-- `../PID.md`
-- `../HIGH_LEVEL_DESIGN.md`
-- `../PROJECT_REGISTRY.md`
-- `CURRENT_STATE.md`
-
----
+- `../project/`
