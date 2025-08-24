@@ -58,7 +58,7 @@ This document provides a detailed breakdown of the tasks required to fulfill the
 
 ## Phase 4: Integration & Connection
 **Goal:** Connect the frontend and backend to create a fully interactive application.
-**Status:** 🟡 In Progress
+**Status:** ✅ Done
 **Associated Tasks:**
 - `NS-FEAT-004`: Connect the frontend UI to the backend using AJAX/WebSockets to create an interactive terminal session.
 
@@ -68,8 +68,8 @@ This document provides a detailed breakdown of the tasks required to fulfill the
 - [x] Updated `js/terminal.js` to create a session and handle I/O via AJAX.
 - [x] The backend now receives input, but does not yet pipe it to the shell process (to be done in a later implementation step).
 - [x] The frontend receives placeholder output from the backend.
-- [ ] Implement the AJAX endpoints for the admin panel to save configuration changes.
-- [ ] Update `js/admin.js` to call the save endpoints.
+- [x] Implement the AJAX endpoints for the admin panel to save configuration changes.
+- [x] Update `js/admin.js` to call the save endpoints.
 
 ## Phase 5: Finalization & Documentation
 **Goal:** Finalize the product, ensure it works out-of-the-box, and complete user-facing documentation.

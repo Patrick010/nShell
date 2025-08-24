@@ -35,6 +35,20 @@ class Application extends App implements IBootstrap, IBootable
                 $c->get('SessionManager')
             );
         });
+
+        $context->registerService('Logger', function ($c) {
+            // In a real app, this path would come from config
+            $logFile = sys_get_temp_dir() . '/nshell.log';
+            return new \nShell\Logger($logFile);
+        });
+
+        $context->registerService('AdminController', function ($c) {
+            return new \nShell\Controller\AdminController(
+                $c->get('AppName'),
+                $c->get('Request'),
+                $c->get('Logger')
+            );
+        });
     }
 
     public function boot(IBootable $app): void

@@ -2,44 +2,27 @@
 
 ---
 
-## ACT-009: Corrective Action - Revert Phase 4 Status
+## ACT-008: Phase 4 - Integration & Connection
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
 **Assignee:** Jules
 
 ### Objective
-To correct the project documentation after it was incorrectly marked as complete for Phase 4.
+To connect the frontend and backend to create a basic interactive application, including both the terminal and admin panel functionality.
 
 ### Outcome
-- The status of Phase 4 in `EXECUTION_PLAN.md` has been reverted to 'In Progress'.
-- This activity log has been updated to reflect the correction.
-
-### Related Documents
-- `../EXECUTION_PLAN.md`
-
----
-
-## ACT-008: Phase 4 - Integration & Connection
-
-**Date:** 2025-08-24
-**Status:** 🟡 In Progress
-**Assignee:** Jules
-
-### Objective
-To connect the frontend and backend to create a basic interactive application.
-
-### Outcome
-- Created a `TerminalController` to handle API requests.
-- Registered API routes in `appinfo/` to expose the backend.
-- Implemented frontend JavaScript to make AJAX calls to create a session and handle basic I/O.
+- Created a `TerminalController` and `AdminController` to handle API requests.
+- Registered API routes in `appinfo/` to expose the backend functionality.
+- Implemented frontend JavaScript (`js/terminal.js`) to create a session and handle basic I/O.
+- Implemented frontend JavaScript (`js/admin.js`) to send settings data from the admin panel.
 - The HLD and LLD were updated to include the new Controller architectural layer.
 
 ### Related Documents
 - `../EXECUTION_PLAN.md`
-- `../lib/Controller/TerminalController.php`
+- `../lib/Controller/`
 - `../appinfo/app.php`
-- `../js/terminal.js`
+- `../js/`
 
 ---
 

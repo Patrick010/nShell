@@ -4,20 +4,19 @@
 
 ## 1. Session Summary & Accomplishments
 
-Phase 4 is currently in progress. The initial integration of the interactive terminal is complete.
+Phase 4 is now complete. The frontend UI is connected to the backend services for both the terminal and admin panel.
 
-*   **Accomplishment 1:** Created a `TerminalController` to serve API requests for the terminal.
-*   **Accomplishment 2:** Registered API routes to expose session management functionality.
-*   **Accomplishment 3:** Implemented frontend JavaScript to use the terminal API.
+*   **Accomplishment 1:** Created and registered a `TerminalController` and `AdminController`.
+*   **Accomplishment 2:** Implemented frontend JavaScript for both the terminal and admin panel to communicate with the backend.
+*   **Accomplishment 3:** The app now has a basic end-to-end interactive loop for both main features.
 
 ## 2. Known Issues & Blockers
 
-*   The admin panel functionality for Phase 4 has not been implemented.
-*   The backend does not yet pipe user input to the actual shell process.
+*   The backend does not yet pipe user input to the actual shell process; it only returns placeholder data. This is the next major implementation task.
+*   The admin settings are logged but not yet persisted.
 
 ## 3. Pending Work: Next Immediate Steps
 
-The next step is to complete the remaining tasks for Phase 4.
+The next step is to begin Phase 5: Finalization & Documentation. This will involve fully implementing the I/O piping and preparing the app for release.
 
-*   **Next Step 1:** Implement the AJAX endpoints for the admin panel to save configuration changes.
-*   **Next Step 2:** Update `js/admin.js` to call the new save endpoints.
+*   **Next Step 1:** Begin work on task `NS-FEAT-005`: Fully implement the backend I/O piping and persist admin settings.

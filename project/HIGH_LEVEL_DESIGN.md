@@ -28,6 +28,7 @@ The nShell system is composed of four primary layers: a web-based frontend, a co
        │ Controller Layer   │
        │-------------------│
        │ - TerminalController│
+       │ - AdminController   │
        └─────────┬─────────┘
                  │
                  ▼
@@ -83,6 +84,7 @@ nShell/
 │ └── shells/ # Optional shell-specific configs
 ├── lib/
 │ ├── Controller/
+│ │ ├── AdminController.php
 │ │ └── TerminalController.php
 │ ├── SessionManager.php
 │ ├── ShellLauncher.php

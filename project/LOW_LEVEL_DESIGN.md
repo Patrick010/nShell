@@ -73,6 +73,14 @@ This layer is responsible for handling incoming HTTP requests from the frontend,
         *   Uses the `SessionManager` to perform these actions.
         *   Returns JSON responses to the client.
 
+*   **`AdminController.php`**
+    *   **Purpose:** To handle API requests from the admin settings page.
+    *   **Responsibilities:**
+        *   Receives POST requests containing new application settings.
+        *   For now, logs the received settings for verification.
+        *   In the future, will be responsible for validating and persisting these settings.
+        *   Returns a JSON response indicating success or failure.
+
 ---
 
 ## 5. Executable Scripts (`bin/`)

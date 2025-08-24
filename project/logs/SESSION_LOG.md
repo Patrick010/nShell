@@ -4,37 +4,19 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
-## SESS-009: Corrective Action - Revert Phase 4 Status
+## SESS-008: Phase 4 - Integration & Connection
 
 **Date:** 2025-08-24
 **Status:** ✅ Done
 **Assignee:** Jules
 
 ### Objective
-To correct the project logs after Phase 4 was incorrectly marked as complete.
+To connect the frontend UI with the backend services to create a basic, interactive terminal application, including the admin panel.
 
 ### Outcome
-- The status of Phase 4 work has been reverted to 'In Progress' in the relevant log and planning files.
-
-### Related Documents
-- `ACTIVITY.md` (ref: ACT-009)
-- `../EXECUTION_PLAN.md`
-
----
-
-## SESS-008: Phase 4 - Integration & Connection
-
-**Date:** 2025-08-24
-**Status:** 🟡 In Progress
-**Assignee:** Jules
-
-### Objective
-To connect the frontend UI with the backend services to create a basic, interactive terminal application.
-
-### Outcome
-- A `TerminalController` was created to handle API requests.
-- API routes were registered, exposing the session creation and I/O functionality.
-- The frontend JavaScript was updated to use these endpoints, creating a session and communicating with the backend.
+- A `TerminalController` and `AdminController` were created to handle API requests.
+- API routes were registered, exposing the session and settings functionality.
+- The frontend JavaScript was updated to use these endpoints.
 
 ### Related Documents
 - `ACTIVITY.md` (ref: ACT-008)
