@@ -6,6 +6,6 @@
 </head>
 <body>
     <h1>Hello World</h1>
-    <p>If you can see this, the basic routing is working.</p>
+    <p>If you can see this, the minimal baseline is working.</p>
 </body>
 </html>
