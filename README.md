@@ -6,6 +6,12 @@
 
 ---
 
+## Project Status
+
+**Note:** This application was recently repaired from a non-functional state (see `project/HANDOVER_BRIEF.md` for details). The core functionality of providing a web terminal to an authorized user group is now stable. However, many of the advanced features described in this README are from the original design and are not yet implemented.
+
+---
+
 ## Key Features
 
 ### Secure by Default
