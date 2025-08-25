@@ -4,12 +4,12 @@
  */
 
 // Add CSS for the terminal
-\OCP\Util::addStyle('nshell', 'terminal'); // For terminal.css
-\OCP\Util::addStyle('https://cdnjs.cloudflare.com/ajax/libs/xterm/5.5.0/xterm.min.css');
+\OCP\Util::addStyle('nshell', 'xterm.min');
+\OCP\Util::addStyle('nshell', 'terminal');
 
 // Add JavaScript for the terminal
-\OCP\Util::addScript('https://cdnjs.cloudflare.com/ajax/libs/xterm/5.5.0/xterm.min.js');
-\OCP\Util::addScript('nshell', 'terminal'); // For terminal.js
+\OCP\Util::addScript('nshell', 'xterm');
+\OCP\Util::addScript('nshell', 'terminal');
 
 // Pass the CSRF token to the frontend
 \OCP\Util::addScript('core', 'OC', true);
