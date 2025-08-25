@@ -2,6 +2,36 @@
 
 ---
 
+## ACT-020: Final Overhaul and Refactoring
+
+**Date:** 2025-08-25
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To perform a complete overhaul of the application and its documentation to align with the authoritative design and resolve all known bugs.
+
+### Outcome
+- **Documentation Overhaul:** The `PID`, `HLD`, and `LLD` were completely rewritten to match the authoritative design, providing a correct foundation for the project.
+- **Architectural Refactoring:**
+    - The application was refactored to a simpler and more robust single-entry-point architecture using a `PageController`.
+    - All obsolete controllers and settings classes were removed.
+- **Feature Implementation:**
+    - Implemented role-based dispatch to show the `Admin UI` to admins and the `User Terminal UI` to users.
+    - Implemented group-based access control for non-admin users, including a group selection pulldown menu in the Admin UI.
+- **Bug Fixes:**
+    - Fixed all known fatal errors related to namespacing, autoloading, and UI component registration.
+    - Fixed the final UI routing and icon path issues.
+- All project logs have been updated to reflect the complete history of the project overhaul.
+
+### Related Documents
+- `../project/PID.md`
+- `../project/HIGH_LEVEL_DESIGN.md`
+- `../project/LOW_LEVEL_DESIGN.md`
+- `../nshell/`
+
+---
+
 ## ACT-013: Fix App Bootstrap Error
 
 **Date:** 2025-08-24
