@@ -82,3 +82,23 @@ This document provides a detailed breakdown of the tasks required to fulfill the
 - [x] Implemented settings persistence in the `AdminController`.
 - [x] Reviewed and confirmed user-facing documentation (`README.md`, `docs/`).
 - [x] Performed a final verification test of the core functionality.
+
+---
+
+## Phase 6: Post-Release Overhaul and Refactoring
+**Goal:** To perform a major architectural refactoring to align the application with the authoritative design, fix critical bugs, and implement the correct UI behavior.
+**Status:** ✅ Done
+**Associated Tasks:**
+- `NS-BUGFIX-001`: Resolve all fatal errors preventing application load.
+- `NS-BUGFIX-002`: Implement the correct UI/UX flow (Admin vs. User views).
+- `NS-DOC-001`: Overhaul all project documentation to match the authoritative design.
+
+**Steps:**
+- [x] Audited `PID.md`, `HLD.md`, and `LLD.md` and found them to be inconsistent with the authoritative design.
+- [x] Overhauled all three documents to create a correct foundation.
+- [x] Refactored the application from a multi-controller, `ISettings`-based architecture to a simpler and correct single-entry-point model using a `PageController`.
+- [x] Implemented role-based dispatch to show the `Admin UI` to admins and the `User Terminal UI` to users.
+- [x] Implemented group-based access control for non-admin users, including a group selection pulldown in the Admin UI.
+- [x] Fixed all known fatal errors related to namespacing, autoloading, and UI component registration.
+- [x] Created a placeholder icon to resolve UI rendering exceptions.
+- [x] Updated all relevant logs (`ACTIVITY.md`, `SESSION_LOG.md`, `CURRENT_STATE.md`) to reflect the overhaul.
