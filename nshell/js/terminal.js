@@ -8,15 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let sessionId = null;
 
-    // Function to generate a base URL for the app
-    const generateUrl = (url) => {
-        // In a real Nextcloud environment, this would be more robust.
-        // For now, assuming a standard URL structure.
-        return '/apps/nshell' + url;
-    };
-
     // 1. Create a new session
-    fetch(generateUrl('/session'), {
+    fetch(OC.generateUrl('/apps/nshell/session'), {
         method: 'POST',
         headers: {
             'requesttoken': OC.requestToken,
@@ -39,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     term.onData(e => {
         if (sessionId) {
             // Send input to the backend
-            fetch(generateUrl('/session/' + sessionId + '/io'), {
+            fetch(OC.generateUrl('/apps/nshell/session/' + sessionId + '/io'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
