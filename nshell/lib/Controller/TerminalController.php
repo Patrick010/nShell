@@ -47,7 +47,7 @@ class TerminalController extends Controller {
         }
 
         $allowedGroup = $this->configService->getAllowedGroup();
-        if (!empty($allowedGroup) && $this->groupManager->isInGroup($user, $allowedGroup)) {
+        if (!empty($allowedGroup) && $this->groupManager->isInGroup($user->getUID(), $allowedGroup)) {
             return new TemplateResponse('nshell', 'terminal');
         } else {
             return new TemplateResponse('nshell', 'not_allowed', [], 'guest');
