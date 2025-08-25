@@ -4,6 +4,25 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-025: Fix Admin Settings Implementation
+
+**Date:** 2025-08-25
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To resolve the final `Call to undefined method` error, based on the user's explicit technical guidance.
+
+### Outcome
+- The user correctly identified that the `ISettings` class should not depend on a controller to render its template.
+- The `AdminSettings` class was refactored to be self-contained, fetching its own data and rendering the template directly.
+- This finally resolves all known bugs and represents a correct implementation.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-025)
+
+---
+
 ## SESS-024: Final Implementation and Bug Fixes
 
 **Date:** 2025-08-25

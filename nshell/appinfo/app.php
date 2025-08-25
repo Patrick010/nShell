@@ -66,7 +66,10 @@ class Application extends App implements IBootstrap
             return new AdminSection($c->get(IURLGenerator::class));
         });
         $context->registerService(AdminSettings::class, function ($c) {
-            return new AdminSettings($c->get(AdminController::class));
+            return new AdminSettings(
+                $c->get(ConfigService::class),
+                $c->get(IGroupManager::class)
+            );
         });
     }
 

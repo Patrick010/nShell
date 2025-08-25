@@ -2,6 +2,27 @@
 
 ---
 
+## ACT-025: Fix Admin Settings Implementation
+
+**Date:** 2025-08-25
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To fix the final bug preventing the admin settings page from loading, based on detailed user guidance.
+
+### Outcome
+- The root cause of all remaining errors was identified: `AdminSettings.php` was incorrectly delegating to a controller instead of being self-contained.
+- Refactored `AdminSettings.php` to fetch its own data and render its own template, removing the dependency on `AdminController`.
+- Updated `app.php` to inject the correct dependencies into the new `AdminSettings` class.
+- This represents the final, correct implementation based on the user's expert guidance.
+
+### Related Documents
+- `../nshell/lib/Settings/AdminSettings.php`
+- `../nshell/appinfo/app.php`
+
+---
+
 ## ACT-024: Final Implementation and Bug Fixes
 
 **Date:** 2025-08-25
