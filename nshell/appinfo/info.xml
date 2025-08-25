@@ -14,7 +14,7 @@
     <navigations>
         <navigation>
             <name>nShell</name>
-            <route>nshell.page#index</route>
+            <route>nshell.page.index</route>
             <icon>img/app.svg</icon>
         </navigation>
     </navigations>
