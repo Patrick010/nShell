@@ -1,10 +1,14 @@
+<?php
+    // The following two lines are required to load the js and css files that are part of this app
+    script('nshell', 'terminal');
+    style('nshell', 'admin');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>nShell Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/xterm/5.5.0/xterm.min.css" />
-    <link rel="stylesheet" href="/apps/nshell/css/admin.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/5.5.0/xterm.min.js"></script>
 </head>
 <body>
@@ -14,7 +18,8 @@
         <h2>Admin Terminal</h2>
         <div id="nshell-terminal" style="height: 50vh; border: 1px solid #ccc; margin-bottom: 20px;"></div>
 
-        <form id="nshell-admin-form" method="post">
+        <form method="POST" action="<?php p(\OC::$server->getURLGenerator()->linkToRoute('nshell.admin.saveGroup')); ?>">
+            <input type="hidden" name="requesttoken" value="<?php p(\OCP\Util::callRegister()); ?>" />
             <h2>User Access Control</h2>
 
             <div class="setting">
@@ -34,7 +39,7 @@
         </form>
     </div>
 
+    <!-- Include terminal logic -->
     <script src="/apps/nshell/js/terminal.js"></script>
-    <script src="/apps/nshell/js/admin.js"></script>
 </body>
 </html>

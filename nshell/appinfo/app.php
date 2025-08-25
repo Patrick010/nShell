@@ -46,6 +46,7 @@ class Application extends App implements IBootstrap
                 $c->get('AppName'),
                 $c->get('Request'),
                 $c->get(ConfigService::class),
+                $c->get(IURLGenerator::class),
                 $c->get(IGroupManager::class)
             );
         });
