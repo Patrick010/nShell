@@ -2,54 +2,50 @@
 
 namespace OCA\nShell\Controller;
 
-use OCA\nShell\Logger;
+use OCA\nShell\Service\ConfigService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\IGroupManager;
 use OCP\IRequest;
 
 class AdminController extends Controller {
+
+    private ConfigService $configService;
+    private IGroupManager $groupManager;
+
+    public function __construct(
+        string $appName,
+        IRequest $request,
+        ConfigService $configService,
+        IGroupManager $groupManager
+    ) {
+        parent::__construct($appName, $request);
+        $this->configService = $configService;
+        $this->groupManager = $groupManager;
+    }
 
     /**
      * @AdminRequired
      */
     public function index(): TemplateResponse {
-        return new TemplateResponse('nshell', 'admin');
-    }
+        $allGroups = $this->groupManager->search('');
+        $groupNames = array_map(function($group) {
+            return $group->getGID();
+        }, $allGroups);
 
-    private Logger $logger;
-
-    public function __construct(
-        string $appName,
-        IRequest $request,
-        Logger $logger
-    ) {
-        parent::__construct($appName, $request);
-        $this->logger = $logger;
+        $params = [
+            'groups' => $groupNames,
+            'current_allowed_group' => $this->configService->getAllowedGroup()
+        ];
+        return new TemplateResponse('nshell', 'admin', $params);
     }
 
     /**
-     * @NoAdminRequired
-     * @NoCSRFRequired
+     * @AdminRequired
      */
-    public function saveSettings(): JSONResponse {
-        $settings = $this->request->getParams();
-        $this->logger->log("Saving settings: " . json_encode($settings));
-
-        try {
-            $configPath = __DIR__ . '/../../config/nshell_settings.json';
-            file_put_contents($configPath, json_encode($settings, JSON_PRETTY_PRINT));
-
-            return new JSONResponse([
-                'status' => 'success',
-                'message' => 'Settings saved successfully.'
-            ]);
-        } catch (\Exception $e) {
-            $this->logger->log("Error saving settings: " . $e->getMessage());
-            return new JSONResponse([
-                'status' => 'error',
-                'message' => 'Could not save settings: ' . $e->getMessage()
-            ], 500);
-        }
+    public function saveSettings(string $allowedGroup = ''): JSONResponse {
+        $this->configService->setAllowedGroup($allowedGroup);
+        return new JSONResponse(['status' => 'success', 'message' => 'Settings saved.']);
     }
 }

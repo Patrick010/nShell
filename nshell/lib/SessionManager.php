@@ -1,23 +1,10 @@
 <?php
 
-/**
- * nShell Session Management
- *
- * @package nShell
- */
-
 namespace OCA\nShell;
 
-/**
- * Manages the lifecycle of user shell sessions.
- */
 class SessionManager
 {
-    /**
-     * @var array<string, mixed>
-     */
     private array $sessions = [];
-
     private ShellLauncher $shellLauncher;
 
     public function __construct(ShellLauncher $shellLauncher)
@@ -25,11 +12,6 @@ class SessionManager
         $this->shellLauncher = $shellLauncher;
     }
 
-    /**
-     * Creates a new shell session.
-     *
-     * @return string|false The new session ID, or false on failure.
-     */
     public function createSession(): string|false
     {
         $shell = $this->shellLauncher->launch();
@@ -44,23 +26,11 @@ class SessionManager
         return $sessionId;
     }
 
-    /**
-     * Gets a session by its ID.
-     *
-     * @param string $sessionId
-     * @return array|null The session data, or null if not found.
-     */
     public function getSession(string $sessionId): ?array
     {
         return $this->sessions[$sessionId] ?? null;
     }
 
-    /**
-     * Terminates a session by its ID.
-     *
-     * @param string $sessionId
-     * @return bool True on success, false if session not found.
-     */
     public function killSession(string $sessionId): bool
     {
         $session = $this->getSession($sessionId);
@@ -68,12 +38,10 @@ class SessionManager
             return false;
         }
 
-        // Close pipes
         fclose($session['pipes'][0]);
         fclose($session['pipes'][1]);
         fclose($session['pipes'][2]);
 
-        // Terminate process
         proc_terminate($session['process']);
         proc_close($session['process']);
 

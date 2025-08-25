@@ -4,13 +4,19 @@ namespace OCA\nShell\AppInfo;
 
 use OCA\nShell\Controller\AdminController;
 use OCA\nShell\Controller\TerminalController;
-use OCA\nShell\Logger;
+use OCA\nShell\Service\ConfigService;
+use OCA\nShell\Settings\AdminSection;
+use OCA\nShell\Settings\AdminSettings;
 use OCA\nShell\SessionManager;
 use OCA\nShell\ShellLauncher;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
+use OCP\IConfig;
+use OCP\IGroupManager;
+use OCP\IURLGenerator;
+use OCP\IUserSession;
 
 class Application extends App implements IBootstrap
 {
@@ -23,38 +29,43 @@ class Application extends App implements IBootstrap
 
     public function register(IRegistrationContext $context): void
     {
-        $context->registerService('Logger', function ($c) {
-            $logFile = sys_get_temp_dir() . '/nshell.log';
-            return new Logger($logFile);
+        // Services
+        $context->registerService(ConfigService::class, function ($c) {
+            return new ConfigService($c->get(IConfig::class));
         });
-        $context->registerService('ShellLauncher', function ($c) {
+        $context->registerService(ShellLauncher::class, function ($c) {
             return new ShellLauncher();
         });
-        $context->registerService('SessionManager', function ($c) {
-            return new SessionManager($c->get('ShellLauncher'));
+        $context->registerService(SessionManager::class, function ($c) {
+            return new SessionManager($c->get(ShellLauncher::class));
         });
 
-        $context->registerService('AdminController', function ($c) {
+        // Controllers
+        $context->registerService(AdminController::class, function ($c) {
             return new AdminController(
                 $c->get('AppName'),
                 $c->get('Request'),
-                $c->get('Logger')
+                $c->get(ConfigService::class),
+                $c->get(IGroupManager::class)
             );
         });
-        $context->registerService('TerminalController', function ($c) {
+        $context->registerService(TerminalController::class, function ($c) {
             return new TerminalController(
                 $c->get('AppName'),
                 $c->get('Request'),
-                $c->get('SessionManager')
+                $c->get(IUserSession::class),
+                $c->get(IGroupManager::class),
+                $c->get(ConfigService::class),
+                $c->get(SessionManager::class)
             );
         });
 
-        $context->registerService('OCA\nShell\Settings\AdminSection', function ($c) {
-            return new \OCA\nShell\Settings\AdminSection();
+        // Settings
+        $context->registerService(AdminSection::class, function ($c) {
+            return new AdminSection($c->get(IURLGenerator::class));
         });
-
-        $context->registerService('OCA\nShell\Settings\AdminSettings', function ($c) {
-            return new \OCA\nShell\Settings\AdminSettings();
+        $context->registerService(AdminSettings::class, function ($c) {
+            return new AdminSettings($c->get(AdminController::class));
         });
     }
 

@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // 1. Create a new session
     fetch(generateUrl('/session'), {
         method: 'POST',
+        headers: {
+            'requesttoken': OC.requestToken,
+        },
     })
     .then(response => response.json())
     .then(data => {

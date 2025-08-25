@@ -2,7 +2,6 @@
 
 return [
     'routes' => [
-        // The name is generated from the controller name and the method name
         // Page routes
         ['name' => 'terminal#index', 'url' => '/terminal', 'verb' => 'GET'],
 

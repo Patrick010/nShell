@@ -2,31 +2,56 @@
 
 namespace OCA\nShell\Controller;
 
+use OCA\nShell\Service\ConfigService;
 use OCA\nShell\SessionManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\IGroupManager;
 use OCP\IRequest;
+use OCP\IUserSession;
 
 class TerminalController extends Controller {
+
+    private IUserSession $userSession;
+    private IGroupManager $groupManager;
+    private ConfigService $configService;
+    private SessionManager $sessionManager;
+
+    public function __construct(
+        string $appName,
+        IRequest $request,
+        IUserSession $userSession,
+        IGroupManager $groupManager,
+        ConfigService $configService,
+        SessionManager $sessionManager
+    ) {
+        parent::__construct($appName, $request);
+        $this->userSession = $userSession;
+        $this->groupManager = $groupManager;
+        $this->configService = $configService;
+        $this->sessionManager = $sessionManager;
+    }
 
     /**
      * @NoAdminRequired
      * @NoCSRFRequired
      */
     public function index(): TemplateResponse {
-        return new TemplateResponse('nshell', 'terminal');
-    }
+        $user = $this->userSession->getUser();
+        $isAdmin = $this->groupManager->isAdmin($user->getUID());
 
-    private SessionManager $sessionManager;
+        if ($isAdmin) {
+            // Admins should use the admin settings page to get a terminal
+            return new TemplateResponse('nshell', 'admin_terminal_info', [], 'guest');
+        }
 
-    public function __construct(
-        string $appName,
-        IRequest $request,
-        SessionManager $sessionManager
-    ) {
-        parent::__construct($appName, $request);
-        $this->sessionManager = $sessionManager;
+        $allowedGroup = $this->configService->getAllowedGroup();
+        if (!empty($allowedGroup) && $this->groupManager->isInGroup($user, $allowedGroup)) {
+            return new TemplateResponse('nshell', 'terminal');
+        } else {
+            return new TemplateResponse('nshell', 'not_allowed', [], 'guest');
+        }
     }
 
     /**
@@ -54,15 +79,11 @@ class TerminalController extends Controller {
         $stdin = $session['pipes'][0];
         $stdout = $session['pipes'][1];
 
-        // Write user input to the shell's stdin
         if (!empty($input)) {
             fwrite($stdin, $input);
         }
 
-        // Set the stdout stream to be non-blocking
         stream_set_blocking($stdout, false);
-
-        // Read any output from the shell
         $output = '';
         while ($line = fgets($stdout)) {
             $output .= $line;
