@@ -36,10 +36,6 @@ This document is intended to bring a new developer up to speed on the project, p
 
 It is mandatory that developers **review these materials in order** to efficiently onboard without affecting live project workflows.
 
-> **Crucial Note: Living Documentation Policy**
->
-> This project adheres to a strict **"living documentation"** policy. All code changes **must** be accompanied by corresponding documentation updates in the same commit. This is a mandatory quality gate for all contributions. Before considering any work complete, you must consult the `TASK_CHECKLIST.md` and ensure all requirements are met.
-
 ## 2. Key Onboarding Documents
 
 To get a full understanding of the project, review the following documents:

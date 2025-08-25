@@ -3,10 +3,10 @@
     <id>nshell</id>
     <name>nShell</name>
     <summary>A fully configurable restricted shell environment for Nextcloud.</summary>
-    <description><![CDATA[A fully configurable restricted shell environment for Nextcloud, designed to be secure by default while offering extensive customization for administrators.]]></description>
+    <description>A shell environment for Nextcloud.</description>
     <version>1.0.0</version>
     <licence>agpl</licence>
-    <author>Project Manager</author>
+    <author>Jules</author>
     <namespace>nShell</namespace>
     <dependencies>
         <nextcloud min-version="31" max-version="31"/>
@@ -15,7 +15,7 @@
     <navigations>
         <navigation>
             <name>nShell</name>
-            <route>nshell.page#dispatch</route>
+            <route>nshell.page#index</route>
             <icon>img/app.svg</icon>
         </navigation>
     </navigations>

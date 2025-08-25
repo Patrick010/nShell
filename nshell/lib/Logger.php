@@ -6,7 +6,7 @@
  * @package nShell
  */
 
-namespace OCA\nShell;
+namespace nShell;
 
 /**
  * Handles all logging for nShell.

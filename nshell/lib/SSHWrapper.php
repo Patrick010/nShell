@@ -6,7 +6,7 @@
  * @package nShell
  */
 
-namespace OCA\nShell;
+namespace nShell;
 
 /**
  * Provides logic for the ssh-wrapper.sh script.
