@@ -4,6 +4,26 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-023: Fix 405 Error on Save Settings
+
+**Date:** 2025-08-25
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To resolve the final "405 Method Not Allowed" error based on detailed user feedback.
+
+### Outcome
+- The user provided a detailed guide to debugging 405 errors in Nextcloud.
+- This guide revealed the error was caused by sending `application/json` instead of the expected `application/x-www-form-urlencoded`.
+- The `admin.js` file was corrected to use the proper content type and request body format.
+- This should be the final fix required.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-023)
+
+---
+
 ## SESS-022: Fix "405 Method Not Allowed" on Save Settings
 
 **Date:** 2025-08-25

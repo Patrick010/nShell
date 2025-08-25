@@ -2,6 +2,25 @@
 
 ---
 
+## ACT-023: Fix 405 Error on Save Settings
+
+**Date:** 2025-08-25
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To fix the final "405 Method Not Allowed" error when saving settings.
+
+### Outcome
+- Based on user-provided debugging information, the root cause was identified as an incorrect `Content-Type` in the JavaScript `fetch` request.
+- The `admin.js` file was refactored to send data as `application/x-www-form-urlencoded` instead of `application/json`.
+- The CSRF token was correctly included in the request body.
+
+### Related Documents
+- `../nshell/js/admin.js`
+
+---
+
 ## ACT-022: Fix "405 Method Not Allowed" on Save Settings
 
 **Date:** 2025-08-25

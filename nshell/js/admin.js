@@ -8,22 +8,35 @@ document.addEventListener('DOMContentLoaded', function () {
             event.preventDefault();
 
             const formData = new FormData(adminForm);
-            const settings = Object.fromEntries(formData.entries());
-
-            // This is a placeholder for a real URL generation function
             const url = '/apps/nshell/admin/settings';
+
+            // Nextcloud expects form data, not JSON, for this type of request.
+            const searchParams = new URLSearchParams();
+            for (const pair of formData) {
+                searchParams.append(pair[0], pair[1]);
+            }
+            // Manually add the request token to the body for form submissions
+            searchParams.append('requesttoken', OC.requestToken);
 
             fetch(url, {
                 method: 'POST',
+                // The Content-Type header is not strictly necessary as the browser
+                // will set it automatically for URLSearchParams, but we can be explicit.
                 headers: {
-                    'Content-Type': 'application/json',
-                    'requesttoken': OC.requestToken // Important for Nextcloud CSRF protection
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: JSON.stringify(settings)
+                body: searchParams,
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    // Throw an error to be caught by the catch block
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.status === 'success') {
+                    // A less intrusive notification would be better in a real app
                     alert('Settings saved successfully!');
                 } else {
                     alert('Error saving settings: ' + (data.message || 'Unknown error'));
@@ -31,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('An unexpected error occurred while saving settings.');
+                alert('An unexpected error occurred while saving settings. Check the browser console for details.');
             });
         });
     }
