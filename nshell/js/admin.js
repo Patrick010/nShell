@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const settings = Object.fromEntries(formData.entries());
 
             // This is a placeholder for a real URL generation function
-            const url = '/apps/nshell/settings';
+            const url = '/apps/nshell/admin/settings';
 
             fetch(url, {
                 method: 'POST',

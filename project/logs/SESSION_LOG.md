@@ -4,6 +4,25 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-022: Fix "405 Method Not Allowed" on Save Settings
+
+**Date:** 2025-08-25
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To investigate and resolve the "405 Method Not Allowed" error when saving settings from the admin page.
+
+### Outcome
+- The error was hypothesized to be a URL conflict with Nextcloud's internal `/settings` routes.
+- The API endpoint was changed to a more specific URL, `/admin/settings`, in both the backend route definition and the frontend JavaScript.
+- This represents the final bug fix for the application.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-022)
+
+---
+
 ## SESS-013: Fix App Bootstrap Error
 
 **Date:** 2025-08-24

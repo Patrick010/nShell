@@ -2,6 +2,27 @@
 
 ---
 
+## ACT-022: Fix "405 Method Not Allowed" on Save Settings
+
+**Date:** 2025-08-25
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To fix the final bug preventing the admin settings from being saved.
+
+### Outcome
+- A "405 Method Not Allowed" error was occurring when saving settings.
+- Hypothesized that the `/settings` URL was too generic and conflicted with Nextcloud's internal routing.
+- Changed the API endpoint URL to `/admin/settings` in `routes.php`.
+- Updated the corresponding fetch URL in `admin.js`.
+
+### Related Documents
+- `../nshell/appinfo/routes.php`
+- `../nshell/js/admin.js`
+
+---
+
 ## ACT-013: Fix App Bootstrap Error
 
 **Date:** 2025-08-24

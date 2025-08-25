@@ -8,6 +8,6 @@ return [
         // API routes
         ['name' => 'terminal#createSession', 'url' => '/session', 'verb' => 'POST'],
         ['name' => 'terminal#handleIO', 'url' => '/session/{sessionId}/io', 'verb' => 'POST'],
-        ['name' => 'admin#saveSettings', 'url' => '/settings', 'verb' => 'POST'],
+        ['name' => 'admin#saveSettings', 'url' => '/admin/settings', 'verb' => 'POST'],
     ]
 ];
