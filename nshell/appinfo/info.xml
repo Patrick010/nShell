@@ -4,18 +4,23 @@
     <name>nShell</name>
     <summary>A shell environment for Nextcloud.</summary>
     <description>A shell environment for Nextcloud.</description>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <licence>agpl</licence>
     <author>Jules</author>
     <namespace>nShell</namespace>
+    <icon>img/app.svg</icon>
     <dependencies>
         <nextcloud min-version="31" max-version="31"/>
     </dependencies>
     <navigations>
         <navigation>
             <name>nShell</name>
-            <route>nshell.page.index</route>
-            <icon>/apps/nshell/img/app.svg</icon>
+            <route>nshell.terminal.index</route>
+            <icon>img/app-white.svg</icon>
         </navigation>
     </navigations>
+    <settings>
+        <admin-section>OCA\nShell\Settings\AdminSection</admin-section>
+        <admin>OCA\nShell\Settings\AdminSettings</admin>
+    </settings>
 </info>

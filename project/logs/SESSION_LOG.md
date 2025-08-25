@@ -4,27 +4,6 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
-## SESS-020: Final Overhaul and Refactoring
-
-**Date:** 2025-08-25
-**Status:** ✅ Done
-**Assignee:** Jules
-
-### Objective
-To execute a complete project overhaul after numerous failed bug-fix attempts, based on a new, correct understanding of the user's design document.
-
-### Outcome
-- A final, correct plan was established to first overhaul all project documentation (`PID`, `HLD`, `LLD`) to create a solid foundation.
-- Based on the new documentation, the application was refactored to a single-entry-point architecture.
-- All features, including the terminal, settings, and group-based access control, were implemented according to the new design.
-- All outstanding bugs were resolved.
-- This represents the final, successful implementation of the application as designed.
-
-### Related Documents
-- `ACTIVITY.md` (ref: ACT-020)
-
----
-
 ## SESS-013: Fix App Bootstrap Error
 
 **Date:** 2025-08-24
