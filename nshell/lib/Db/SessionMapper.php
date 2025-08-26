@@ -47,16 +47,4 @@ class SessionMapper extends QBMapper {
         return $session;
     }
 
-    /**
-     * Delete a session from the database
-     *
-     * @param Session $session
-     * @return void
-     */
-    public function delete(Session $session): void {
-        $qb = $this->db->getQueryBuilder();
-        $qb->delete($this->tableName)
-            ->where($qb->expr()->eq('id', $qb->createNamedParameter($session->id)));
-        $qb->execute();
-    }
 }
