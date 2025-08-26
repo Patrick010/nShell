@@ -7,6 +7,7 @@ namespace OCA\nShell\Migration;
 use OCP\DB\ISchemaWrapper;
 use OCP\Migration\IOutput;
 use OCP\Migration\ISchemaMigration;
+use OCP\Migration\IRepairStep;
 
 class Version20250826031600 implements ISchemaMigration {
 
@@ -38,5 +39,9 @@ class Version20250826031600 implements ISchemaMigration {
 
     public function postSchemaChange(ISchemaWrapper $schema, IOutput $output): void {
         // No post-migration steps needed for this version.
+    }
+
+    public function addChanges(IRepairStep $repair): void {
+        // No repair steps needed for this version.
     }
 }
