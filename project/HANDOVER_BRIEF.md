@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-This document provides a comprehensive handover for the second phase of the nShell project. The initial development phase is documented in `project/logs/SESSION_LOG.md`. This brief details the work undertaken to debug and restore the application from a non-functional state to a stable, usable version.
+This document provides a comprehensive handover for the second phase of the nShell project. The initial development phase is documented in `project/logs/SESSION_LOG.md`. This brief details the work needed to debug and restore the application from a non-functional state to a stable, usable version.
 
 ## 2. Initial State Analysis (Start of Phase 2)
 
@@ -16,7 +16,7 @@ The project was inherited in a completely non-functional state. Key issues inclu
 
 ## 3. Summary of Fixes (Phase 2)
 
-A series of major fixes were implemented to bring the application to a functional state.
+A series of major fixes were implemented to bring the application to a semi-functional state.
 
 - **Namespacing and Autoloading:**
     - **Files Modified:** All PHP files in `lib/`.
@@ -32,7 +32,7 @@ A series of major fixes were implemented to bring the application to a functiona
 
 - **Content Security Policy (CSP):**
     - **Files Created/Modified:** `nshell/js/xterm.js`, `nshell/css/xterm.min.css`, `nshell/templates/terminal.php`.
-    - **Action:** The terminal library `xterm.js` was being blocked by CSP because it was loaded from an external CDN. The library was downloaded and bundled locally with the application. The `terminal.php` template was updated to load the local assets using the CSP-compliant `\OCP\Util::addScript()` and `\OCP\Util::addStyle()` methods.
+    - **Action:** The terminal library `xterm.js` is being blocked by CSP because it was loaded from an external CDN. The library was downloaded and bundled locally with the application. The `terminal.php` template must be updated to load the local assets using the CSP-compliant `\OCP\Util::addScript()` and `\OCP\Util::addStyle()` methods.
 
 ## 4. Code Structure Overview
 
@@ -51,3 +51,7 @@ A series of major fixes were implemented to bring the application to a functiona
     - **Security Hardening:** The current implementation provides a direct shell. Future development should focus on implementing the originally envisioned security features, such as using `rbash`, command whitelisting, and containerization.
     - **Session Management:** Implement robust session management features like idle timeouts and logging.
     - **UI Enhancements:** Improve the terminal UI and add features like theme selection.
+
+## 6. First Task:
+- To get up to speed, please follow the instructions in **`project/ONBOARDING.md`**. It provides a recommended reading order for all the key project documents and will give you a complete picture of the project's architecture, status, and processes.
+- Read Current State for a more in depth issue report.

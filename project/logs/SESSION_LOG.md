@@ -4,6 +4,27 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-014: Debugging and Restoration Phase
+
+**Date:** 2025-08-25
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To debug and restore the nShell application from a non-functional state to a stable, working version.
+
+### Outcome
+A series of critical, cascading bugs were identified and fixed. The application is now functional.
+
+### Summary of Fixes
+1.  **Namespace & Autoloading (`ReflectionException`)**: Corrected the PHP namespace in all classes to `OCA\nShell` and removed a faulty custom autoloader.
+2.  **UI Integration (App Not Visible)**: Implemented the necessary controllers, routes, and `info.xml` entries to make the application visible and accessible within Nextcloud.
+3.  **Settings Form (`405 Method Not Allowed`)**: Replaced the non-functional JavaScript-based settings form with a standard HTML form `POST` request.
+4.  **User Access (`TypeError`)**: Fixed a `TypeError` that was crashing the application for non-admin users.
+5.  **Blank Screen (Content Security Policy)**: Resolved a CSP issue by downloading the external `xterm.js` library, bundling it locally with the app, and loading it using Nextcloud's CSP-compliant helper functions.
+
+---
+
 ## SESS-013: Fix App Bootstrap Error
 
 **Date:** 2025-08-24
@@ -199,21 +220,4 @@ To conduct the initial project setup and documentation.
 
 ---
 
-## SESS-POST: Debugging and Restoration Phase
 
-**Date:** 2025-08-25
-**Status:** ✅ Done
-**Assignee:** Jules
-
-### Objective
-To debug and restore the nShell application from a non-functional state to a stable, working version.
-
-### Outcome
-A series of critical, cascading bugs were identified and fixed. The application is now functional.
-
-### Summary of Fixes
-1.  **Namespace & Autoloading (`ReflectionException`)**: Corrected the PHP namespace in all classes to `OCA\nShell` and removed a faulty custom autoloader.
-2.  **UI Integration (App Not Visible)**: Implemented the necessary controllers, routes, and `info.xml` entries to make the application visible and accessible within Nextcloud.
-3.  **Settings Form (`405 Method Not Allowed`)**: Replaced the non-functional JavaScript-based settings form with a standard HTML form `POST` request.
-4.  **User Access (`TypeError`)**: Fixed a `TypeError` that was crashing the application for non-admin users.
-5.  **Blank Screen (Content Security Policy)**: Resolved a CSP issue by downloading the external `xterm.js` library, bundling it locally with the app, and loading it using Nextcloud's CSP-compliant helper functions.

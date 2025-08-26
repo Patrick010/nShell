@@ -79,6 +79,6 @@ This document provides a detailed breakdown of the tasks required to fulfill the
 
 **Steps:**
 - [x] Implemented backend I/O piping in the `TerminalController`.
-- [x] Implemented settings persistence in the `AdminController`.
+- [ ] Implemented settings persistence in the `AdminController`.
 - [x] Reviewed and confirmed user-facing documentation (`README.md`, `docs/`).
-- [x] Performed a final verification test of the core functionality.
+- [ ] Performed a final verification test of the core functionality.
