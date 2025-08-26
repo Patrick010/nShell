@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace OCA\nShell\Db;
 
 use OCP\AppFramework\Db\Entity;
+use OCP\DB\Types;
 
 class Session extends Entity {
-    /** @var int */
-    public $id;
-    /** @var string */
-    public $uid;
-    /** @var string */
-    public $sessionId;
-    /** @var int */
-    public $createdAt;
-    /** @var int */
-    public $expiresAt;
+    protected $uid;
+    protected $sessionId;
+    protected $createdAt;
+    protected $expiresAt;
+
+    public function __construct() {
+        $this->addType('created_at', Types::INTEGER);
+        $this->addType('expires_at', Types::INTEGER);
+    }
 }
