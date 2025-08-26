@@ -28,23 +28,5 @@ class SessionMapper extends QBMapper {
         return $this->findOne($qb);
     }
 
-    /**
-     * Insert a new session into the database
-     *
-     * @param Session $session
-     * @return Session
-     */
-    public function insert(Session $session): Session {
-        $qb = $this->db->getQueryBuilder();
-        $qb->insert($this->tableName)
-            ->values([
-                'id' => $qb->createNamedParameter($session->id),
-                'user_id' => $qb->createNamedParameter($session->userId),
-                'created_at' => $qb->createNamedParameter($session->createdAt),
-                'last_activity' => $qb->createNamedParameter($session->lastActivity)
-            ]);
-        $qb->execute();
-        return $session;
-    }
 
 }
