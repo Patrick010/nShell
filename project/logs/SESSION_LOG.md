@@ -4,6 +4,25 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-016: Fix Terminal Input Handling Bug
+
+**Date:** 2025-08-26
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To fix the JavaScript error `can't access property "endsWith", data.output is undefined` that occurred when typing in the terminal.
+
+### Outcome
+- Analyzed the backend controller and confirmed it correctly returns responses without an `output` key in error scenarios.
+- Modified `nshell/js/terminal.js` to gracefully handle responses that do not contain an `output` key.
+- The frontend code is now more robust and no longer crashes on server error responses. The terminal is fully interactive.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-027)
+
+---
+
 ## SESS-015: Phase-2a - CSP Fix Implementation
 
 **Date:** 2025-08-26

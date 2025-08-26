@@ -2,6 +2,25 @@
 
 ---
 
+## ACT-027: Fix JavaScript Error in Terminal Input
+
+**Date:** 2025-08-26
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To resolve the frontend JavaScript error `can't access property "endsWith", data.output is undefined`.
+
+### Outcome
+- Modified `nshell/js/terminal.js` to add a check for `data.output` before accessing its properties.
+- The terminal input handling is now robust against server responses that lack an `output` field.
+
+### Related Documents
+- `../nshell/js/terminal.js`
+- `SESSION_LOG.md` (ref: SESS-016)
+
+---
+
 ## ACT-026: Fix Critical CSP Bug
 
 **Date:** 2025-08-26
