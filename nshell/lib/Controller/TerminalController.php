@@ -3,7 +3,7 @@
 namespace OCA\nShell\Controller;
 
 use OCA\nShell\Service\ConfigService;
-use OCA\nShell\SessionManager;
+use OCA\nShell\Service\SessionManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -35,7 +35,6 @@ class TerminalController extends Controller {
 
     /**
      * @NoAdminRequired
-     * @NoCSRFRequired
      */
     public function index(): TemplateResponse {
         $user = $this->userSession->getUser();
@@ -56,39 +55,38 @@ class TerminalController extends Controller {
 
     /**
      * @NoAdminRequired
-     * @NoCSRFRequired
      */
-    public function createSession(): JSONResponse {
-        $sessionId = $this->sessionManager->createSession();
-        if ($sessionId) {
-            return new JSONResponse(['status' => 'success', 'sessionId' => $sessionId]);
+    public function start(): JSONResponse {
+        $user = $this->userSession->getUser();
+        if ($user === null) {
+            return new JSONResponse(['error' => 'User not logged in'], 401);
         }
-        return new JSONResponse(['status' => 'error', 'message' => 'Failed to create session'], 500);
+        $session = $this->sessionManager->create($user->getUID());
+
+        // Here we would also trigger the ShellProcessManager to start a process
+        // For now, we just create the DB record.
+
+        return new JSONResponse(['sessionId' => $session->id]);
     }
 
     /**
      * @NoAdminRequired
-     * @NoCSRFRequired
      */
-    public function handleIO(string $sessionId, string $input = ''): JSONResponse {
-        $session = $this->sessionManager->getSession($sessionId);
-        if ($session === null) {
-            return new JSONResponse(['status' => 'error', 'message' => 'Session not found', 'output' => 'Error: Session not found.'], 404);
+    public function stop(string $sessionId): JSONResponse {
+        $user = $this->userSession->getUser();
+        if ($user === null) {
+            return new JSONResponse(['error' => 'User not logged in'], 401);
         }
 
-        $stdin = $session['pipes'][0];
-        $stdout = $session['pipes'][1];
-
-        if (!empty($input)) {
-            fwrite($stdin, $input);
+        $session = $this->sessionManager->get($sessionId);
+        if ($session === null || $session->userId !== $user->getUID()) {
+            return new JSONResponse(['error' => 'Session not found or permission denied'], 404);
         }
 
-        stream_set_blocking($stdout, false);
-        $output = '';
-        while ($line = fgets($stdout)) {
-            $output .= $line;
-        }
+        $this->sessionManager->delete($sessionId);
 
-        return new JSONResponse(['status' => 'success', 'output' => $output]);
+        // Here we would also trigger the ShellProcessManager to stop a process
+
+        return new JSONResponse(['status' => 'success']);
     }
 }

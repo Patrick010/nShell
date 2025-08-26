@@ -4,16 +4,18 @@ namespace OCA\nShell\AppInfo;
 
 use OCA\nShell\Controller\AdminController;
 use OCA\nShell\Controller\TerminalController;
+use OCA\nShell\Db\SessionMapper;
 use OCA\nShell\Service\ConfigService;
+use OCA\nShell\Service\SessionManager;
 use OCA\nShell\Settings\AdminSection;
 use OCA\nShell\Settings\AdminSettings;
-use OCA\nShell\SessionManager;
 use OCA\nShell\ShellLauncher;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\IConfig;
+use OCP\IDBConnection;
 use OCP\IGroupManager;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
@@ -37,8 +39,11 @@ class Application extends App implements IBootstrap
         $context->registerService(ShellLauncher::class, function ($c) {
             return new ShellLauncher();
         });
+        $context->registerService(SessionMapper::class, function ($c) {
+            return new SessionMapper($c->get(IDBConnection::class));
+        });
         $context->registerService(SessionManager::class, function ($c) {
-            return new SessionManager($c->get(ShellLauncher::class));
+            return new SessionManager($c->get(SessionMapper::class));
         });
 
         // Controllers

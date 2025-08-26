@@ -1,84 +1,86 @@
-# Execution Plan
+# nShell Stateful Session Implementation Plan
 
-**Status:** Live Document
+**Goal:** Implement fully stateful, persistent shell sessions for nShell in Nextcloud. Each session must maintain its shell state, survive across PHP requests, and support multiple users securely.
 
-This document provides a detailed breakdown of the tasks required to fulfill the project's goals, as outlined in the [Project Initiation Document (PID)](./PID.md).
+---
 
-## Phase 1: Skeleton & Framework
-**Goal:** Establish the project's foundational code structure, including the core backend classes and CLI wrappers.
-**Status:** ✅ Done
-**Associated Tasks:**
-- `NS-FEAT-001`: Generate skeleton code for the CLI wrapper (`nshell.php`) and the core backend classes (`SessionManager.php`, `Logger.php`).
+## 1. Database-backed Session Manager
 
-**Steps:**
-- [x] Create `bin/nshell.php` with basic executable structure.
-- [x] Create `lib/SessionManager.php` with class definition.
-- [x] Create `lib/ShellLauncher.php` with class definition.
-- [x] Create `lib/SSHWrapper.php` with class definition.
-- [x] Create `lib/Logger.php` with class definition.
-- [x] Create a `composer.json` with project metadata and dependencies for Nextcloud 31.
-- [x] Create and integrate a manual PSR-4 autoloader (`lib/autoload.php`) due to environment constraints.
+### 1.1. Migration
+- **Path:** `apps/nshell/lib/Migration/VersionYYYYMMDDXXXX.php`
+- **Table:** `nshell_sessions`
+- **Columns:**
+    - `id` (string, 64, PK) — session ID (nshell_XXXX)
+    - `user_id` (string, 64, not null)
+    - `created_at` (datetime, not null)
+    - `last_activity` (datetime, optional) — for idle timeout tracking
 
-## Phase 2: Core Logic Implementation
-**Goal:** Implement the core security features and business logic of the backend.
-**Status:** ✅ Done
-**Associated Tasks:**
-- `NS-FEAT-002`: Implement the SSH wrapper script (`ssh-wrapper.sh`) and the core logic for restricting SSH commands.
+### 1.2. Entity
+- **Path:** `lib/Db/Session.php`
+- **Namespace:** `OCA\nShell\Db`
+- **Properties:** `$id`, `$userId`, `$createdAt`, `$lastActivity`
+- **Extends:** `OCP\AppFramework\Db\Entity`
 
-**Steps:**
-- [x] Implement the `Logger` to write to per-session and central audit logs.
-- [x] Implement the `ShellLauncher` to spawn shell processes with a restricted environment.
-- [x] Implement the `SessionManager` to track and terminate sessions.
-- [x] Create the `bin/ssh-wrapper.sh` script with logic to validate hosts against a configuration.
-- [x] Ensure the `ShellLauncher` correctly uses the `ssh-wrapper.sh` when launching a restricted shell.
+### 1.3. Mapper
+- **Path:** `lib/Db/SessionMapper.php`
+- **Namespace:** `OCA\nShell\Db`
+- **Extends:** `OCP\AppFramework\Db\QBMapper`
+- **Methods:** `find()`, `insert()`, `delete()`
 
-## Phase 3: Frontend Development
-**Goal:** Create the non-interactive frontend components, including the admin panel and the user terminal page.
-**Status:** ✅ Done
-**Associated Tasks:**
-- `NS-FEAT-003`: Create frontend UI templates and JavaScript logic to render the admin panel and the xterm.js terminal.
+### 1.4. SessionManager Service
+- **Path:** `lib/Service/SessionManager.php`
+- **Namespace:** `OCA\nShell\Service`
+- **Constructor:** Injects `SessionMapper`
+- **Methods:** `create()`, `get()`, `delete()`, `touch()` (optional)
 
-**Steps:**
-- [x] Create the HTML structure for the admin panel in `templates/admin.php`.
-- [x] Add CSS in `css/admin.css` to style the panel.
-- [x] Create the HTML structure for the terminal page in `templates/terminal.php`.
-- [x] Add a placeholder for xterm.js and create `js/terminal.js`.
-- [x] Add CSS in `css/terminal.css` to style the terminal.
+### 1.5. DI Registration
+- Register `SessionMapper` and `SessionManager` in `lib/AppInfo/Application.php`.
 
-## Phase 3.5: App Registration
-**Goal:** Create the necessary files to make the app discoverable by a local Nextcloud instance for testing.
-**Status:** ✅ Done
-**Associated Tasks:**
-- `NS-INFRA-001`: Create app manifest and entrypoint.
+---
 
-**Steps:**
-- [x] Create the `appinfo/` directory.
-- [x] Create `appinfo/info.xml` with app metadata.
-- [x] Create `appinfo/app.php` with a basic Application class structure.
+## 2. Persistent Shell Process Management
 
-## Phase 4: Integration & Connection
-**Goal:** Connect the frontend and backend to create a fully interactive application.
-**Status:** ✅ Done
-**Associated Tasks:**
-- `NS-FEAT-004`: Connect the frontend UI to the backend using AJAX/WebSockets to create an interactive terminal session.
+### 2.1. ShellProcess Class
+- **Path:** `lib/Service/ShellProcess.php`
+- **Namespace:** `OCA\nShell\Service`
+- **Responsibilities:** Spawn shell attached to a pseudo-terminal, maintain file descriptor handles, track PID.
 
-**Steps:**
-- [x] Implemented a `TerminalController` to handle API requests.
-- [x] Registered API routes in `appinfo/routes.php` and `appinfo/app.php`.
-- [x] Updated `js/terminal.js` to create a session and handle I/O via AJAX.
-- [x] The backend now receives input, but does not yet pipe it to the shell process (to be done in a later implementation step).
-- [x] The frontend receives placeholder output from the backend.
-- [x] Implement the AJAX endpoints for the admin panel to save configuration changes.
-- [x] Update `js/admin.js` to call the save endpoints.
+### 2.2. ShellProcessManager
+- **Path:** `lib/Service/ShellProcessManager.php`
+- **Responsibilities:** Map session IDs to live shell processes, start/stop/manage processes, handle I/O.
 
-## Phase 5: Finalization & Documentation
-**Goal:** Finalize the product, ensure it works out-of-the-box, and complete user-facing documentation.
-**Status:** ✅ Done
-**Associated Tasks:**
-- `NS-FEAT-005`: Provide the default `rbash` environment, create final user documentation, and add zero-config examples.
+---
 
-**Steps:**
-- [x] Implemented backend I/O piping in the `TerminalController`.
-- [ ] Implemented settings persistence in the `AdminController`.
-- [x] Reviewed and confirmed user-facing documentation (`README.md`, `docs/`).
-- [ ] Performed a final verification test of the core functionality.
+## 3. WebSocket Bridge (or alternative stateful connection)
+
+### 3.1. WebSocket Server / Daemon
+- **Path:** `bin/daemon.php` (or similar)
+- **Responsibilities:** Accept connections, associate with session ID, forward I/O between frontend and `ShellProcessManager`.
+
+### 3.2. Controller Updates
+- **/start:** Creates DB session and starts the shell process via `ShellProcessManager`.
+- **/exec:** (To be deprecated/removed in favor of WebSocket) Handles command execution.
+- **/stop:** Deletes DB session and terminates the shell process.
+
+---
+
+## 4. Frontend Updates
+- Fetch session ID from `/start`.
+- Establish WebSocket connection.
+- Send commands and display output via WebSocket messages.
+- Implement idle warnings and auto-disconnect.
+
+---
+
+## 5. Cleanup and Security
+- Implement idle session timeout to terminate backend processes.
+- Implement max session lifetime (optional).
+- Ensure shell processes run under a restricted user context.
+- Enforce strict user isolation.
+
+---
+
+## Outcome
+- The "Session not found" error is resolved.
+- The terminal becomes fully stateful, with session state (like current directory) persisting.
+- Sessions are secure, manageable, and support multiple users.

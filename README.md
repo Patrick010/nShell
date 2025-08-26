@@ -69,6 +69,22 @@
 
 We provide an automated installation script for ease of use. For detailed instructions on using the script, as well as manual installation steps, please see the full **[Installation Guide](./docs/installation.md)**.
 
+---
+
+## Architecture & Running the Daemon
+
+**Important:** nShell uses a persistent WebSocket server to provide a stateful, real-time terminal experience. This server is a separate process that you must run in the background.
+
+To start the daemon, run the following command from your Nextcloud root directory:
+
+```bash
+php nshell/bin/daemon.php
+```
+
+This will start the WebSocket server. For production use, you should run this as a persistent background service using a tool like `systemd` or `supervisor`.
+
+*Note: The WebSocket URL is currently hardcoded in `nshell/js/terminal.js` to point to `ws://127.0.0.1:8080`. This will be made configurable in the future.*
+
 ### Quick Start with `install.sh`
 
 1. Download the installation script from the project repository:

@@ -9,7 +9,7 @@ return [
         ['name' => 'admin#saveGroup', 'url' => '/admin/save-group', 'verb' => 'POST'],
 
         // API routes for the terminal session
-        ['name' => 'terminal#createSession', 'url' => '/session', 'verb' => 'POST'],
-        ['name' => 'terminal#handleIO', 'url' => '/session/{sessionId}/io', 'verb' => 'POST'],
+        ['name' => 'terminal#start', 'url' => '/start', 'verb' => 'POST'],
+        ['name' => 'terminal#stop', 'url' => '/stop/{sessionId}', 'verb' => 'POST'],
     ]
 ];

@@ -14,59 +14,48 @@ The project's scope is to create a secure, configurable, restricted shell enviro
 
 ## 3. Architecture Overview
 
-The nShell system is composed of four primary layers: a web-based frontend, a controller layer to handle API requests, a backend service layer for business logic, and the restricted shell environment itself.
+To achieve stateful, persistent sessions, the nShell architecture is composed of five primary components: the Web Frontend, a standard Nextcloud PHP Backend for session initiation, a persistent Database for session tracking, a long-running WebSocket Server for real-time communication, and a Shell Process Manager to handle the live shell processes.
 
-       ┌───────────────────┐
-       │   Web Frontend     │
-       │-------------------│
-       │ - Admin UI         │
-       │ - User Terminal UI │
-       └─────────┬─────────┘
-                 │ AJAX
-                 ▼
-       ┌───────────────────┐
-       │ Controller Layer   │
-       │-------------------│
-       │ - TerminalController│
-       │ - AdminController   │
-       └─────────┬─────────┘
-                 │
-                 ▼
-       ┌───────────────────┐
-       │  Backend Services  │
-       │-------------------│
-       │ - SessionManager   │
-       │ - ShellLauncher    │
-       │ - Logger           │
-       └─────────┬─────────┘
-                 │
-                 ▼
-       ┌───────────────────┐
-       │ Restricted Shell   │
-       │-------------------│
-       │ - rbash (default)  │
-       │ - Optional shells  │
-       │ - Restricted PATH  │
-       │ - Wrapped binaries │
-       └───────────────────┘
+       ┌───────────────────┐      ┌────────────────────┐
+       │   Web Frontend     │──────│   WebSocket Server  │
+       │  (xterm.js)        │ WebSocket  (bin/daemon.php)   │
+       └─────────┬─────────┘      └──────────┬─────────┘
+                 │ AJAX (for /start)         │ IPC
+                 │                           │
+                 ▼                           ▼
+       ┌───────────────────┐      ┌────────────────────┐
+       │  Nextcloud Backend  │      │ ShellProcessManager  │
+       │  (PHP Controllers)  │      │ (Manages PTYs)     │
+       └─────────┬─────────┘      └──────────┬─────────┘
+                 │                           │
+                 ▼                           ▼
+       ┌───────────────────┐      ┌────────────────────┐
+       │     Database       │      │  Restricted Shell  │
+       │ (nshell_sessions)  │      │ (rbash, per user)  │
+       └───────────────────┘      └────────────────────┘
 
 **Component Breakdown:**
 
-1.  **Web Frontend:** The user-facing interface, built within Nextcloud.
-    *   **Admin UI:** Allows administrators to configure all aspects of nShell, from shell selection to session timeouts and security warnings.
-    *   **User Terminal UI:** Provides the `xterm.js`-based interactive terminal for the user's shell session.
+1.  **Web Frontend:** The user-facing `xterm.js` terminal. It initiates the session via an AJAX call to the Nextcloud Backend, then establishes a persistent WebSocket connection to the WebSocket Server for all subsequent I/O.
 
-2.  **Backend Daemon:** The core of nShell, written in PHP. It runs on the server and manages all logic.
-    *   **Session Manager:** Handles the lifecycle of shell sessions (creation, termination, isolation).
-    *   **Shell Launcher:** Spawns the actual shell process (`rbash`, `bash`, etc.) with the correct environment, PATH, and restrictions.
-    *   **SSH Wrapper Logic:** Intercepts and validates SSH commands against the allowed list.
-    *   **Timeout & Logging:** Manages session timeouts and records all command activity to log files.
-    *   **Config Parser:** Reads and applies settings from the optional `config.yaml` file.
+2.  **Nextcloud Backend (PHP):** The standard Nextcloud app backend. Its role is limited to stateless operations.
+    *   **Controllers:** Handle requests to start and stop sessions.
+    *   **SessionManager Service:** Interacts with the database to create, retrieve, and delete session records. It does *not* manage the live shell process.
+    *   **Admin UI:** Provides the interface for administrators to configure nShell.
 
-3.  **Restricted Shell Environment:** The actual environment the user interacts with.
-    *   **Shell:** Defaults to `rbash` for security, but can be configured to use other shells.
-    *   **Restricted PATH:** The `PATH` environment variable is strictly controlled to only include whitelisted command directories.
-    *   **Wrapped Binaries:** Commands like `ssh` are replaced with wrappers to enforce security policies.
+3.  **Database:** A dedicated database table (`nshell_sessions`) that persistently stores session information (session ID, user ID, timestamps). This allows session information to survive across different requests and processes.
+
+4.  **WebSocket Server (Daemon):** A long-running process (e.g., `bin/daemon.php`) that manages the real-time communication bridge.
+    *   It accepts WebSocket connections from the frontend.
+    *   It communicates with the `ShellProcessManager` (e.g., via IPC) to route input and output to the correct shell process for a given session ID.
+
+5.  **ShellProcessManager & ShellProcess:** A backend service responsible for the lifecycle of the actual, stateful shell processes.
+    *   It spawns a new restricted shell in a pseudo-terminal (PTY) for each new session.
+    *   It keeps track of the live processes, mapping them to session IDs.
+    *   It handles all I/O, writing user input to the shell's PTY and reading the output.
+    *   It terminates shell processes when sessions are closed.
+
+6.  **Restricted Shell Environment:** The actual, isolated shell environment (`rbash`) that the user interacts with, running as a dedicated process on the server.
 
 ### 3.1 Proposed File Structure
 
