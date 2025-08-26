@@ -6,17 +6,16 @@ namespace OCA\nShell\Service;
 
 use OCA\nShell\Db\Session;
 use OCA\nShell\Db\SessionMapper;
-use OCP\ILogger;
+use Psr\Log\LoggerInterface;
 
 class SessionManager {
 
     private SessionMapper $sessionMapper;
-    private ILogger $logger;
+    private LoggerInterface $logger;
 
-    public function __construct(SessionMapper $sessionMapper, ILogger $logger) {
+    public function __construct(SessionMapper $sessionMapper, LoggerInterface $logger) {
         $this->sessionMapper = $sessionMapper;
         $this->logger = $logger;
-        $this->logger->info('SessionManager initialized');
     }
 
     /**
@@ -26,7 +25,7 @@ class SessionManager {
      * @return Session
      */
     public function create(string $userId): Session {
-        $this->logger->debug('SessionManager: Attempting to create session for user ' . $userId, ['app' => 'nshell']);
+        $this->logger->debug('SessionManager: Attempting to create session for user ' . $userId);
         $session = new Session();
         $session->id = uniqid('nshell_');
         $session->userId = $userId;
@@ -34,7 +33,7 @@ class SessionManager {
         $session->lastActivity = time();
 
         $result = $this->sessionMapper->insert($session);
-        $this->logger->debug('SessionManager: Session created in DB with ID ' . $session->id, ['app' => 'nshell']);
+        $this->logger->debug('SessionManager: Session created in DB with ID ' . $session->id);
         return $result;
     }
 
