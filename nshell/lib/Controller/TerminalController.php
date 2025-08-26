@@ -41,8 +41,8 @@ class TerminalController extends Controller {
         $isAdmin = $this->groupManager->isAdmin($user->getUID());
 
         if ($isAdmin) {
-            // Admins should use the admin settings page to get a terminal
-            return new TemplateResponse('nshell', 'admin_terminal_info', [], 'guest');
+            // Admins see the admin settings page
+            return new TemplateResponse('nshell', 'admin', [], 'guest');
         }
 
         $allowedGroup = $this->configService->getAllowedGroup();
@@ -59,9 +59,9 @@ class TerminalController extends Controller {
             return false;
         }
 
-        // Admins are not authorized for the user terminal
+        // Admin users are always authorized
         if ($this->groupManager->isAdmin($user->getUID())) {
-            return false;
+            return true;
         }
 
         // Check if user is in the allowed group
