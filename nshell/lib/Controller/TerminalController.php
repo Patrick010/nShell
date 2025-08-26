@@ -87,7 +87,7 @@ class TerminalController extends Controller {
         // Here we would also trigger the ShellProcessManager to start a process
         // For now, we just create the DB record.
 
-        return new JSONResponse(['sessionId' => $session->id]);
+        return new JSONResponse(['sessionId' => $session->getSessionId()]);
     }
 
     /**
@@ -100,7 +100,7 @@ class TerminalController extends Controller {
 
         $user = $this->userSession->getUser();
         $session = $this->sessionManager->get($sessionId);
-        if ($session === null || $session->userId !== $user->getUID()) {
+        if ($session === null || $session->getUid() !== $user->getUID()) {
             return new JSONResponse(['error' => 'Session not found or permission denied'], 404);
         }
 

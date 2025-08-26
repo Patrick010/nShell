@@ -29,13 +29,13 @@ class SessionManager {
         $this->logger->debug('SessionManager: Creating session for user ' . $uid);
 
         $session = new Session();
-        $session->uid = $uid;
-        $session->sessionId = uniqid('nshell_');
-        $session->createdAt = time();
-        $session->expiresAt = time() + self::SESSION_LIFETIME;
+        $session->setUid($uid);
+        $session->setSessionId(uniqid('nshell_'));
+        $session->setCreatedAt(time());
+        $session->setExpiresAt(time() + self::SESSION_LIFETIME);
 
         $this->sessionMapper->insert($session);
-        $this->logger->debug('SessionManager: Session created in DB with session_id ' . $session->sessionId);
+        $this->logger->debug('SessionManager: Session created in DB with session_id ' . $session->getSessionId());
         return $session;
     }
 
