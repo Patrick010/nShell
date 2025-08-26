@@ -6,8 +6,9 @@ use OCP\Migration\IOutput;
 
 class Version00001 extends SimpleMigrationStep {
 
-    public function changeSchema(\OCP\DB\ISchemaWrapper $schema, IOutput $output) {
-        // Check if table already exists to avoid errors
+    public function changeSchema(IOutput $output, \Closure $schemaClosure, array $options): void {
+        $schema = $schemaClosure();
+
         if (!$schema->hasTable('nshell_sessions')) {
             $table = $schema->createTable('nshell_sessions');
 
