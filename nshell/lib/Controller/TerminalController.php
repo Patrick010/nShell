@@ -73,7 +73,7 @@ class TerminalController extends Controller {
     public function handleIO(string $sessionId, string $input = ''): JSONResponse {
         $session = $this->sessionManager->getSession($sessionId);
         if ($session === null) {
-            return new JSONResponse(['status' => 'error', 'message' => 'Session not found'], 404);
+            return new JSONResponse(['status' => 'error', 'message' => 'Session not found', 'output' => 'Error: Session not found.'], 404);
         }
 
         $stdin = $session['pipes'][0];

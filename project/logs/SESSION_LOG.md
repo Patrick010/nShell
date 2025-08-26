@@ -4,6 +4,25 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-017: Fix Terminal I/O and Response Handling
+
+**Date:** 2025-08-26
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To fix the terminal functionality by resolving the inconsistent server responses and the frontend JavaScript error, as detailed in `CURRENT_STATE.md`.
+
+### Outcome
+- Modified `nshell/lib/Controller/TerminalController.php` to ensure the error response from the `handleIO` method always includes an `output` key, making the API contract consistent.
+- Modified `nshell/js/terminal.js` to use a simpler and more robust method for parsing the server response, preventing the `endsWith` error on undefined data.
+- The terminal is now believed to be fully functional and robust against I/O errors.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-028)
+
+---
+
 ## SESS-016: Fix Terminal Input Handling Bug
 
 **Date:** 2025-08-26

@@ -2,6 +2,26 @@
 
 ---
 
+## ACT-028: Fix Terminal Backend/Frontend Inconsistency
+
+**Date:** 2025-08-26
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To resolve the terminal failure by fixing the inconsistent API response from the backend and hardening the frontend parsing logic.
+
+### Outcome
+- Modified `nshell/lib/Controller/TerminalController.php` to ensure the `handleIO` error response always contains an `output` key.
+- Modified `nshell/js/terminal.js` to simplify and secure the handling of the JSON response, preventing crashes on unexpected data.
+
+### Related Documents
+- `../nshell/lib/Controller/TerminalController.php`
+- `../nshell/js/terminal.js`
+- `SESSION_LOG.md` (ref: SESS-017)
+
+---
+
 ## ACT-027: Fix JavaScript Error in Terminal Input
 
 **Date:** 2025-08-26

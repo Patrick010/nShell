@@ -43,24 +43,14 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(response => response.json())
             .then(data => {
-                if (typeof data.output === 'string') {
-                    // Replace newlines with carriage return + newline for proper terminal display
-                    const formattedOutput = data.output.replace(/\n/g, '\r\n');
-                    term.write(formattedOutput);
-
-                    // Add a prompt after output for better UX
-                    if (!data.output.endsWith('\n')) {
-                        term.write('\r\n$ ');
-                    } else {
-                        term.write('$ ');
-                    }
-                } else if (data.message) {
-                    // Handle and display server-side error messages
-                    term.write('\r\nServer error: ' + data.message + '\r\n$ ');
+                if (data && typeof data.output === 'string') {
+                    term.write(data.output);
+                } else {
+                    term.write(`\r\nError: invalid server response\r\n`);
                 }
             })
             .catch(err => {
-                term.write('\r\nError communicating with server: ' + err.message + '\r\n');
+                term.write(`\r\nError communicating with server: ${err}\r\n`);
             });
         }
     });
