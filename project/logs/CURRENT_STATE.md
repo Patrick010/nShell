@@ -16,10 +16,68 @@ The nShell application was initially non-functional due to a series of critical 
 
 ## 2. Known Issues & Blockers
 
-*   **Navigation Icon:** The icon for the application in the top navigation bar may not display correctly. This is a minor cosmetic issue. 
+Navigation Icon: The icon for the application in the top navigation bar may not display correctly. This is a minor cosmetic issue.
 
-## 3. Current State
+The terminal is shown but keystrokes return this:
 
-The application is stable and functional. All major known bugs, including the Content Security Policy (CSP) issue and the subsequent JavaScript input handling error, have been resolved. The terminal is now correctly presented and interactive for authorized users.
+    Welcome to nShell! Session ID: nshell_68ad7b2997a07
+	$ 
+	Error communicating with server: can't access property "endsWith", data.output is undefined
+	
+	This requires a code change:
+	The frontend code (terminal.js) is probably doing something like:
+	
+		if (data.output.endsWith('\n')) {
+		term.write(data.output);
+		}
 
-The only remaining known issue is a minor cosmetic problem with the navigation icon. The project is ready for the next phase of development.
+	But the server response doesn’t contain an output property — so data.output is undefined, and .endsWith() crashes.
+	How to fix it
+
+	Decide on a response contract.
+	Your backend should always return JSON like:
+
+		{ "output": "ls -la\r\n" }
+
+			Fix the backend controller (example):
+
+		return new JSONResponse([
+			'output' => $shellOutput,
+		]);
+
+	Harden the frontend (terminal.js):
+
+		fetch(OC.generateUrl('/apps/nshell/exec'), {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'requesttoken': OC.requestToken
+			},
+			body: JSON.stringify({ cmd })
+		})
+		.then(res => res.json())
+		.then(data => {
+			if (data && typeof data.output === 'string') {
+				term.write(data.output);
+			} else {
+				term.write(`Error: invalid server response\r\n`);
+			}
+		})
+		.catch(err => {
+			term.write(`Error communicating with server: ${err}\r\n`);
+		});
+
+	Why this happened
+
+	Right now your controller is either returning:
+
+			raw text,
+
+			or { success: true },
+
+			or maybe { result: "..." }.
+
+	But the JS expects { output: "..." }. They need to be aligned.
+
+3. Current State
+The application is unstable and disfunctional. Administrator configureable settings other than required user group setting, are still absent, no terminal is presented. Authorized users must be presented a working restricted web-based terminal, and unauthorized users are shown a proper "Access Denied" page. The project is ready for handover to the next developer.
