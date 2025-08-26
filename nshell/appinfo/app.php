@@ -17,6 +17,7 @@ use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\IConfig;
 use OCP\IDBConnection;
 use OCP\IGroupManager;
+use OCP\ILogger;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
 use OCP\Util;
@@ -43,7 +44,10 @@ class Application extends App implements IBootstrap
             return new SessionMapper($c->get(IDBConnection::class));
         });
         $context->registerService(SessionManager::class, function ($c) {
-            return new SessionManager($c->get(SessionMapper::class));
+            return new SessionManager(
+                $c->get(SessionMapper::class),
+                $c->get(ILogger::class)
+            );
         });
 
         // Controllers
