@@ -7,10 +7,14 @@ namespace OCA\nShell\Db;
 use OCP\AppFramework\Db\Entity;
 
 class Session extends Entity {
-    public string $id;
-    public string $userId;
-    public int $createdAt;
-    public ?int $lastActivity = null;
+    /** @var string */
+    public $id;
+    /** @var string */
+    public $userId;
+    /** @var int */
+    public $createdAt;
+    /** @var int|null */
+    public $lastActivity = null;
 
     public function __construct() {
         $this->addType('created_at', 'datetime');
