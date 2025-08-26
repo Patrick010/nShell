@@ -53,14 +53,35 @@ class TerminalController extends Controller {
         }
     }
 
+    private function isAuthorized(IUserSession $userSession): bool {
+        $user = $userSession->getUser();
+        if ($user === null) {
+            return false;
+        }
+
+        // Admins are not authorized for the user terminal
+        if ($this->groupManager->isAdmin($user->getUID())) {
+            return false;
+        }
+
+        // Check if user is in the allowed group
+        $allowedGroup = $this->configService->getAllowedGroup();
+        if (!empty($allowedGroup) && $this->groupManager->isInGroup($user->getUID(), $allowedGroup)) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * @NoAdminRequired
      */
     public function start(): JSONResponse {
-        $user = $this->userSession->getUser();
-        if ($user === null) {
-            return new JSONResponse(['error' => 'User not logged in'], 401);
+        if (!$this->isAuthorized($this->userSession)) {
+            return new JSONResponse(['error' => 'Not authorized'], 403);
         }
+
+        $user = $this->userSession->getUser();
         $session = $this->sessionManager->create($user->getUID());
 
         // Here we would also trigger the ShellProcessManager to start a process
@@ -73,11 +94,11 @@ class TerminalController extends Controller {
      * @NoAdminRequired
      */
     public function stop(string $sessionId): JSONResponse {
-        $user = $this->userSession->getUser();
-        if ($user === null) {
-            return new JSONResponse(['error' => 'User not logged in'], 401);
+        if (!$this->isAuthorized($this->userSession)) {
+            return new JSONResponse(['error' => 'Not authorized'], 403);
         }
 
+        $user = $this->userSession->getUser();
         $session = $this->sessionManager->get($sessionId);
         if ($session === null || $session->userId !== $user->getUID()) {
             return new JSONResponse(['error' => 'Session not found or permission denied'], 404);
