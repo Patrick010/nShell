@@ -54,4 +54,4 @@ A series of major fixes were implemented to bring the application to a semi-func
 
 ## 6. First Task:
 - To get up to speed, please follow the instructions in **`project/ONBOARDING.md`**. It provides a recommended reading order for all the key project documents and will give you a complete picture of the project's architecture, status, and processes.
-- Read Current State for a more in depth issue report.
+- Read Current State for a more in depth issue report and pending work.
