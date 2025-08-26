@@ -4,6 +4,26 @@ This log serves as a detailed record of activities and findings from specific wo
 
 ---
 
+## SESS-015: Phase-2a - CSP Fix Implementation
+
+**Date:** 2025-08-26
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To fix the critical Content Security Policy (CSP) bug that was preventing the terminal from loading, as defined in "Phase-2a".
+
+### Outcome
+- The root cause was identified as an incorrect implementation of asset loading in the application boot process.
+- The `nshell/appinfo/app.php` file was modified to correctly load JS/CSS assets in the `boot()` method, providing them with the proper CSP nonce.
+- Redundant asset loading calls were removed from `nshell/templates/terminal.php` to centralize the logic.
+- The application's terminal is now fully functional.
+
+### Related Documents
+- `ACTIVITY.md` (ref: ACT-026)
+
+---
+
 ## SESS-014: Debugging and Restoration Phase
 
 **Date:** 2025-08-25

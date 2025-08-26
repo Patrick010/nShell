@@ -2,6 +2,26 @@
 
 ---
 
+## ACT-026: Fix Critical CSP Bug
+
+**Date:** 2025-08-26
+**Status:** ✅ Done
+**Assignee:** Jules
+
+### Objective
+To resolve the Content Security Policy (CSP) error that prevented the terminal from loading.
+
+### Outcome
+- Correctly implemented CSP-compliant asset loading by moving `Util::addScript` and `Util::addStyle` calls to the `boot()` method in `nshell/appinfo/app.php`.
+- The nShell terminal is now functional.
+
+### Related Documents
+- `../nshell/appinfo/app.php`
+- `../nshell/templates/terminal.php`
+- `SESSION_LOG.md` (ref: SESS-015)
+
+---
+
 ## ACT-025: Fix Admin Settings Implementation
 
 **Date:** 2025-08-25

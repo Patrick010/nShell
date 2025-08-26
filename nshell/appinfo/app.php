@@ -17,6 +17,7 @@ use OCP\IConfig;
 use OCP\IGroupManager;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
+use OCP\Util;
 
 class Application extends App implements IBootstrap
 {
@@ -75,5 +76,10 @@ class Application extends App implements IBootstrap
 
     public function boot(IBootContext $context): void
     {
+        // Load our JS and CSS with CSP nonce support
+        Util::addScript('nshell', 'xterm');
+        Util::addScript('nshell', 'terminal');
+        Util::addStyle('nshell', 'xterm.min');
+        Util::addStyle('nshell', 'terminal');
     }
 }
