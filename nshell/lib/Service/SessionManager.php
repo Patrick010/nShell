@@ -5,60 +5,67 @@ declare(strict_types=1);
 namespace OCA\nShell\Service;
 
 use OCA\nShell\Db\Session;
-use OCA\nShell\Db\SessionMapper;
+use OCP\IDBConnection;
 use Psr\Log\LoggerInterface;
 
 class SessionManager {
 
-    private SessionMapper $sessionMapper;
+    private IDBConnection $db;
     private LoggerInterface $logger;
     private const SESSION_LIFETIME = 3600; // 1 hour
+    private const TABLE = 'n_shell_sessions';
 
-    public function __construct(SessionMapper $sessionMapper, LoggerInterface $logger) {
-        $this->sessionMapper = $sessionMapper;
+    public function __construct(IDBConnection $db, LoggerInterface $logger) {
+        $this->db = $db;
         $this->logger = $logger;
     }
 
-    /**
-     * Creates a new session record in the database.
-     *
-     * @param string $uid
-     * @return Session
-     */
     public function create(string $uid): Session {
-        $this->logger->debug('SessionManager: Creating session for user ' . $uid);
+        $sessionId = uniqid('nshell_');
+        $createdAt = time();
+        $expiresAt = $createdAt + self::SESSION_LIFETIME;
 
-        $session = new Session();
-        $session->setUid($uid);
-        $session->setSessionId(uniqid('nshell_'));
-        $session->setCreatedAt(time());
-        $session->setExpiresAt(time() + self::SESSION_LIFETIME);
+        $qb = $this->db->getQueryBuilder();
+        $qb->insert(self::TABLE)
+            ->values([
+                'uid' => $qb->createNamedParameter($uid),
+                'session_id' => $qb->createNamedParameter($sessionId),
+                'created_at' => $qb->createNamedParameter($createdAt),
+                'expires_at' => $qb->createNamedParameter($expiresAt)
+            ])
+            ->execute();
 
-        $this->sessionMapper->insert($session);
-        $this->logger->debug('SessionManager: Session created in DB with session_id ' . $session->getSessionId());
-        return $session;
+        $this->logger->debug('Session created: ' . $sessionId);
+        return new Session($uid, $sessionId, $createdAt, $expiresAt);
     }
 
-    /**
-     * Retrieves a session record by its public session ID.
-     *
-     * @param string $sessionId
-     * @return Session|null
-     */
     public function get(string $sessionId): ?Session {
-        return $this->sessionMapper->findBySessionId($sessionId);
+        $qb = $this->db->getQueryBuilder();
+        $result = $qb->select('uid', 'session_id', 'created_at', 'expires_at')
+            ->from(self::TABLE)
+            ->where($qb->expr()->eq('session_id', $qb->createNamedParameter($sessionId)))
+            ->executeQuery();
+
+        $row = $result->fetch(); // Replaced fetchAssociative() with fetch()
+        $result->closeCursor(); // Free the cursor
+
+        if ($row === false) {
+            return null;
+        }
+
+        return new Session(
+            $row['uid'],
+            $row['session_id'],
+            (int)$row['created_at'],
+            (int)$row['expires_at']
+        );
     }
 
-    /**
-     * Deletes a session record from the database.
-     *
-     * @param string $sessionId
-     * @return void
-     */
     public function delete(string $sessionId): void {
-        $session = $this->get($sessionId);
-        if ($session !== null) {
-            $this->sessionMapper->delete($session);
-        }
+        $qb = $this->db->getQueryBuilder();
+        $qb->delete(self::TABLE)
+            ->where($qb->expr()->eq('session_id', $qb->createNamedParameter($sessionId)))
+            ->execute();
+        $this->logger->debug('Session deleted: ' . $sessionId);
     }
 }

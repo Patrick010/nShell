@@ -75,6 +75,7 @@ class TerminalController extends Controller {
 
     /**
      * @NoAdminRequired
+	 * @NoCSRFRequired
      */
     public function start(): JSONResponse {
         if (!$this->isAuthorized($this->userSession)) {
@@ -92,6 +93,7 @@ class TerminalController extends Controller {
 
     /**
      * @NoAdminRequired
+	 * @NoCSRFRequired
      */
     public function stop(string $sessionId): JSONResponse {
         if (!$this->isAuthorized($this->userSession)) {
