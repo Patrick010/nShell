@@ -12,6 +12,7 @@ class SessionManager {
 
     private SessionMapper $sessionMapper;
     private LoggerInterface $logger;
+    private const SESSION_LIFETIME = 3600; // 1 hour
 
     public function __construct(SessionMapper $sessionMapper, LoggerInterface $logger) {
         $this->sessionMapper = $sessionMapper;
@@ -21,58 +22,43 @@ class SessionManager {
     /**
      * Creates a new session record in the database.
      *
-     * @param string $userId
+     * @param string $uid
      * @return Session
      */
-    public function create(string $userId): Session {
-        $this->logger->debug('SessionManager: Attempting to create session for user ' . $userId);
-        $session = new Session();
-        $session->id = uniqid('nshell_');
-        $session->userId = $userId;
-        $session->createdAt = time();
-        $session->lastActivity = time();
+    public function create(string $uid): Session {
+        $this->logger->debug('SessionManager: Creating session for user ' . $uid);
 
-        $result = $this->sessionMapper->insert($session);
-        $this->logger->debug('SessionManager: Session created in DB with ID ' . $session->id);
-        return $result;
+        $session = new Session();
+        $session->uid = $uid;
+        $session->sessionId = uniqid('nshell_');
+        $session->createdAt = time();
+        $session->expiresAt = time() + self::SESSION_LIFETIME;
+
+        $this->sessionMapper->insert($session);
+        $this->logger->debug('SessionManager: Session created in DB with session_id ' . $session->sessionId);
+        return $session;
     }
 
     /**
-     * Retrieves a session record by its ID.
+     * Retrieves a session record by its public session ID.
      *
-     * @param string $id
+     * @param string $sessionId
      * @return Session|null
      */
-    public function get(string $id): ?Session {
-        return $this->sessionMapper->find($id);
+    public function get(string $sessionId): ?Session {
+        return $this->sessionMapper->findBySessionId($sessionId);
     }
 
     /**
      * Deletes a session record from the database.
      *
-     * @param string $id
+     * @param string $sessionId
      * @return void
      */
-    public function delete(string $id): void {
-        $session = $this->get($id);
+    public function delete(string $sessionId): void {
+        $session = $this->get($sessionId);
         if ($session !== null) {
             $this->sessionMapper->delete($session);
-        }
-    }
-
-    /**
-     * Updates the last_activity timestamp for a session.
-     *
-     * @param string $id
-     * @return void
-     */
-    public function touch(string $id): void {
-        $session = $this->get($id);
-        if ($session !== null) {
-            // This requires an update method in the mapper.
-            // For now, we will skip implementing the full logic
-            // as it's optional for the main functionality.
-            // To implement fully, SessionMapper would need an update() method.
         }
     }
 }

@@ -14,19 +14,17 @@ class SessionMapper extends QBMapper {
     }
 
     /**
-     * Find a session by its ID
+     * Find a session by its public session ID
      *
-     * @param string $id
+     * @param string $sessionId
      * @return Session|null
      */
-    public function find(string $id): ?Session {
+    public function findBySessionId(string $sessionId): ?Session {
         $qb = $this->db->getQueryBuilder();
         $qb->select('*')
             ->from($this->tableName)
-            ->where($qb->expr()->eq('id', $qb->createNamedParameter($id)));
+            ->where($qb->expr()->eq('session_id', $qb->createNamedParameter($sessionId)));
 
         return $this->findOne($qb);
     }
-
-
 }
